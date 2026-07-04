@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Pacientes - Medicsafc</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f4f8fc;margin:0;padding:0}
+  .wrap{max-width:980px;margin:0 auto;padding:20px}
+  .card{background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:18px 22px;margin-bottom:18px}
+  .top{display:flex;justify-content:space-between;align-items:center}
+  .top h1{margin:0;font-size:1.4rem}
+  .tabs{display:flex;gap:10px;margin-bottom:16px}
+  .tabs button{background:#edf2fb;color:#14325d;border:none;padding:8px 14px;border-radius:6px;cursor:pointer}
+  .tabs button.active{background:#14325d;color:#fff}
+  fieldset{border:1px solid #dde6f2;border-radius:8px;padding:8px}
+  legend{font-weight:700;color:#14325d}
+  label{font-size:.95rem;color:#224a7b;display:block;margin:6px 0}
+  input,select,textarea{width:100%;padding:8px 10px;border:1px solid #c6d6ea;border-radius:6px;box-sizing:border-box;font-size:.98rem}
+  textarea{min-height:70px;resize:vertical}
+  .row{display:flex;gap:10px}
+  .row>*{flex:1}
+  .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+  button[data-action]{background:#14325d;color:#fff;border:none;padding:9px 13px;border-radius:6px;cursor:pointer}
+  button[data-secondary]{background:#e2eaf5;color:#14325d;border:none;padding:9px 13px;border-radius:6px;cursor:pointer}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:10px;border-bottom:1px solid #e6edf7;font-size:.95rem}
+  th{background:#edf2fb;color:#14325d}
+  tr:hover td{background:#f7fbff;cursor:pointer}
+  .tag{background:#e8f0ff;color:#14325d;border-radius:999px;padding:3px 10px;font-size:.85rem;display:inline-block}
+  .empty{color:#5a6e88;font-style:italic}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="top">
+      <h1>Medicsafc / Pacientes</h1>
+      <span class="tag" id="form-status">Formulario</span>
+    </div>
+    <div class="tabs">
+      <button data-tab="form" class="active" onclick="tabs('form')">Formulario</button>
+      <button data-tab="report" onclick="tabs('report')">Pacientes / reporte</button>
+    </div>
+  </div>
+
+  <section id="tab-form">
+    <div class="card">
+      <form id="pacienteForm" autocomplete="off">
+        <input type="hidden" name="id" id="paciente_id_hidden" />
+        <fieldset>
+          <legend>Datos generales</legend>
+          <label>Nombre completo
+            <input type="text" name="nombre_completo" placeholder="Nombre (s)" required />
+          </label>
+          <div class="row">
+            <label>Fecha de nacimiento
+              <input type="date" name="fecha_nacimiento" />
+            </label>
+            <label>Sexo
+              <select name="sexo">
+                <option value="">Seleccione</option>
+                <option>Femenino</option>
+                <option>Masculino</option>
+                <option>Otro</option>
+              </select>
+            </label>
+          </div>
+          <label>Correo
+            <input type="email" name="correo" />
+          </label>
+          <label>Teléfono
+            <input type="tel" name="telefono" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Datos clínicos</legend>
+          <label>Tipo de paciente
+            <select name="tipo_paciente">
+              <option>Paciente nuevo</option>
+              <option>Paciente registrado</option>
+            </select>
+          </label>
+          <div class="row">
+            <label>Peso (kg)
+              <input type="number" step="0.1" name="peso" />
+            </label>
+            <label>Talla (cm)
+              <input type="number" step="0.1" name="talla" />
+            </label>
+          </div>
+          <label>Alergias
+            <textarea name="alergias" placeholder="Ej.: Penicilina, polen..."></textarea>
+          </label>
+          <label>Antecedentes
+            <textarea name="antecedentes" placeholder="Enfermedades, cirugías, hábitos..."></textarea>
+          </label>
+          <label>Notas
+            <textarea name="notas" placeholder="Comentarios, si los hay..."></textarea>
+          </label>
+        </fieldset>
+        <div class="actions">
+          <button type="submit" data-action id="saveBtn">Guardar paciente</button>
+          <button type="button" data-secondary onclick="resetForm()">Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="tab-report" hidden>
+    <div class="card">
+      <div class="top">
+        <h3>Pacientes</h3>
+        <div class="row">
+          <input type="search" id="search" placeholder="Buscar por nombre..." oninput="renderReport()" style="max-width:260px" />
+          <button data-secondary onclick="exportCSV()">Exportar CSV</button>
+        </div>
+      </div>
+      <div id="report-content">
+        <p class="empty">Cargando...</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const API='/api/pacientes';
+let editingId = null;
+
+function tabs(name){
+  document.querySelectorAll('[data-tab]').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===name);
+  });
+  const show = name==='form' ? 'tab-form' : 'tab-report';
+  const hide = name==='form' ? 'tab-report' : 'tab-form';
+  document.getElementById(show).hidden = false;
+  document.getElementById(hide).hidden = true;
+  if(name==='report') renderReport();
+}
+
+async function load(){
+  try{
+    const res = await fetch(API);
+    if(!res.ok){ console.error('load failed', res.status); return; }
+    const data = await res.json();
+    window.__cache = data || [];
+  }catch(e){ console.error(e); }
+  renderReport();
+}
+
+async function save(){
+  const form = document.getElementById('pacienteForm');
+  const fd = new FormData(form);
+  const obj = {
+    id: fd.get('id') ? Number(fd.get('id')) : null,
+    tipo_paciente: (fd.get('tipo_paciente')||'').trim(),
+    nombre_completo: (fd.get('nombre_completo')||'').trim(),
+    fecha_nacimiento: (fd.get('fecha_nacimiento')||'').trim(),
+    sexo: (fd.get('sexo')||'').trim(),
+    correo: (fd.get('correo')||'').trim(),
+    telefono: (fd.get('telefono')||'').trim(),
+    peso: fd.get('peso') ? Number(fd.get('peso')) : null,
+    talla: fd.get('talla') ? Number(fd.get('talla')) : null,
+    alergias: (fd.get('alergias')||'').trim(),
+    antecedentes: (fd.get('antecedentes')||'').trim(),
+    notas: (fd.get('notas')||'').trim()
+  };
+  if(!obj.nombre_completo){ alert('Nombre requerido'); return; }
+  const method = obj.id ? 'PUT' : 'POST';
+  const url = obj.id ? API+'/'+obj.id : API;
+  const res = await fetch(url,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)});
+  if(!res.ok){ alert('Error al guardar'); return; }
+  resetForm();
+  tabs('report');
+}
+function escapeHtml(s){return String(s??'—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function imc(peso,talla){
+  if(!peso || !talla) return '';
+  return 'IMC ' + (peso / Math.pow(talla/100,2)).toFixed(1);
+}
+function edad(fecha){
+  if(!fecha) return '—';
+  try{
+    const n=new Date(fecha); const h=new Date();
+    let age=h.getFullYear()-n.getFullYear();
+    const m=h.getMonth()-n.getMonth();
+    if(m<0 || (m===0 && h.getDate()<n.getDate())) age--;
+    return age;
+  }catch(e){ return '—'; }
+}
+function renderReport(){
+  const list = window.__cache || [];
+  const q = (document.getElementById('search')?.value || '').toLowerCase().trim();
+  const box = document.getElementById('report-content');
+  box.classList.remove('hidden');
+  if(!list.length){ box.innerHTML='<p class="empty">Sin registros.</p>'; return; }
+  const filtered = q ? list.filter(r => (r.nombre_completo||'').toLowerCase().includes(q)) : list;
+  const rows = filtered.map(r => {
+    const e = r.edad;
+    const imcStr = (r.peso && r.talla) ? imc(r.peso, r.talla) : '';
+    return `<tr onclick="editPaciente(${r.id})">
+    <td>${escapeHtml(r.nombre_completo)}</td>
+    <td>${escapeHtml(r.fecha_nacimiento||'—')}</td>
+    <td>${e ?? '—'}</td>
+    <td>${escapeHtml(r.sexo||'—')}</td>
+    <td>${escapeHtml(r.tipo_paciente||'—')}</td>
+    <td>${r.peso??'—'} / ${r.talla??'—'} ${imcStr ? '<span class="tag">'+imcStr+'</span>' : ''}</td>
+    <td>${escapeHtml(r.correo||'—')}</td>
+    <td>${escapeHtml(r.telefono||'—')}</td>
+  </tr>`;
+  }).join('');
+  box.innerHTML = `<p class="empty" style="margin-bottom:10px">${filtered.length} paciente(s)</p>
+  <div style="overflow:auto"><table>
+    <thead><tr><th>Paciente</th><th>Nacimiento</th><th>Edad</th><th>Sexo</th><th>Tipo</th><th>Peso / talla</th><th>Correo</th><th>Teléfono</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+async function editPaciente(id){
+  const list = window.__cache || [];
+  const r = list.find(x => x.id === id);
+  if(!r){ return; }
+  editingId = id;
+  document.getElementById('saveBtn').textContent = 'Actualizar paciente';
+  document.getElementById('paciente_id_hidden').value = r.id;
+  const set = (name,val) => { const el = document.querySelector('[name="'+name+'"]'); if(el) el.value = (val ?? ''); };
+  set('tipo_paciente', r.tipo_paciente);
+  set('nombre_completo', r.nombre_completo);
+  set('fecha_nacimiento', r.fecha_nacimiento);
+  set('sexo', r.sexo);
+  set('correo', r.correo);
+  set('telefono', r.telefono);
+  set('peso', r.peso);
+  set('talla', r.talla);
+  set('alergias', r.alergias);
+  set('antecedentes', r.antecedentes);
+  set('notas', r.notas);
+  document.getElementById('form-status').textContent = 'Editando #' + r.id;
+  tabs('form');
+}
+function resetForm(){
+  document.getElementById('pacienteForm').reset();
+  editingId = null;
+  document.getElementById('paciente_id_hidden').value = '';
+  document.getElementById('saveBtn').textContent = 'Guardar paciente';
+  document.getElementById('form-status').textContent = 'Formulario';
+}
+function exportCSV(){
+  const list = window.__cache || [];
+  if(!list.length){alert('No hay registros');return;}
+  const header=['ID','Nombre','Nacimiento','Sexo','Tipo','Peso','Talla','Correo','Telefono','Alergias','Antecedentes','Notas','Creado'];
+  const rows=[header];
+  list.forEach(r=>rows.push([r.id,r.nombre_completo,r.fecha_nacimiento||'',r.sexo||'',r.tipo_paciente||'',r.peso||'',r.talla||'',r.correo||'',r.telefono||'',r.alergias||'',r.antecedentes||'',r.notas||'',r.creado_en||'']));
+  const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'\"')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='pacientes_medicsafc.csv'; a.click();
+}
+document.getElementById('pacienteForm').addEventListener('submit',function(e){e.preventDefault();save();});
+window.addEventListener('load',load);
+</script>
+</body>
+</html>
