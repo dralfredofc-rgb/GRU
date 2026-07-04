@@ -1,0 +1,33 @@
+[GRU-PARAM] epsilon_A derivado = |1.0282 - 1| / 1.6715 = 0.016871
+[GRU-PARAM] Ratio compresion dimensional = 1.626
+======================================================================
+GRU QISKIT — CANAL GEOMETRICO v2.5 CORREGIDO
+Parametros derivados de geometria GRU real
+======================================================================
+
+--- Canal 1-qubit ---
+[GRU-CH] Canal geometrico GRU:
+         epsilon_A = 0.016871
+         f_spine = 0.0323
+         p_parallel (temporal) = 0.000544
+         p_perp (espacial) = 0.016327
+Rango de Choi: 3
+Fidelidad |0>:   0.9837
+Fidelidad |+>:   0.9995
+Fidelidad |1>:   0.9837
+Contraccion |+>: 0.0005
+
+--- Canal 2-qubits ---
+[GRU-CH] Canal geometrico GRU:
+         epsilon_A = 0.016871
+         f_spine = 0.0323
+         p_parallel (temporal) = 0.000544
+         p_perp (espacial) = 0.016327
+Rango de Choi: 4
+Fidelidad Bell: 0.9831
+C_in:           1.0000
+C_out:          0.9663
+Delta C:        0.0337
+Degradacion:    3.37%
+
+[GRU-CH] Resultados en GRU_QISKIT_channel_results_CORREGIDO.json

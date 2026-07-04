@@ -1,0 +1,18 @@
+{
+  "date": "2026-06-26",
+  "source": "GRU_real_CDT_for_interactive.json",
+  "N": 2567,
+  "T": 20,
+  "edges": 16299,
+  "ds_full": 5.0214,
+  "ds_full_err": 0.197,
+  "ds_spine_p25": 2.2104,
+  "ds_spine_p25_err": 0.593,
+  "ds_spine_temporal": 1.0292,
+  "ds_spine_temporal_err": 0.0312,
+  "delta_ds_full_spine": 4.02,
+  "interpretation": "bulk CDT 4D normal. Hierarchical gap Δds≈4 confirms GRU dimensional protection mechanism.",
+  "note": "ds(full)>>ds(spine)>>ds(spine_p0)≈1. Gap is geometric-diffusive protection, not topological.",
+  "figure": "/root/GRU_ds_hierarchy.png",
+  "pdf_summary": "/root/GRU_ds_hierarchy_summary.pdf"
+}

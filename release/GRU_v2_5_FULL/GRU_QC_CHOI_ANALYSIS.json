@@ -1,0 +1,16 @@
+{
+  "choi_rank_1q": 2,
+  "choi_rank_2q": 3,
+  "evals_1q": [
+    -3.260778115274566e-32,
+    0.0,
+    0.049970452058582526,
+    0.9350295479414172
+  ],
+  "evals_2q_nz": [
+    0.02496956088400666,
+    0.02500000000000002,
+    0.931280438627992
+  ],
+  "interpretation": "Low Choi rank = structured geometric noise, not arbitrary."
+}

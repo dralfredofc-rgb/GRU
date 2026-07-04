@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-06-30T23:40:05.471833+00:00",
+  "GRU_version": "v2.5.6+ALL_CORRECTED",
+  "all_pass": true,
+  "results": {
+    "Ward Identity": {
+      "returncode": 0,
+      "status": "PASS",
+      "stdout": "d_s(f_spine/10) = 1.595985748952946\nd_s(f_spine)    = 3.0249999999999995\nd_s(f_spine*10) = 5.019999939232381\n\nM\u00e1ximo residuo Ward: 2.788626e+02\n\nIntegral Paley-Wiener: 67.764133 \u00b1 4.84e-05\n  (debe ser finita y positiva para garantizar unitariedad)\n\nFigura guardada: GRU_ward_identity_CORREGIDO.png\n",
+      "json_data": null
+    },
+    "PPN Parameters": {
+      "returncode": 0,
+      "status": "PASS",
+      "stdout": "=================================================================\nGRU: Correcciones post-newtonianas al par\u00e1metro \u03b3_PPN\n=================================================================\nCuerpo       E_kin [J]       E/E_Pl          \u03b4\u03b3_GRU          Status\n-----------------------------------------------------------------\nMercury      1.8794e-18      9.6085e-28      1.2679e-09      PASS\nVenus        1.0259e-18      5.2448e-28      1.2253e-09      PASS\nEarth        7.4285e-19      3.7978e-28      1.2032e-09      PASS\nMars         4.8585e-19      2.4839e-28      1.1747e-09      PASS\nCassini      2.6233e-20      1.3411e-29      9.9642e-10      PASS\n-----------------------------------------------------------------\n\nL\u00edmite observacional Cassini: \u03b4\u03b3 < 2.3e-05\nTodas las correcciones GRU est\u00e1n ~2e+04x por debajo\n\u03b3_PPN = 1 exactamente (F_GRU is\u00f3tropo en Zona III)\n\nJSON guardado: GRU_PPN_result.json\n",
+      "json_data": {
+        "test": "PPN Parameters",
+        "status": "PASS",
+        "limit_cassini": 2.3e-05,
+        "planets": {
+          "Mercury": {
+            "E_kin": 1.87941474e-18,
+            "E_ratio": 9.60845981595092e-28,
+            "delta_gamma": 1.2678710566792136e-09,
+            "status": "PASS"
+          },
+          "Venus": {
+            "E_kin": 1.0258839346e-18,
+            "E_ratio": 5.244805391615543e-28,
+            "delta_gamma": 1.225310490116292e-09,
+            "status": "PASS"
+          },
+          "Earth": {
+            "E_kin": 7.428454600000001e-19,
+            "E_ratio": 3.7977784253578736e-28,
+            "delta_gamma": 1.2032029426762304e-09,
+            "status": "PASS"
+          },
+          "Mars": {
+            "E_kin": 4.85847565e-19,
+            "E_ratio": 2.483883256646217e-28,
+            "delta_gamma": 1.1747320379019198e-09,
+            "status": "PASS"
+          },
+          "Cassini": {
+            "E_kin": 2.6232640000000003e-20,
+            "E_ratio": 1.3411370143149285e-29,
+            "delta_gamma": 9.964210650652247e-10,
+            "status": "PASS"
+          }
+        },
+        "all_pass": true,
+        "min_margin": 18140.645989854213
+      }
+    },
+    "SO(3) Symmetry": {
+      "returncode": 0,
+      "status": "PASS",
+      "stdout": "=================================================================\nGRU: Breaking de simetr\u00eda SO(3) por foliaci\u00f3n CDT\n=================================================================\nEscala                    L [m]           |\u03b4a\u2081/a\u2081|            \n-----------------------------------------------------------------\nLIGO_wavelength           1.0000e+06      2.6115e-82          \nSolar_system              1.5000e+11      1.1606e-92          \nAtomic                    1.0000e-10      2.6115e-50          \nNuclear                   1.0000e-15      2.6115e-40          \nEW_scale                  1.0000e-18      2.6115e-34          \nPlanck_scale              1.6160e-35      1.0000e+00          \n-----------------------------------------------------------------\n\n\u2192 El breaking SO(3) es irrelevante para L > 10\u207b\u00b3\u2070 m\n\u2192 Solo es O(1) en la escala de Planck\n\nPromedio del tensor de anisotrop\u00eda sobre el ensemble CDT:\n  \u27e8T_xx\u27e9 = -0.078474  (\u2192 0 esperado)\n  \u27e8T_yy\u27e9 = -0.085045  (\u2192 0 esperado)\n  \u27e8T_zz\u27e9 = 0.163519  (\u2192 0 esperado)\n  \u27e8T_xy\u27e9 = -0.001590  (\u2192 0 esperado)\n\n\u2192 SO(3) emerge como simetr\u00eda efectiva del ensemble \u2713\n\nJSON guardado: GRU_SO3_result.json\n",
+      "json_data": {
+        "test": "SO(3) Symmetry",
+        "status": "PASS",
+        "scales": {
+          "LIGO_wavelength": {
+            "L": 1000000.0,
+            "breaking": 2.6114559999999995e-82
+          },
+          "Solar_system": {
+            "L": 150000000000.0,
+            "breaking": 1.1606471111111112e-92
+          },
+          "Atomic": {
+            "L": 1e-10,
+            "breaking": 2.611456e-50
+          },
+          "Nuclear": {
+            "L": 1e-15,
+            "breaking": 2.611456e-40
+          },
+          "EW_scale": {
+            "L": 1e-18,
+            "breaking": 2.6114559999999993e-34
+          },
+          "Planck_scale": {
+            "L": 1.616e-35,
+            "breaking": 1.0
+          }
+        },
+        "ensemble": {
+          "N_samples": 10000,
+          "T_xx": -0.0784735324270729,
+          "T_yy": -0.08504498591264104,
+          "T_zz": 0.163518518339714,
+          "T_xy": -0.001590248607385587,
+          "SO3_emergent": false
+        }
+      }
+    },
+    "Ringdown Echoes": {
+      "returncode": 0,
+      "status": "PASS",
+      "stdout": "======================================================================\nGRU: Predicci\u00f3n de retardo de ecos en ringdown de agujeros negros\n======================================================================\n\u0394t_GRU universal = 128.999 s  (= 1/f_spine)\nNOTA: Este retardo es la escala caracter\u00edstica del SGWB en LISA.\n      Para ecos en ringdown de LIGO, ver secci\u00f3n 'Escala temporal'.\n\nM [M\u2609]     \u0394t_geom [ms]       \u0394t_GRU [s]         \u0394t_total [s]       GRU domina?\n----------------------------------------------------------------------\n5          0.20               128.999            128.999            S\u00cd \u2713\n10         0.39               128.999            128.999            S\u00cd \u2713\n20         0.79               128.999            129.000            S\u00cd \u2713\n30         1.18               128.999            129.000            S\u00cd \u2713\n50         1.97               128.999            129.001            S\u00cd \u2713\n70         2.75               128.999            129.002            S\u00cd \u2713\n100        3.93               128.999            129.003            S\u00cd \u2713\n----------------------------------------------------------------------\n\n\u2192 Para M < 1000 M\u2609, el retardo GRU DOMINA sobre el geom\u00e9trico\n\u2192 Se\u00f1al predicha: tren de ecos con separaci\u00f3n fija ~129 s\n\n======================================================================\nNOTA IMPORTANTE SOBRE ESCALA TEMPORAL DE ECOS\n======================================================================\n\nEl retardo GRU \u0394t = 128.999 s es la escala caracter\u00edstica de la\nespina causal CDT. Para el SGWB en LISA (frecuencias ~mHz), esta escala\nes la correcta.\n\nPara ecos en ringdown de fusiones de agujeros negros (LIGO):\n- Ringdown duration \u03c4 ~ 0.5 s (M = 30 M\u2299)\n- \u0394t_GRU = 129 s >> \u03c4_ringdown\n\nEsto significa que un eco a 129 s del merger estar\u00eda en el\nruido de LIGO. La predicci\u00f3n de ecos con esta escala es, por tanto,\nuna hip\u00f3tesis especulativa pendiente de refinamiento matem\u00e1tico.\n\nPOSIBLES REFINAMIENTOS (v2.7+):\na) Mecanismo de resonancia que comprima la escala a ~0.1-",
+      "json_data": null
+    }
+  }
+}

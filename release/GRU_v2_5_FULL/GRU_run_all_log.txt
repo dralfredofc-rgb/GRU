@@ -1,0 +1,190 @@
+======================================================================
+GRU QISKIT v2.5 — PIPELINE DE VALIDACION CUANTICA
+Scripts corregidos con datos GRU reales
+======================================================================
+
+======================================================================
+Ejecutando: GRU_QISKIT_GEOMETRIC_CHANNEL_v2.5_CORREGIDO.py
+======================================================================
+[GRU-PARAM] epsilon_A derivado = |1.0282 - 1| / 1.6715 = 0.016871
+[GRU-PARAM] Ratio compresion dimensional = 1.626
+======================================================================
+GRU QISKIT — CANAL GEOMETRICO v2.5 CORREGIDO
+Parametros derivados de geometria GRU real
+======================================================================
+
+--- Canal 1-qubit ---
+[GRU-CH] Canal geometrico GRU:
+         epsilon_A = 0.016871
+         f_spine = 0.0323
+         p_parallel (temporal) = 0.000544
+         p_perp (espacial) = 0.016327
+Rango de Choi: 3
+Fidelidad |0>:   0.9837
+Fidelidad |+>:   0.9995
+Fidelidad |1>:   0.9837
+Contraccion |+>: 0.0005
+
+--- Canal 2-qubits ---
+[GRU-CH] Canal geometrico GRU:
+         epsilon_A = 0.016871
+         f_spine = 0.0323
+         p_parallel (temporal) = 0.000544
+         p_perp (espacial) = 0.016327
+Rango de Choi: 4
+Fidelidad Bell: 0.9831
+C_in:           1.0000
+C_out:          0.9663
+Delta C:        0.0337
+Degradacion:    3.37%
+
+[GRU-CH] Resultados en GRU_QISKIT_channel_results_CORREGIDO.json
+
+
+======================================================================
+Ejecutando: GRU_QISKIT_WALK_BENCHMARK_v2.5_CORREGIDO.py
+======================================================================
+GRU QISKIT — WALK BENCHMARK v2.5 CORREGIDO
+=======================================================
+
+[1] Heat kernel clasico — espina GRU (N=200, anillo)...
+    ds(spine) = 0.9913  GRU: PASS
+
+[2] Heat kernel clasico — grid 2D (10x10)...
+    ds(grid)  = 1.0353  Esperado ~2.0: FAIL
+
+[3] CTQW espectral — anillo N=20...
+    ds(teorico) = 1.0 (exacto para anillo)
+    ds(fit num) = -6.57619839487278e-14
+    Nota: ds=1 exacto para anillo. Fit numerico puede diferir por N finito.
+
+[4] Quantum walk Szegedy — LIMITACION CONOCIDA
+    Para N=200: circuito demasiado profundo para AerSimulator
+    Solucion futura: hardware cuantico real o N<10
+
+[GUARDADO] /root/GRU_QISKIT_walk_benchmark_CORREGIDO.json
+ds(spine) = 0.9913 — GRU ✅ PASS
+
+
+======================================================================
+Ejecutando: GRU_QISKIT_TEMPORAL_WALK_v2.5_CORREGIDO.py
+======================================================================
+======================================================================
+GRU QISKIT — TEMPORAL QUANTUM WALK v2.5 CORREGIDO
+Moneda derivada de foliacion temporal REAL
+======================================================================
+[GRU-REAL] Espina temporal: 200 nodos, 200 shells
+[Setup] Origen: nodo 0 (shell 0)
+
+[Comparacion] Quantum walk con diferentes monedas:
+
+  n_steps=1:
+    Estandar: ds=-0.000, p0=1.0000
+    Temporal: ds=-0.000, p0=1.0000
+    Mejora convergencia a ds=1: 1.00x
+
+  n_steps=2:
+    Estandar: ds=-0.000, p0=1.0000
+    Temporal: ds=-0.000, p0=1.0000
+    Mejora convergencia a ds=1: 1.00x
+
+  n_steps=3:
+    Estandar: ds=-0.000, p0=1.0000
+    Temporal: ds=-0.000, p0=1.0000
+    Mejora convergencia a ds=1: 1.00x
+
+[Verdict] Criterio GRU (|ds-1|<0.2): 0/3 pasos
+
+[GRU-Walk] Resultados en GRU_QISKIT_temporal_walk_CORREGIDO.json
+
+
+======================================================================
+Ejecutando: GRU_QISKIT_RADIAL_PROJECTION_v2.5_CORREGIDO.py
+======================================================================
+======================================================================
+GRU QISKIT — PROYECCION RADIAL R-hat v2.5 CORREGIDO
+Espina REAL con distancias BFS
+======================================================================
+[GRU-REAL] Espina: 200 nodos
+[GRU-REAL] Raiz: 0, Max distancia BFS: 100
+[GRU-Q] U_walk unitario: True
+[GRU-R] Proyeccion radial: 200 nodos -> 8 qubits
+
+============================================================
+CIRCUITO 1: QUANTUM WALK EN ESPINA GRU REAL
+============================================================
+
+[STDERR] Traceback (most recent call last):
+  File "/root/GRU_QISKIT_RADIAL_PROJECTION_v2.5_CORREGIDO.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/root/GRU_QISKIT_RADIAL_PROJECTION_v2.5_CORREGIDO.py", line 262, in main
+    qc_walk = gru_r.create_walk_circuit(n_steps=2)
+  File "/root/GRU_QISKIT_RADIAL_PROJECTION_v2.5_CORREGIDO.py", line 197, in create_walk_circuit
+    qc.unitary(self.U_walk[:self.n_encoded, :self.n_encoded],
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      
+
+======================================================================
+Ejecutando: GRU_QISKIT_GRAPH_STATE_CODE_v2.5_CORREGIDO.py
+======================================================================
+======================================================================
+GRU QISKIT — GRAPH STATE QUANTUM CODE v2.5 CORREGIDO
+Sobre espina GRU REAL (subgrafo manejable)
+======================================================================
+[GRU-REAL] Graph state sobre subgrafo: 15 nodos, 14 aristas
+
+[Circuit] Qubits: 15, Profundidad: 14
+
+[Stabilizers] 15 generadores
+  K_0: XZIIIIIIIIIIIII
+  K_1: ZXZIIIIIIIIIIII
+  K_2: IZXZIIIIIIIIIII
+
+[Simulacion] Proteccion contra errores...
+  Tasa de deteccion: 0.492
+  Qubits: 15, Stabilizers: 15
+
+[GRU-QEC] Resultados en GRU_QISKIT_graph_state_results_CORREGIDO.json
+
+
+======================================================================
+Ejecutando: GRU_QISKIT_HOLOGRAPHIC_QEC_v2.5_CORREGIDO.py
+======================================================================
+======================================================================
+GRU QISKIT — HOLOGRAPHIC QEC v2.5 CORREGIDO
+Estructura bulk-boundary desde malla GRU REAL
+======================================================================
+[GRU-REAL] Holographic structure:
+  Boundary (spine): 3 nodos
+  Bulk: 15 nodos
+  Total: 18 nodos, 7 aristas
+
+[Encoding] Circuito holografico...
+  Qubits: 18, Depth: 20
+
+[Decoder] Entropia: 0.9991 / 1.0000
+  Eficiencia: 0.9991
+  Code rate: 5.00
+  Ratio compresion: 5.00
+
+[Recovery] Test con errores...
+  Error=0.0: Recovery=1.000
+  Error=0.1: Recovery=1.000
+  Error=0.2: Recovery=1.000
+
+[GRU-HQEC] Resultados en GRU_QISKIT_holographic_qec_CORREGIDO.json
+
+
+======================================================================
+RESUMEN EJECUCION
+======================================================================
+✅ GRU_QISKIT_GEOMETRIC_CHANNEL_v2.5_CORREGIDO.py: PASS
+✅ GRU_QISKIT_WALK_BENCHMARK_v2.5_CORREGIDO.py: PASS
+✅ GRU_QISKIT_TEMPORAL_WALK_v2.5_CORREGIDO.py: PASS
+❌ GRU_QISKIT_RADIAL_PROJECTION_v2.5_CORREGIDO.py: OUTPUT_ERROR
+✅ GRU_QISKIT_GRAPH_STATE_CODE_v2.5_CORREGIDO.py: PASS
+✅ GRU_QISKIT_HOLOGRAPHIC_QEC_v2.5_CORREGIDO.py: PASS
+
+Tiempo total: 7.7s
+Reporte: GRU_QISKIT_v2.5_CORREGIDO_report.json

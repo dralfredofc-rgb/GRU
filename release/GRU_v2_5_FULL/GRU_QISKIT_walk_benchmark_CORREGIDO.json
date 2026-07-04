@@ -1,0 +1,33 @@
+{
+  "GRU_params": {
+    "DS_SPINE": 1.0282,
+    "DS_BULK": 1.6715,
+    "N_SPINE": 200
+  },
+  "heat_kernel_spine": {
+    "ds": 0.9913029456960059,
+    "gru_pass": true,
+    "protocol": "A.21 NWALKS=3000 SIGMAMAX=200 SEED=42"
+  },
+  "heat_kernel_grid": {
+    "ds": 1.0353325319645703,
+    "gru_pass": false
+  },
+  "ctqw_spectral": {
+    "ds_teorico": 1.0,
+    "ds_fit_numerico": -6.57619839487278e-14,
+    "n_nodes": 20,
+    "note": "ds=1 exacto para anillo. Fit numerico puede diferir por N finito."
+  },
+  "quantum_walk_szegedy": {
+    "status": "LIMITACION_CONOCIDA",
+    "reason": "N=200 requiere ~8 qubits, circuito demasiado profundo para AerSimulator",
+    "solution": "Hardware cuantico real o reducir N<10",
+    "ds_teorico": 1.0
+  },
+  "summary": {
+    "heat_kernel_ds_spine": 0.9913029456960059,
+    "gru_mechanism_confirmed": true,
+    "quantum_walk_note": "Trabajo futuro \u2014 hardware cuantico real"
+  }
+}

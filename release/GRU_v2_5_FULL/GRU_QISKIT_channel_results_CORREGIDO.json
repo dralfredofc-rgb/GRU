@@ -1,0 +1,33 @@
+{
+  "gru_version": "2.5_CORREGIDO",
+  "doi": "10.5281/zenodo.20939080",
+  "parameters": {
+    "DS_SPINE": 1.0282,
+    "DS_FULL": 1.6715,
+    "SIGMA_DS": 0.025,
+    "F_SPINE": 0.03225806451612903,
+    "N_BULK_PER_SHELL": 30,
+    "EPSILON_A": 0.01687107388573138,
+    "COMPRESSION_RATIO": 1.6256564870647734
+  },
+  "channel_1q": {
+    "F_0": 0.9836731543041312,
+    "F_plus": 0.9994557718101373,
+    "F_1": 0.9836731543041312,
+    "contraction_plus": 0.0005442281898626611,
+    "epsilon_A": 0.01687107388573138,
+    "f_spine": 0.03225806451612903
+  },
+  "channel_2q": {
+    "F_bell": 0.983128926114268,
+    "C_in": 0.9999999999999999,
+    "C_out": 0.966257852228542,
+    "delta_C": 0.0337421477714579,
+    "entanglement_degradation": 0.033742147771457905
+  },
+  "choi_rank": {
+    "1q": 3,
+    "2q": 4
+  },
+  "interpretation": "Canal geometrico derivado de foliacion GRU: epsilon_A=0.016871 desde |ds_spine-1|/ds_full"
+}

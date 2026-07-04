@@ -1,0 +1,11 @@
+Saved /root/GRU_QC_CHANNEL_1QUBIT.json
+  CPTP evals: [np.float64(0.985), np.float64(0.985)]
+  F(|+>)=0.9344  F(|0>)=0.9850
+Saved /root/GRU_QC_CHANNEL_2QUBIT.json
+  F(Bell)=0.9289  C_in=1.0000  C_out=0.8815  ΔC=0.1185
+Saved /root/GRU_QC_QUANTUM_WALK_SPINE.json
+  d_S chain=0.898  d_S grid=1.650  (GRU spine ~1.02)
+Saved /root/GRU_QC_MDR_DEPHASING.json
+  Δt=276.88ms  Δφ=5.22e-03rad  detectable:True
+Saved /root/GRU_QC_CHOI_ANALYSIS.json
+  Choi rank 1q=2  2q=3

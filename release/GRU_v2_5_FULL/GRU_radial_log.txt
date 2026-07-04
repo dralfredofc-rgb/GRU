@@ -1,0 +1,29 @@
+======================================================================
+GRU QISKIT — PROYECCION RADIAL R-hat v2.5 CORREGIDO
+Espina REAL con distancias BFS
+======================================================================
+[GRU-REAL] Espina: 200 nodos
+[GRU-REAL] Raiz: 0, Max distancia BFS: 100
+[GRU-Q] U_walk unitario: True
+[GRU-R] Proyeccion radial: 200 nodos -> 8 qubits
+
+============================================================
+CIRCUITO 1: QUANTUM WALK EN ESPINA GRU REAL
+============================================================
+Qubits: 8, Depth: 3
+
+============================================================
+CIRCUITO 2: PROYECCION RADIAL R-hat
+============================================================
+Qubits: 8, Depth: 219
+
+============================================================
+DIAGNOSTICO CUANTICO
+============================================================
+Probabilidad retorno origen: 0.159058
+Entropia: 3.0703 / 4.3219
+Estimacion ds (entropia): 0.7676
+[GRU-Q] Esperado para ds=1: entropia ~ log2(N)/2
+[GRU-Q] Esperado para ds=2: entropia ~ log2(N)
+
+[GRU-Q] Resultados en GRU_QISKIT_radial_projection_CORREGIDO.json

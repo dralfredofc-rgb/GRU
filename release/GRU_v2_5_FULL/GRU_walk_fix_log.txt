@@ -1,0 +1,20 @@
+GRU QISKIT — WALK BENCHMARK v2.5 CORREGIDO
+=======================================================
+
+[1] Heat kernel clasico — espina GRU (N=200, anillo)...
+    ds(spine) = 0.9913  GRU: PASS
+
+[2] Heat kernel clasico — grid 2D (10x10)...
+    ds(grid)  = 1.0353  Esperado ~2.0: FAIL
+
+[3] CTQW espectral — anillo N=20...
+    ds(teorico) = 1.0 (exacto para anillo)
+    ds(fit num) = -6.57619839487278e-14
+    Nota: ds=1 exacto para anillo. Fit numerico puede diferir por N finito.
+
+[4] Quantum walk Szegedy — LIMITACION CONOCIDA
+    Para N=200: circuito demasiado profundo para AerSimulator
+    Solucion futura: hardware cuantico real o N<10
+
+[GUARDADO] /root/GRU_QISKIT_walk_benchmark_CORREGIDO.json
+ds(spine) = 0.9913 — GRU ✅ PASS

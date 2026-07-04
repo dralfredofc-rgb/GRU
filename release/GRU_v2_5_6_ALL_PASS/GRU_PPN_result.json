@@ -1,0 +1,39 @@
+{
+  "test": "PPN Parameters",
+  "status": "PASS",
+  "limit_cassini": 2.3e-05,
+  "planets": {
+    "Mercury": {
+      "E_kin": 1.87941474e-18,
+      "E_ratio": 9.60845981595092e-28,
+      "delta_gamma": 1.2678710566792136e-09,
+      "status": "PASS"
+    },
+    "Venus": {
+      "E_kin": 1.0258839346e-18,
+      "E_ratio": 5.244805391615543e-28,
+      "delta_gamma": 1.225310490116292e-09,
+      "status": "PASS"
+    },
+    "Earth": {
+      "E_kin": 7.428454600000001e-19,
+      "E_ratio": 3.7977784253578736e-28,
+      "delta_gamma": 1.2032029426762304e-09,
+      "status": "PASS"
+    },
+    "Mars": {
+      "E_kin": 4.85847565e-19,
+      "E_ratio": 2.483883256646217e-28,
+      "delta_gamma": 1.1747320379019198e-09,
+      "status": "PASS"
+    },
+    "Cassini": {
+      "E_kin": 2.6232640000000003e-20,
+      "E_ratio": 1.3411370143149285e-29,
+      "delta_gamma": 9.964210650652247e-10,
+      "status": "PASS"
+    }
+  },
+  "all_pass": true,
+  "min_margin": 18140.645989854213
+}

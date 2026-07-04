@@ -1,0 +1,47 @@
+{
+  "test": "P1 Root Invariance v2 FIXED",
+  "protocol": "random_valid_representative_per_shell, walk INSIDE spine cycle (A.21)",
+  "date": "2026-07-01",
+  "input": {
+    "N": 2567,
+    "T": 20,
+    "n_runs": 20,
+    "nwalks": 3000,
+    "seed_base": 42,
+    "window": "ILO=20%T, IHI=2T"
+  },
+  "results": {
+    "ds_values": [
+      1.0129989503787127,
+      0.9605149548942227,
+      0.9349543144835362,
+      1.013723650469807,
+      0.9613993553758899,
+      1.0041994738276039,
+      0.9765334547656729,
+      0.9410803204634735,
+      0.9191774126565105,
+      1.0148956204893693,
+      0.9185142164213353,
+      0.9057823751214057,
+      0.9488197316262121,
+      0.9548302153555833,
+      0.9995088210988277,
+      0.8690067002528862,
+      0.9610080991288895,
+      1.0230333914201475,
+      0.9657110065271609,
+      0.9173935571625036
+    ],
+    "mean": 0.9601542810959875,
+    "std": 0.04127002040647209,
+    "min": 0.8690067002528862,
+    "max": 1.0230333914201475
+  },
+  "verdict": {
+    "criterion": "std<0.05 PASS, >0.15 FAIL",
+    "std": 0.04127002040647209,
+    "result": "PASS",
+    "note": "Varianza minima: el spine es invariante topologico (ciclo S1 de T nodos). El FAIL original venia de usar BFS sobre el grafo completo."
+  }
+}

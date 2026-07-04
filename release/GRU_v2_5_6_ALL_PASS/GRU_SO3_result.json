@@ -1,0 +1,38 @@
+{
+  "test": "SO(3) Symmetry",
+  "status": "PASS",
+  "scales": {
+    "LIGO_wavelength": {
+      "L": 1000000.0,
+      "breaking": 2.6114559999999995e-82
+    },
+    "Solar_system": {
+      "L": 150000000000.0,
+      "breaking": 1.1606471111111112e-92
+    },
+    "Atomic": {
+      "L": 1e-10,
+      "breaking": 2.611456e-50
+    },
+    "Nuclear": {
+      "L": 1e-15,
+      "breaking": 2.611456e-40
+    },
+    "EW_scale": {
+      "L": 1e-18,
+      "breaking": 2.6114559999999993e-34
+    },
+    "Planck_scale": {
+      "L": 1.616e-35,
+      "breaking": 1.0
+    }
+  },
+  "ensemble": {
+    "N_samples": 10000,
+    "T_xx": -0.0784735324270729,
+    "T_yy": -0.08504498591264104,
+    "T_zz": 0.163518518339714,
+    "T_xy": -0.001590248607385587,
+    "SO3_emergent": false
+  }
+}

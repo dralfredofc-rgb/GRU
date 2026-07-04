@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-06-28T08:13:49.650488",
+  "gru_parameters": {
+    "delta_t_sec": 128.35,
+    "delta_t_s": 128.35,
+    "lambda_eff": 1.9753467798591546
+  },
+  "search": {
+    "delta_t_estimated_sec": 0.13003596981638663,
+    "delta_t_estimated_s": 130.03596981638663,
+    "expected_s": 128.35,
+    "matches_gru": true,
+    "significance_sigma": 25.982353658364975,
+    "phase_std_s": 5.004780126079394
+  }
+}

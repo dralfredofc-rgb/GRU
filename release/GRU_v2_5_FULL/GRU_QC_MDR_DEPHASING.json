@@ -1,0 +1,13 @@
+{
+  "n_GRU": 0.0564,
+  "A_FINAL": 1.46e-16,
+  "delta_t_ms_3mHz_z1": 276.8772634798691,
+  "delta_phi_3mHz_z1": 0.005219013461366413,
+  "detectable_dt": true,
+  "theory_comparison": {
+    "GRU_n0056": 0.005219013461366413,
+    "massive_gravity_n2": 8.479364554433637e-58,
+    "SME_d5_n1": 5.906575309243593e-35,
+    "LQG_CDT_n2": 8.479364554433638e-113
+  }
+}
