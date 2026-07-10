@@ -1,0 +1,188 @@
+{
+  "differential_form": {
+    "100_MeV_LAT__M1_conservador": {
+      "band_name": "100_MeV_LAT",
+      "E_low_GeV": 0.1,
+      "method": "M1_conservador",
+      "delta_t_s": 0.829,
+      "A_max": 2.0015140543039884e-16,
+      "A_final_over_A_max": 0.7294477882183567,
+      "verdict": "PASA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.07363956980142165,
+        "delta_term": 0.02813143027767849,
+        "numerator": 3.868712686436928e-18,
+        "denominator": 0.019328930906669272
+      }
+    },
+    "100_MeV_LAT__M2_spike": {
+      "band_name": "100_MeV_LAT",
+      "E_low_GeV": 0.1,
+      "method": "M2_spike",
+      "delta_t_s": 0.01,
+      "A_max": 2.4143715974716385e-18,
+      "A_final_over_A_max": 60.47122164330177,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.07363956980142165,
+        "delta_term": 0.02813143027767849,
+        "numerator": 4.666722179055402e-20,
+        "denominator": 0.019328930906669272
+      }
+    },
+    "100_MeV_LAT__M3_DisCan": {
+      "band_name": "100_MeV_LAT",
+      "E_low_GeV": 0.1,
+      "method": "M3_DisCan",
+      "delta_t_s": 0.93,
+      "A_max": 2.245365585648624e-16,
+      "A_final_over_A_max": 0.6502281897129222,
+      "verdict": "PASA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.07363956980142165,
+        "delta_term": 0.02813143027767849,
+        "numerator": 4.3400516265215236e-18,
+        "denominator": 0.019328930906669272
+      }
+    },
+    "1_MeV_GBM__M1_conservador": {
+      "band_name": "1_MeV_GBM",
+      "E_low_GeV": 0.001,
+      "method": "M1_conservador",
+      "delta_t_s": 0.829,
+      "A_max": 1.2519041136903523e-16,
+      "A_final_over_A_max": 1.1662235022906222,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.056795148931467504,
+        "delta_term": 0.04497585114763264,
+        "numerator": 3.868712686436928e-18,
+        "denominator": 0.03090262779816874
+      }
+    },
+    "1_MeV_GBM__M2_spike": {
+      "band_name": "1_MeV_GBM",
+      "E_low_GeV": 0.001,
+      "method": "M2_spike",
+      "delta_t_s": 0.01,
+      "A_max": 1.5101376522199667e-18,
+      "A_final_over_A_max": 96.67992833989258,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.056795148931467504,
+        "delta_term": 0.04497585114763264,
+        "numerator": 4.666722179055402e-20,
+        "denominator": 0.03090262779816874
+      }
+    },
+    "1_MeV_GBM__M3_DisCan": {
+      "band_name": "1_MeV_GBM",
+      "E_low_GeV": 0.001,
+      "method": "M3_DisCan",
+      "delta_t_s": 0.93,
+      "A_max": 1.404428016564569e-16,
+      "A_final_over_A_max": 1.0395691219343288,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.056795148931467504,
+        "delta_term": 0.04497585114763264,
+        "numerator": 4.3400516265215236e-18,
+        "denominator": 0.03090262779816874
+      }
+    },
+    "100_keV__M1_conservador": {
+      "band_name": "100_keV",
+      "E_low_GeV": 0.0001,
+      "method": "M1_conservador",
+      "delta_t_s": 0.829,
+      "A_max": 1.0850351417167152e-16,
+      "A_final_over_A_max": 1.3455785383043217,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.04987825402539982,
+        "delta_term": 0.051892746053700325,
+        "numerator": 3.868712686436928e-18,
+        "denominator": 0.035655183299556074
+      }
+    },
+    "100_keV__M2_spike": {
+      "band_name": "100_keV",
+      "E_low_GeV": 0.0001,
+      "method": "M2_spike",
+      "delta_t_s": 0.01,
+      "A_max": 1.308848180599174e-18,
+      "A_final_over_A_max": 111.54846082542825,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.04987825402539982,
+        "delta_term": 0.051892746053700325,
+        "numerator": 4.666722179055402e-20,
+        "denominator": 0.035655183299556074
+      }
+    },
+    "100_keV__M3_DisCan": {
+      "band_name": "100_keV",
+      "E_low_GeV": 0.0001,
+      "method": "M3_DisCan",
+      "delta_t_s": 0.93,
+      "A_max": 1.2172288079572316e-16,
+      "A_final_over_A_max": 1.1994458153271856,
+      "verdict": "VIOLA",
+      "details": {
+        "D_z_n": 0.7281621290694031,
+        "term_high": 0.10177100007910014,
+        "term_low": 0.04987825402539982,
+        "delta_term": 0.051892746053700325,
+        "numerator": 4.3400516265215236e-18,
+        "denominator": 0.035655183299556074
+      }
+    }
+  },
+  "absolute_form": {
+    "M1_conservador": {
+      "method": "M1_conservador",
+      "delta_t_s": 0.829,
+      "A_max": 5.5325636010930015e-17,
+      "A_final_over_A_max": 2.6389213125567426,
+      "verdict": "VIOLA"
+    },
+    "M2_spike": {
+      "method": "M2_spike",
+      "delta_t_s": 0.01,
+      "A_max": 6.673779977193005e-19,
+      "A_final_over_A_max": 218.76657681095395,
+      "verdict": "VIOLA"
+    },
+    "M3_DisCan": {
+      "method": "M3_DisCan",
+      "delta_t_s": 0.93,
+      "A_max": 6.206615378789495e-17,
+      "A_final_over_A_max": 2.3523287829134834,
+      "verdict": "VIOLA"
+    }
+  },
+  "metadata": {
+    "script": "GRU_C6_FERMI_LAT_DIFERENCIAL.py",
+    "date": "2026-07-08",
+    "n_GRU": 0.0564,
+    "A_final_GRU": 1.46e-16,
+    "z": 0.903,
+    "note": "Forma diferencial (E_high^n - E_low^n) es la fisicamente correcta para n fraccionario; la forma absoluta sobreestima la cota (subestima A_max) porque ignora que a n=0.0564 el termino de baja energia es ~50-72% del termino de alta energia, cosa irrelevante en n=1 pero decisiva aqui."
+  }
+}

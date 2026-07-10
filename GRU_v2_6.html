@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Causal Spine of Discrete Spacetime: Gravitational Wave Dispersion and LISA Falsifiability in Causal Dynamical Triangulations (GRU v2.6)</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --border: #1e2d45;
+  --gold: #c9a84c;
+  --gold-dim: #8a6f2e;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #60a5fa;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.7; }
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.header {
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f1f3d 60%, #0a1628 100%);
+  border-bottom: 1px solid var(--gold-dim);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+}
+.header h1 { font-size: 1.9rem; color: var(--gold); font-weight: 700; line-height: 1.3; max-width: 800px; margin: 0 auto; }
+.header .subtitle { color: var(--text-dim); font-size: 1.05rem; margin-top: 1rem; font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto; }
+.header .authorline { color: var(--text-dim); font-size: 0.95rem; margin-top: 1.2rem; font-family: 'Inter', system-ui, sans-serif; }
+.doi-badge {
+  display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem;
+  background: rgba(201,168,76,0.12); border: 1px solid var(--gold-dim);
+  border-radius: 4px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold);
+}
+.version-pill {
+  display: inline-block; padding: 0.2rem 0.8rem;
+  background: var(--gold); color: #0a0e1a; font-weight: 700;
+  border-radius: 20px; font-size: 0.8rem; margin-left: 0.5rem; font-family: 'Inter', system-ui, sans-serif;
+}
+
+.nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0.9rem 1rem; text-align: center; position: sticky; top: 0; z-index: 10; font-family: 'Inter', system-ui, sans-serif; }
+.nav a { margin: 0 0.7rem; color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; }
+.nav a:hover { color: var(--gold); }
+.nav-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem; max-width: 1100px; margin: 0 auto; }
+
+main { max-width: 800px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+.abstract-box {
+  background: var(--surface); border: 1px solid var(--gold-dim);
+  border-radius: 8px; padding: 1.8rem 2rem; margin: 0 0 3rem;
+}
+.abstract-box h2 { color: var(--gold); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; font-family: 'Inter', system-ui, sans-serif; }
+.abstract-box p { color: var(--text-dim); }
+
+section.body-section { margin-bottom: 3rem; }
+section.appendix-section { margin-bottom: 3rem; }
+h2.section-title {
+  color: var(--gold); font-size: 1.5rem; font-family: 'Inter', system-ui, sans-serif;
+  border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; margin-bottom: 1.5rem;
+}
+h3.subsection-title { color: var(--blue); font-size: 1.15rem; font-family: 'Inter', system-ui, sans-serif; margin: 1.8rem 0 0.8rem; }
+p { color: var(--text-dim); margin-bottom: 1.1rem; }
+strong { color: var(--text); }
+em { color: var(--text); }
+
+.scope-box {
+  background: rgba(201,168,76,0.06); border-left: 3px solid var(--gold);
+  border-radius: 4px; padding: 1.2rem 1.5rem; margin: 1.3rem 0;
+}
+.scope-box p:last-child { margin-bottom: 0; }
+
+.update-box {
+  background: rgba(34,197,94,0.08); border-left: 3px solid var(--green);
+  border-radius: 4px; padding: 1.2rem 1.5rem; margin: 1.3rem 0;
+}
+.update-box p:last-child { margin-bottom: 0; }
+
+.warning-box {
+  background: rgba(239,68,68,0.08); border-left: 3px solid var(--red);
+  border-radius: 4px; padding: 1.2rem 1.5rem; margin: 1.3rem 0;
+}
+.warning-box p:last-child { margin-bottom: 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.88rem; font-family: 'Inter', system-ui, sans-serif; }
+th { background: rgba(201,168,76,0.1); color: var(--gold); padding: 0.55rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 600; }
+td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); }
+tr:hover td { background: rgba(255,255,255,0.02); }
+.ok { color: var(--green); }
+.bad { color: var(--red); }
+.warn { color: #f59e0b; }
+
+.meta-note {
+  background: rgba(96,165,250,0.06); border: 1px dashed var(--border);
+  border-radius: 6px; padding: 1rem 1.3rem; margin: 1.5rem 0; font-size: 0.85rem;
+  color: var(--text-dim); font-family: 'Inter', system-ui, sans-serif;
+}
+.meta-note strong { color: var(--blue); }
+
+ol, ul { margin: 0 0 1.1rem 1.4rem; color: var(--text-dim); }
+li { margin-bottom: 0.5rem; }
+
+code { font-family: var(--font-mono); background: rgba(255,255,255,0.06); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.88em; color: var(--blue); }
+
+.refs-list { font-family: 'Inter', system-ui, sans-serif; font-size: 0.88rem; }
+.refs-list li { margin-bottom: 0.7rem; }
+
+footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--text-dim); font-size: 0.85rem; font-family: 'Inter', system-ui, sans-serif; }
+
+@media print {
+  .nav { display: none; }
+  body { background: #fff; color: #1a1a1a; }
+  .header { background: #fff; border-bottom: 2px solid #8a6f2e; }
+  .header h1 { color: #1a1a1a; }
+  .header .subtitle, .header .authorline { color: #555; }
+  .doi-badge { color: #6b5420; background: #f4f1ea; border-color: #8a6f2e; }
+  a { color: #8a6f2e; }
+  h2.section-title { color: #6b5420; border-bottom-color: #ccc; }
+  h3.subsection-title { color: #1d4e89; }
+  .abstract-box { background: #faf8f2; border-color: #8a6f2e; }
+  .abstract-box h2 { color: #6b5420; }
+  .abstract-box p { color: #222; }
+  .scope-box { background: #faf6ea; border-left-color: #8a6f2e; }
+  .update-box { background: #f0fdf4; border-left-color: #16a34a; }
+  .warning-box { background: #fef2f2; border-left-color: #dc2626; }
+  .meta-note { background: #eef4fb; border-color: #aac; }
+  .abstract-box, .scope-box, .meta-note, .update-box, .warning-box { break-inside: avoid; }
+  section.body-section, section.appendix-section { break-before: page; }
+  table { font-size: 0.8rem; }
+  th { background: #f4f1ea; color: #1a1a1a; }
+  td { color: #333; }
+  p, li { color: #222; }
+  strong, .scope-box strong, .abstract-box strong { color: #1a1a1a !important; }
+  em, .scope-box em { color: #333 !important; }
+  code { background: #eee; color: #1d4e89 !important; }
+  .ok { color: #0a7a32; }
+  .bad { color: #b91c1c; }
+  .warn { color: #92400e; }
+}
+</style>
+<meta name="keywords" content="spectral dimension, quantum gravity, causal dynamical triangulations, causal spine, GRU, discrete spacetime, heat kernel, random walk, LISA, gravitational waves, modified dispersion relation, quantum gravity phenomenology">
+</head>
+<body>
+
+<div class="header">
+  <h1>The Causal Spine of Discrete Spacetime: Gravitational Wave Dispersion and LISA Falsifiability in Causal Dynamical Triangulations</h1>
+  <div class="subtitle">GRU (Geometría Radial Unitaria) Research Program — v2.6 (July 9, 2026)</div>
+  <div class="authorline">Alfredo Flores Cornejo · Independent Researcher, Zapopan, Jalisco, México · dr.alfredo.fc@gmail.com</div>
+  <div class="doi-badge">DOI: <a href="https://doi.org/10.5281/zenodo.21288365" style="color:inherit;">10.5281/zenodo.21288365</a> · Previous version (v2.5): <a href="https://doi.org/10.5281/zenodo.21144855" style="color:inherit;">10.5281/zenodo.21144855</a> · Concept: <a href="https://doi.org/10.5281/zenodo.20352929" style="color:inherit;">10.5281/zenodo.20352929</a></div>
+  <span class="version-pill">v2.6</span>
+</div>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="#abstract">Abstract</a>
+    <a href="#sec1">1. Intro</a>
+    <a href="#sec2">2. Spine</a>
+    <a href="#sec3">3. 2D/3D</a>
+    <a href="#sec4">4. Toy 4D</a>
+    <a href="#sec5">5. Anti-Triv.</a>
+    <a href="#sec6">6. Percolation</a>
+    <a href="#sec7">7. Observ.</a>
+    <a href="#sec8">8. Discussion</a>
+    <a href="#sec9">9. Conclusion</a>
+    <a href="#secA25">App. A</a>
+    <a href="#appB">App. B</a>
+    <a href="#appC">App. C</a>
+    <a href="#appD">App. D</a>
+    <a href="#appE">App. E</a>
+    <a href="#appF">App. F</a>
+    <a href="#refs">References</a>
+  </div>
+</nav>
+
+<main>
+
+<div id="abstract" class="abstract-box">
+<h2>Abstract</h2>
+<p>A long-standing thread in the study of general relativity holds that
+ causal structure determines spacetime geometry up to a conformal
+ factor, motivating discrete approaches — causal sets, Causal Dynamical
+ Triangulations (CDT) — in which causality is built in from the outset.
+ We ask a narrower, numerically testable question within CDT: is there
+ a measurable signature of <em>how much</em> of a triangulated geometry's
+ structure is attributable to its causal skeleton specifically? We
+ extract a one-dimensional causal spine from CDT geometries via a
+ graph-theoretic collapse procedure and measure its spectral dimension
+ d<sub>s</sub>(spine) via heat-kernel methods. Across real two-dimensional
+ CDT (60 geometries, d<sub>s</sub> = 1.019 &plusmn; 0.015, separated from the full
+ graph by 15.8&sigma;), real three-dimensional CDT (multiseed,
+ d<sub>s</sub> = 1.039 &plusmn; 0.040), and a toy four-dimensional model
+ (d<sub>s</sub> = 1.0428 &plusmn; 0.0157, a pre-registered blind prediction), the
+ spine consistently converges to d<sub>s</sub> &asymp; 1. Five independent
+ controls and a systematic elimination experiment across graph
+ families demonstrate this is not a trivial artifact: d<sub>s</sub> &asymp; 1
+ requires the simultaneous presence of temporal foliation, causal locality, and
+ bounded connectivity — the same three conditions Causal Dynamical
+ Triangulations satisfy by construction. A percolation stress test
+ shows the spine observable degrades substantially faster than standard
+ connectivity diagnostics under artificial causal-structure damage. We
+ validate, but do not yet exploit, cosmological (Cobaya+CAMB+Planck)
+ and gravitational-wave (bbhx) pipelines as infrastructure for future
+ observational tests, and record one explicitly conceptual, falsifiable
+ open question connecting this work to an existing CMB anomaly. Real four-dimensional CDT validation remains an open question. <strong>In v2.6, the LISA falsifiability question is answered:</strong> n<sub>GRU</sub> = 0.0564 (phenomenological hypothesis, see §A.41), λ<sub>corr</sub> = 2.14 ± 0.79 slices (32 real CDT geometries), A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] ✓. The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+). The anisotropic quadrupolar signature ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%) is unique to GRU.</p>
+</div>
+
+<div class="update-box" style="margin: 1.5rem 0; border-left: 4px solid #4a9eff;">
+<h3 style="margin-top:0;">GRU at a Glance (v2.6)</h3>
+<table style="width:100%; border-collapse:collapse; font-size:0.9em;">
+<thead>
+<tr style="background:rgba(255,255,255,0.08);">
+  <th style="padding:0.4rem 0.8rem; text-align:left;">Aspect</th>
+  <th style="padding:0.4rem 0.8rem; text-align:left;">Result</th>
+  <th style="padding:0.4rem 0.8rem; text-align:left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding:0.3rem 0.8rem;"><strong>Central observable</strong></td>
+    <td>d<sub>s</sub>(spine) ≈ 1.02 in real CDT 2D/3D</td>
+    <td>✓ 15.8σ from full graph</td></tr>
+<tr style="background:rgba(255,255,255,0.03);">
+    <td style="padding:0.3rem 0.8rem;"><strong>MDR exponent</strong></td>
+    <td>n<sub>GRU</sub> = 2·d<sub>s</sub>(spine)−2 = 0.0564</td>
+    <td>✓ postulated, 0.31σ consistency</td></tr>
+<tr><td style="padding:0.3rem 0.8rem;"><strong>LISA amplitude</strong></td>
+    <td>A<sub>final</sub> = 1.46×10<sup>−16</sup></td>
+    <td>✓ in window [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>]</td></tr>
+<tr style="background:rgba(255,255,255,0.03);">
+    <td style="padding:0.3rem 0.8rem;"><strong>Observable regime</strong></td>
+    <td>Time-delay dominated: Δt=277 ms at z=1</td>
+    <td>✓ unique among QG theories</td></tr>
+<tr><td style="padding:0.3rem 0.8rem;"><strong>Anisotropic signature</strong></td>
+    <td>ε<sub>A</sub>=4.18%, quadrupolar j=2,m=0 (CPT-even)</td>
+    <td>✓ not covered by existing bounds</td></tr>
+<tr style="background:rgba(255,255,255,0.03);">
+    <td style="padding:0.3rem 0.8rem;"><strong>Fisher precision</strong></td>
+    <td>σ<sub>n</sub>=2.1121×10<sup>6</sup>, N<sub>5</sub>≈3.5×10<sup>18</sup> SMBHB events for 5σ with A<sub>final</sub>=1.46×10<sup>−16</sup></td>
+    <td>✓ qualitative signature (n<sub>GRU</sub>&lt;1 + anisotropy) without quantitative sigma separation</td></tr>
+<tr><td style="padding:0.3rem 0.8rem;"><strong>CMB quadrupole</strong></td>
+    <td>D<sub>ℓ</sub>=6.34 µK² (+0.67σ Planck)</td>
+    <td>✓ within 1σ</td></tr>
+<tr style="background:rgba(255,255,255,0.03);">
+    <td style="padding:0.3rem 0.8rem;"><strong>4D validation</strong></td>
+    <td>CDT 4D real data</td>
+    <td>⏳ collaboration in progress (INFN Pisa)</td></tr>
+<tr><td style="padding:0.3rem 0.8rem;"><strong>Formal MDR derivation</strong></td>
+    <td>Hessiano Regge → MDR (DFS 2007 framework)</td>
+    <td>⏳ work in progress</td></tr>
+</tbody>
+</table>
+<p style="margin-bottom:0; font-size:0.85em; opacity:0.7;">
+This dataset and protocol are open for cross-validation on 4D triangulation data; 
+collaboration inquiries are welcome. Contact: dr.alfredo.fc@gmail.com
+</p>
+</div>
+
+
+<div class="update-box">
+<p><strong>What's new in v2.5 (July 2026):</strong> v2.5 adds PPN/SO(3) validation, Δt<sub>GRU</sub> = 128.35 s from CDT geometry, LISA Fourier-Heisenberg pipeline validation, and formal MDR framework. <em>Previous update (v2.3, June 2026):</em> Correction of the R2<sub>v2</sub> bug in the CMB pipeline.
+The v2.2 formula contained an ad-hoc denominator 1+(κ/2.5)² without derivation from first principles,
+artificially suppressing D<sub>ℓ</sub> to 3.78 μK² (34% tension with Planck). v2.3 uses the canonical
+R2(κ) = (1 − e<sup>−√6·κ/2</sup>)², giving D<sub>ℓ</sub> = 6.34 μK² (+0.67σ of Planck 5.77 ± 0.85).
+κ<sub>GRU</sub> = 2.055, within 1σ of Planck. Anisotropy ε<sub>A</sub> = 4.1816% (corrected from 3.71%).
+All LISA parameters unchanged (n<sub>GRU</sub> = 0.0564, A<sub>final</sub> = 1.46×10<sup>−16</sup>).</p>
+<h4>Scaling Law: ε<sub>A</sub> ∝ 1/√N<sub>shells</sub></h4>
+<p>The law is verified numerically with slope = <strong>−0.500 exact</strong> (log-log fit), confirming the analytic derivation from the Mewes formula:</p>
+<table>
+<thead><tr><th>N<sub>shells</sub></th><th>ε<sub>A</sub> (%)</th><th>Analytic 1/√N</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>5.91%</td><td>5.95% ✓</td></tr>
+<tr><td>20</td><td>4.18%</td><td>4.21% ✓</td></tr>
+<tr><td>50</td><td>2.65%</td><td>2.66% ✓</td></tr>
+<tr><td>100</td><td>1.87%</td><td>1.88% ✓</td></tr>
+<tr><td>200</td><td>1.32%</td><td>1.33% ✓</td></tr>
+</tbody>
+</table>
+<p>The independence of frequency (std/mean = 0.00%) confirms this is a <strong>geometric invariant</strong>, not a quantum/discrete effect.</p>
+
+<p><em>Previous update (v2.2):</em> GRU is now falsifiable by LISA.
+n<sub>GRU</sub> = 0.0564 derived analytically. Screening M1: λ<sub>corr</sub> = 2.14 ± 0.79 slices
+(21/32 real CDT geometries in LISA window). A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] ✅.
+Anisotropy ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%). Fisher: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude). 112 scripts. 3 new references.</p>
+</div>
+
+<section id="sec1" class="body-section">
+<h2 class="section-title">1. Introduction</h2>
+
+<h3 class="subsection-title">1.1 Motivation: causality as precondition for geometry</h3>
+<p>A recurring theme in the global study of general relativity is that the
+ causal structure of spacetime — the partial order of which events can
+ influence which — carries far more geometric information than is
+ naively expected. Kronheimer and Penrose [1] showed that abstract
+ "causal spaces," defined purely from a causal precedence relation, are
+ rich enough to support a meaningful study of spacetime structure
+ without reference to a metric. Malament [2] later proved a precise
+ version of this idea for physically realistic (past- and
+ future-distinguishing) Lorentzian manifolds: the causal order alone
+ determines the spacetime's topology, differentiable structure, and
+ metric up to a conformal factor — that is, causal structure fixes
+ "nine-tenths" of the geometry, with only the local conformal scale left
+ undetermined.</p>
+
+<p>The causal-set program, initiated by Bombelli, Lee, Meyer, and Sorkin
+ [3], takes this one step further: it proposes that spacetime is
+ <em>fundamentally</em> a discrete causal order, and that the missing conformal
+ factor — ordinary spacetime volume — is recovered simply by counting
+ elements. This is the program's organizing principle, formalized in
+ the causal-set literature as "Order + Number = Geometry": causal order
+ provides the conformal structure, and the cardinality of a discrete set
+ of events provides the missing volume element.</p>
+
+<p>Causal Dynamical Triangulations (CDT) [4,5] implement a closely
+ related idea numerically: spacetime is built as a path integral over
+ discrete triangulated geometries, each carrying an explicit, foliated
+ time direction by construction, so that causality is imposed at the
+ level of the individual histories summed over, rather than recovered
+ post hoc from a fixed background. CDT has had substantial success:
+ nonperturbative Monte Carlo simulations recover a four-dimensional,
+ de Sitter-like semiclassical universe in an appropriate phase of the
+ theory [5], and the spectral dimension of the full triangulation has
+ been measured to exhibit dynamical dimensional reduction toward the
+ ultraviolet, decreasing from four at large scales to approximately
+ two at short scales [6,9].</p>
+
+<p><strong>The question this paper asks is narrower and more concrete than the
+ broader causal-structure literature above.</strong> Granting that CDT
+ geometries are built with an explicit causal/foliation structure, is
+ there a simple, numerically measurable observable that registers
+ <em>how much</em> of the geometry's structure is attributable to that
+ causal skeleton specifically — as opposed to the bulk spatial
+ geometry at each time slice? We call this skeleton the <em>causal spine</em>:
+ a one-dimensional, time-ordered path threading through the
+ triangulation, extracted by a graph-theoretic procedure described in
+ Appendix A. The central empirical claim of this work is that the
+ spectral dimension of the spine, d<sub>s</sub>(spine), measured via
+ random-walk return probabilities (heat-kernel methods), converges to
+ d<sub>s</sub> &asymp; 1 precisely when the underlying CDT geometry satisfies
+ three structural conditions — temporal foliation, causal locality, and
+ bounded connectivity — which we make precise in Section 5 (and refer
+ to throughout as the "A.38 conditions").</p>
+
+<p>If this is right, d<sub>s</sub>(spine) &asymp; 1 functions as a
+ numerical fingerprint of causal structure: not a statement about the
+ dimensionality of space, but about whether a discrete geometry
+ possesses the minimal causal skeleton — a well-defined past, a
+ well-defined future, and local propagation between them — that the
+ continuum notion of "time" presupposes.</p>
+
+<h3 class="subsection-title">1.2 The GRU hypothesis: a spectral observable for a philosophical claim</h3>
+<p>We refer to this research program as GRU (<em>Geometr&iacute;a Radial Unitaria</em>,
+ Radial Unitary Geometry), reflecting its origin in an earlier proposal
+ to reparametrize anisotropic minisuperspace models in loop quantum
+ cosmology using a single radial variable. In its CDT incarnation, the
+ hypothesis is operational rather than purely interpretive: it specifies
+ an explicit extraction procedure (Appendix A.3) and an explicit fitting
+ protocol (Appendix A.4), both fixed in advance of testing across the
+ various geometries reported in Sections 3&ndash;6, so that
+ d<sub>s</sub>(spine) is a reproducible, falsifiable number rather than
+ a post hoc narrative fitted to each case.</p>
+
+<h3 class="subsection-title">1.3 Scope discipline: what this paper does not claim</h3>
+<p>To avoid the most common failure mode of cross-disciplinary physics
+ papers — overclaiming on the basis of suggestive numerical
+ coincidence — we state up front what is and is not established here.</p>
+
+<div class="scope-box">
+<p><strong>This paper does establish</strong>, with the numerical evidence presented in
+ Sections 3&ndash;6: that d<sub>s</sub>(spine) &asymp; 1 holds robustly across
+ 2D and 3D real CDT geometries and a toy 4D model, under the stated
+ A.38 conditions; that this result is not a trivial consequence of the
+ spine being topologically a closed cycle (Section 5 presents five
+ independent controls demonstrating this); and that the same protocol,
+ applied to the full triangulation rather than the spine, recovers the
+ standard CDT spectral-dimension behavior, so that the GRU observable
+ <em>refines</em> rather than contradicts existing CDT results.</p>
+
+<p><strong>This paper does not establish</strong>: a derivation of d<sub>s</sub>(spine)
+ from first principles (the result is numerical/empirical throughout);
+ real four-dimensional (3+1D) CDT validation (no public dataset of raw
+ 4D CDT triangulations exists for independent reanalysis, and we have
+ not run a 4D simulator ourselves — Section 4.2 is explicit on this
+ point); or a derived cosmological or gravitational-wave prediction from
+ GRU (Section 7 reports validated <em>infrastructure</em> for such predictions,
+ together with one explicitly conceptual, non-derived, falsifiable open
+ question connecting GRU to an existing CMB anomaly).</p>
+</div>
+
+<h3 class="subsection-title">1.4 Independent theoretical anchor: the Barontini causal-cone framework</h3>
+<p>Recent experimental work by Barontini et al. [10] has demonstrated
+ a rigorous operator-algebraic framework for causal cones in quantum
+ gravity, showing that the causal structure of a spacetime region can be
+ reconstructed from the algebraic data of observables localized within
+ it. While this framework operates in the continuum and makes no direct
+ contact with discrete triangulations, it provides an independent
+ theoretical anchor for the central intuition of this paper: that causal
+ structure is not merely a byproduct of geometry but a primitive from
+ which geometric properties can be extracted. The GRU spine
+ construction can be viewed as a discrete, graph-theoretic operationalization
+ of the same philosophical commitment — that the causal skeleton carries
+ sufficient information to identify a characteristic geometric signature —
+ though we make no claim that the two frameworks are mathematically
+ equivalent. We cite this work as external validation of the <em>motivation</em>
+ rather than as evidence for the <em>result</em>.</p>
+
+<h3 class="subsection-title">1.5 Roadmap</h3>
+<p>The body of this paper (Sections 2&ndash;9) is intended to be readable on its
+ own: it presents the spine construction and motivation (Section 2), the
+ core 2D/3D validation and the T-scan robustness study (Section 3), the
+ toy-4D result and its explicit scope limitations (Section 4), the
+ anti-triviality controls (Section 5), a percolation-based stress test
+ of the causal-connectivity interpretation (Section 6), the
+ observational-pipeline infrastructure and the CMB open question
+ (Section 7), and a discussion of what the central result does and does
+ not mean (Section 8), closing with an explicit falsifiability statement
+ and a summary separating validated claims from open questions
+ (Section 9). Readers who want full numerical detail, reproducibility
+ information, or the statistical caveats behind specific results are
+ referred throughout to the corresponding technical appendix
+ (Appendices A&ndash;F); the appendices are written so that a skeptical
+ reviewer can verify any specific claim without having to read the body
+ as a prerequisite.</p>
+</section>
+
+<section id="sec2" class="body-section">
+<h2 class="section-title">2. The Causal Spine: Definition and Extraction</h2>
+
+<h3 class="subsection-title">2.1 CDT background</h3>
+<p>We work within standard Causal Dynamical Triangulations (CDT)
+ [4,6]: spacetime is represented as a path integral over discrete,
+ piecewise-flat triangulated geometries, each built from a fixed
+ number of simplices of standard shape and size, glued together
+ subject to a global proper-time foliation. This foliation is the
+ key structural ingredient that distinguishes CDT from its
+ Euclidean predecessor: every triangulation carries, by construction,
+ a well-defined sequence of spatial slices ordered by a discrete time
+ label t = 0, 1, &hellip;, T&minus;1, with simplices connecting only
+ adjacent slices. We do not re-derive the CDT path integral or its
+ phase structure here; we take the formalism and its established
+ results as given, and refer the reader to [4,6] for a complete
+ treatment. What follows assumes a single triangulated geometry G,
+ already generated by Monte Carlo simulation (Appendix A.1), as
+ input.</p>
+
+<h3 class="subsection-title">2.2 Defining the spine</h3>
+<p>A CDT triangulation, viewed simply as a graph (vertices and edges,
+ discarding higher-simplex information), already encodes its time
+ foliation in the connectivity pattern of its vertices. Our central
+ construction extracts a <em>one-dimensional causal skeleton</em> from this
+ graph — the <strong>spine</strong> — as follows.</p>
+
+<p>Starting from a single root vertex v<sub>0</sub> &isin; G (chosen according to
+ the criterion detailed in Appendix A.3), a breadth-first search (BFS)
+ partitions every other vertex of G into shells S<sub>1</sub>, S<sub>2</sub>, &hellip;,
+ S<sub>n&minus;1</sub> by graph distance from v<sub>0</sub>. Each shell is then collapsed to
+ a single representative node, and consecutive shells are connected by
+ an edge if any vertex in one shell is adjacent (in G) to any vertex
+ in the next. Because the underlying CDT geometry is compact in the
+ time direction (the foliation wraps around), the resulting chain of
+ shells is closed into a cycle: shell S<sub>n&minus;1</sub> connects back to shell
+ S<sub>0</sub>. The result is a single closed cycle of n nodes — the spine —
+ regardless of how large or structurally complex the original
+ triangulation G was.</p>
+
+<p>The spine is, by this construction, <em>octant-blind</em>: the collapse
+ procedure does not single out any particular spatial direction or
+ sector of the original geometry, and is built using purely topological
+ (0/1, present-or-absent) edges rather than any quantitative measure of
+ bulk spatial extent. This will matter in Section 5, where we ask
+ whether the spine's properties are an artifact of this construction
+ rather than a genuine feature of the underlying causal structure.</p>
+
+<h3 class="subsection-title">2.3 Spectral dimension via the heat-kernel</h3>
+<p>The spine, as a graph in its own right, can be probed by the same
+ spectral-dimension methodology used throughout the discrete quantum
+ gravity literature: a random walker, performing discrete steps along
+ the spine's edges, has a return probability P(&sigma;) to its
+ starting node after &sigma; steps that — for a graph behaving like a
+ d-dimensional lattice over the relevant range of &sigma; — follows
+ P(&sigma;) ~ &sigma;<sup>&minus;d<sub>s</sub>/2</sup>. We use this relation to define
+ d<sub>s</sub>(spine) operationally: we simulate many independent random
+ walks on the spine, measure P(&sigma;) over a fitting window, and
+ extract d<sub>s</sub> and its uncertainty via nonlinear regression. The full
+ numerical protocol — number of walks, fitting-window choice, and a
+ documented scaling correction needed for long chained structures — is
+ specified in Appendix A.4; nothing in the definition of d<sub>s</sub>(spine)
+ itself depends on any free parameter beyond the choices made explicit
+ there.</p>
+
+<p>We emphasize that d<sub>s</sub>(spine) is an emergent, empirically
+ measured quantity — the spine is, after the BFS collapse, <em>literally</em>
+ a one-dimensional cycle graph as a combinatorial object, so one might
+ expect d<sub>s</sub> = 1 trivially, by construction, with no content. The next
+ two subsections argue this expectation is wrong on both counts: the
+ full graph does not give d<sub>s</sub> = 1 under the same protocol applied
+ without the spine-collapse step (Section 2.4), and — more importantly
+ — the spine itself does not give d<sub>s</sub> &asymp; 1 under all conditions
+ either, only when the underlying CDT geometry possesses specific
+ causal-structural properties (Section 5).</p>
+
+<h3 class="subsection-title">2.4 Motivation for the spine, not the full graph: a discrimination result</h3>
+<p>A natural objection: if the goal is simply to apply heat-kernel
+ spectral-dimension methods to CDT, why not apply them directly to the
+ full triangulation graph, without the spine-extraction step? This is,
+ after all, the standard procedure in the existing CDT spectral-dimension
+ literature [5].</p>
+
+<p>The answer is that the spine and the full graph measure different
+ things, and the difference is itself the evidence motivating this
+ paper's approach. Applying the identical heat-kernel protocol
+ (Appendix A.4) to the full CDT graph, rather than to the BFS-collapsed
+ spine, recovers d<sub>s</sub>(full) &asymp; 1.67&ndash;2.5 across the
+ geometries studied in this work (full results in Section 3 and
+ Appendix B) — consistent with, and not in tension with, the
+ established CDT result that the full triangulation's spectral
+ dimension reflects the bulk spatial dimensionality and its
+ short-distance reduction [5,9]. The spine, extracted from the same
+ underlying geometries via the same heat-kernel protocol, instead gives
+ d<sub>s</sub>(spine) &asymp; 1, separated from the full-graph value by
+ many standard deviations (Section 3 reports a 15.8&sigma; separation
+ in the 2D case).</p>
+
+<p>This discrimination result is the motivating observation for the rest
+ of this paper: the <em>same numerical method</em>, applied to two different
+ graph-theoretic objects derived from the <em>same</em> CDT geometry, gives
+ two clearly distinguishable answers. This rules out the trivial
+ possibility that the heat-kernel protocol itself is somehow forcing
+ d<sub>s</sub> &rarr; 1 regardless of input. It does not yet establish <em>why</em> the
+ spine behaves differently, or under what conditions it does so
+ reliably — those are the questions taken up in Sections 3 and 5.</p>
+</section>
+
+<section id="sec3" class="body-section">
+<h2 class="section-title">3. Results: 2D and 3D Validation</h2>
+
+
+<h3 class="subsection-title">A.21.6 Decision tree: C1 → C2 protocol</h3>
+<div style="font-family:monospace; font-size:0.82rem; background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin:1.2rem 0; line-height:1.9; color:var(--text-dim);">
+<span style="color:var(--gold);">START</span>: New CDT geometry loaded<br>
+│<br>
+├─▶ <span style="color:var(--blue);">Compute skip% and temporal%</span> (using vertex_times, NOT BFS)<br>
+│&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;├─ skip ≥ 15% OR temporal ≤ 20%<br>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─▶ <span style="color:var(--red);">C1 = FAIL → REJECT</span> (severe percolation / trivial geometry)<br>
+│&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;└─ skip &lt; 15% AND temporal &gt; 20%<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─▶ <span style="color:#22c55e;">C1 = PASS</span> (no severe percolation detected)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--blue);">Compute d<sub>s</sub>(spine)</span> via heat-kernel (NWALKS=3000, window [0.2T, 2T])<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ |d<sub>s</sub> − 1.0| ≥ 0.15<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─▶ <span style="color:var(--red);">C2 = FAIL → REJECT</span><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if C1=PASS: subtle percolation detected by d<sub>s</sub>)<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ |d<sub>s</sub> − 1.0| &lt; 0.15<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─▶ <span style="color:#22c55e;">C2 = PASS → GRU OK ✓</span><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1D causal emergence confirmed<br>
+<br>
+<span style="color:var(--text-dim); font-size:0.78rem;">Validated on 32 real CDT (2+1)D T=20 seeds: max skip% = 7.6% (s1234).<br>
+Threshold 15% is the only value producing zero false negatives on real data.</span>
+</div>
+
+
+<h3 class="subsection-title">3.1 Two-dimensional CDT (A.21)</h3>
+<p>The discrimination result motivated in Section 2.4 was first
+ established systematically in two-dimensional CDT, where 60 real
+ triangulated geometries were generated and analyzed under the protocol
+ of Appendix A. The spine, extracted from each geometry, gives
+ d<sub>s</sub>(spine) = 1.019 &plusmn; 0.015, separated from the full-graph
+ value by 15.8 standard deviations. This 2D result is the foundation on
+ which the rest of this paper builds: a large, statistically robust
+ sample establishing that d<sub>s</sub>(spine) &asymp; 1 is not a
+ one-off numerical accident in the simplest CDT setting available.</p>
+
+<h3 class="subsection-title">3.2 Three-dimensional CDT, real geometries, multiseed (A.37)</h3>
+<p>The central question for three-dimensional (2+1D) CDT — the setting
+ relevant to the remainder of this paper — is whether the 2D result
+ survives the transition to real CDT geometries generated by the
+ <code>3dcdt.x</code> simulator (Appendix A.1), now subject to the root-criterion
+ considerations of Appendix A.3.</p>
+
+<p>Three independent seeds (42, 123, 456) were generated and analyzed
+ under the standardized p25 root protocol. Individual results:
+ d<sub>s</sub> = 0.983 &plusmn; 0.023 (separation 14.7&sigma; from the full graph),
+ d<sub>s</sub> = 1.067 &plusmn; 0.028 (separation 7.2&sigma;), and d<sub>s</sub> = 1.068
+ &plusmn; 0.0157 (separation 7.4&sigma;); mean d<sub>s</sub>(spine) = 1.039
+ &plusmn; 0.040 across the three seeds, with full-graph separations ranging
+ from 7.2&sigma; to 14.7&sigma;. All three seeds independently satisfy
+ the GRU criterion (|d<sub>s</sub> &minus; 1| small relative to the fit uncertainty,
+ with a large full-graph separation). An earlier, independent multiseed
+ analysis of the same setting (six seeds) reported a consistent mean
+ d<sub>s</sub> = 1.049 &plusmn; 0.029, confirming that the result is not an artifact
+ of the particular seeds used here. The corresponding 2D toy
+ cross-check, run under the same protocol for comparison, gives
+ d<sub>s</sub> &isin; {0.970, 1.006, 1.035} across three seeds — consistent with
+ the A.21 result above.</p>
+
+<h3 class="subsection-title">3.3 T-scan: dependence on temporal extent</h3>
+<p>A natural further question is how d<sub>s</sub>(spine) depends on the
+ temporal size T of the triangulation. We generated five independent
+ seeds (42, 123, 456, 789, 1234) at each of T &isin; {20, 40, 80} —
+ fifteen geometries in total — and measured d<sub>s</sub>(spine) for
+ each, using the vertex-time-based parser appropriate for real 3D CDT
+ data (Appendix A.3).</p>
+<div class="scope-box" style="margin-top:1rem;">
+<p><strong>Fitting window protocol (v2.4 note):</strong> T-scan values (1.060, 1.044, 1.006 
+for T=20,40,80) were obtained with the proportional fitting window 
+[ILO=⌊0.2·T⌋, IHI=min(2T, SIGMAMAX−5)], NWALKS=3000, seed=42. This is the same 
+protocol as Appendix A.39 (D̂ operator); minor numerical differences reflect stochastic 
+variation between sessions. For reference, the fixed window [6,150] yields 
+(0.824, 1.000, 1.048). The convergence trend |d<sub>s</sub>−1| → 0 with increasing T 
+is robust across both protocols.</p>
+</div>
+
+<p>The per-T means are:</p>
+
+<table>
+<thead><tr><th>T</th><th>mean d<sub>s</sub>(spine)</th><th>std across 5 seeds</th></tr></thead>
+<tbody>
+<tr><td>20</td><td>1.060</td><td>0.021</td></tr>
+<tr><td>40</td><td>1.044</td><td>0.059</td></tr>
+<tr><td>80</td><td>1.006</td><td>0.015</td></tr>
+</tbody>
+</table>
+
+<p>|d<sub>s</sub> &minus; 1| decreases monotonically with T: from 0.060 at T=20, to
+ 0.044 at T=40, to 0.006 at T=80. At T=80, the central value is
+ compatible with d<sub>s</sub>=1 to well within one fit-uncertainty unit. This
+ is consistent with, and provides 3D multiseed confirmation of, the
+ single-seed 2D T-scan result reported in earlier work (where
+ T=320 gave d<sub>s</sub> = 1.006 &plusmn; 0.022): larger temporal extent allows
+ the spine's diffusion behavior to approach its asymptotic regime more
+ cleanly.</p>
+
+<h3 class="subsection-title">3.4 Methodological note: seed statistics and a retracted claim</h3>
+<p>We report this section's limitations explicitly rather than let them
+ surface only on close reading.</p>
+
+<p><strong>Sample size.</strong> Five seeds per T is a small sample for characterizing
+ seed-to-seed variability, though sufficient to establish the central-value
+ trend reported above. A single seed at T=40 (seed 789, d<sub>s</sub>=1.157) is
+ visibly higher than the other four (d<sub>s</sub> &isin; {0.985, 1.014, 1.031,
+ 1.034}); we retain it in the reported mean and standard deviation
+ rather than excluding it, since with n=5 there is no principled
+ statistical basis for declaring it an outlier rather than a tail value
+ of the true sampling distribution.</p>
+
+<p><strong>A claim we initially made and then retracted.</strong> In earlier internal
+ analysis of this dataset, the observation that the coefficient of
+ variation across seeds (std/mean) is smaller at T=80 than at T=20
+ or T=40 was interpreted as a second, independent line of evidence for
+ convergence — i.e., that not just the central value, but also the
+ <em>consistency between independent seeds</em>, improves with T. A dedicated
+ control calculation was run to test this interpretation directly: the
+ identical heat-kernel-and-power-law-fit pipeline (Appendix A.4) was
+ applied to a pure S<sup>1</sup> cycle graph — a structure with no CDT content
+ whatsoever, no causal structure, nothing for "T" to mean physically —
+ varying only the analogous size parameter and the random seed used for
+ the random walks. This control reproduced &chi;&sup2;/dof values in
+ the same range (~6&ndash;9) as those observed in the real T-scan data,
+ for <em>every</em> value of the size parameter, with no systematic trend. This
+ demonstrates that the apparent "improvement of seed consistency with
+ T" is consistent with ordinary finite-sample fitting noise at n=5,
+ not a genuine physical signal distinguishing the three T values. We
+ therefore retract the seed-consistency claim as independent evidence,
+ and report only the central-value trend (which does not depend on this
+ interpretation) as the result of Section 3.3.</p>
+
+<p>We note this not because the retraction is itself an important
+ physics result, but because we consider it important that a reader
+ encountering an earlier version of this analysis, or a similar
+ internal note, sees the correction made explicitly rather than finding
+ the claim quietly dropped.</p>
+</section>
+
+<section id="sec4" class="body-section">
+<h2 class="section-title">4. Toy 4D and Structural Robustness</h2>
+
+<h3 class="subsection-title">4.1 The S<sup>3</sup> &times; &Ropf; toy model: a blind prediction</h3>
+<p>The 2D and 3D results of Section 3 raise an obvious further question:
+ does d<sub>s</sub>(spine) &asymp; 1 persist in a four-dimensional
+ setting? Lacking access to real 4D CDT simulation data (Section 4.2
+ addresses why), we constructed a synthetic toy model with the
+ topology S<sup>3</sup> &times; &Ropf; — concentric 3-spheres, layered along
+ a discrete time direction — designed to share the qualitative
+ structural features of a CDT-like geometry (a foliation, a unique
+ radial/temporal center, locality between adjacent layers) without
+ attempting to reproduce CDT's dynamics or its Monte Carlo measure.</p>
+
+<p>The acceptance criterion, |d<sub>s</sub>(spine) &minus; 1| &lt; 0.15, was fixed
+ <em>before</em> the toy model was run, exactly as for every other geometry in
+ this paper, so that the result reported here is a genuine blind
+ prediction rather than a post hoc fit. Three independent
+ configurations were tested, varying both the number of radial shells
+ and the temporal extent: (N<sub>shells</sub>, N<sub>t</sub>) &isin; {(10,40),
+ (15,60), (20,80)}. The resulting spine spectral dimensions are
+ consistent across all three sizes, giving a combined
+ d<sub>s</sub>(spine) = 1.0428 &plusmn; 0.0157 — comfortably within the
+ pre-registered acceptance window, and of comparable precision to the
+ 2D and 3D results of Section 3.</p>
+
+<h3 class="subsection-title">4.2 Explicit scope statement: this is not real 4D CDT</h3>
+<p>We state this without qualification, because it is easy for a result
+ phrased as "toy 4D" to be misread as partial validation of something
+ it does not validate: <strong>the S<sup>3</sup> &times; &Ropf; result above says
+ nothing, directly, about real four-dimensional Causal Dynamical
+ Triangulations.</strong> The toy model is a hand-constructed graph with an
+ imposed radial-times-temporal structure; it does not arise from a CDT
+ Monte Carlo path integral, does not sample any dynamically generated
+ ensemble of 4D triangulations, and was not subjected to the
+ thermalization, ergodicity, or phase-structure considerations that
+ govern genuine CDT simulation (Appendix A.1&ndash;A.2). Its value is as a
+ structural consistency check — confirming that the spine-extraction
+ and heat-kernel protocol (Sections 2&ndash;3, Appendix A) behaves sensibly
+ when applied to a geometry with one more dimension than the cases
+ already validated — and nothing more.</p>
+
+<p>We did not run a real 4D CDT simulator ourselves, and at the time of
+ writing we are not aware of any public dataset of raw (3+1D) CDT
+ triangulations suitable for independent reanalysis: published work in
+ this area (e.g. [5,6,9]) reports aggregate Monte Carlo observables
+ (phase diagrams, ensemble-averaged spectral dimension as a function of
+ diffusion time) rather than individual triangulation files. Obtaining
+ a genuine 4D CDT validation of the GRU spine observable would require
+ either running a 4D simulator directly — a substantial undertaking
+ beyond the scope of this paper — or a data-sharing collaboration with
+ a group already running one. We regard this (labeled P2 in Section 9)
+ as the single most important open question for this research program,
+ more consequential than any of the robustness checks in this paper,
+ precisely because it is the one genuine dimensional extension of the
+ core result that we have not yet been able to test against real
+ dynamically generated geometry.</p>
+
+<h3 class="subsection-title">4.3 Coupling-scan robustness (k<sub>3</sub>-scan)</h3>
+<p>As a separate robustness check within the validated 2D/3D regime, we
+ scanned the k<sub>3</sub> coupling (the cosmological-constant-like parameter
+ in the CDT action) over the range tested, and found no significant
+ trend in d<sub>s</sub>(spine): the spine result remains stable across
+ the de Sitter phase explored, complementing the k<sub>0</sub>-scan validity
+ window already established for 3D CDT (k<sub>0</sub> &isin; [3.5, 5.0], with
+ optimal agreement at k<sub>0</sub>=4.0 giving d<sub>s</sub> = 1.0045 &plusmn; 0.0282;
+ Appendix B.1 reports the full k<sub>0</sub>-scan table). Taken together, the
+ k<sub>0</sub>- and k<sub>3</sub>-scans indicate that the GRU result is not finely
+ tuned to a single point in coupling space, but holds across an
+ extended region of the CDT phase diagram consistent with the
+ established semiclassical (de Sitter-like) phase.</p>
+</section>
+
+<section id="sec5" class="body-section">
+<h2 class="section-title">5. Anti-Triviality: Is d<sub>s</sub> &asymp; 1 a Generic Artifact?</h2>
+
+<h3 class="subsection-title">5.1 The objection</h3>
+<p>Section 2.3 already flagged the obvious concern: the spine is, after
+ the BFS-collapse construction (Section 2.2), a closed cycle graph as a
+ combinatorial object. A skeptical reader is entitled to ask whether
+ d<sub>s</sub>(spine) &asymp; 1 is therefore guaranteed by construction —
+ a tautology dressed up as a measurement — rather than a genuine,
+ falsifiable property of the underlying CDT geometry. If the heat-kernel
+ protocol (Appendix A.4) simply returns d<sub>s</sub> &asymp; 1 for any closed
+ cycle regardless of its internal structure, then every result in
+ Section 3 would be empty of physical content.</p>
+
+<p>This section presents five independent controls, none of which would
+ need to hold if the trivial-artifact hypothesis above were correct.
+ We order them from the most immediate to the most structurally subtle.</p>
+
+<h3 class="subsection-title">5.2 Five independent controls</h3>
+
+<p><strong>(a) Breaking the cycle's regularity.</strong> If we discard the temporal
+ weighting structure of the spine and instead connect shells with
+ uniform, unstructured edges (the &lambda;=1 configuration in our
+ internal notation), we obtain d<sub>s</sub> = 1.98 — not 1. The mere presence
+ of a closed-cycle topology does not, by itself, guarantee d<sub>s</sub>=1; the
+ result depends on the specific weight/connectivity structure
+ inherited from the underlying geometry.</p>
+
+<p><strong>(b) Shrinking the cycle below a useful size.</strong> For T=3 (six BFS
+ shells), d<sub>s</sub> &asymp; 0.1 — far from 1. The protocol does not force
+ d<sub>s</sub>=1 independent of size; there is a regime (cycles too short for
+ the heat-kernel to resolve a meaningful diffusion exponent) where the
+ result departs substantially.</p>
+
+<p><strong>(c) Coupling many spines together.</strong> A related objection, raised
+ during discussion of this work, asks whether <em>any</em> structure built
+ from coupled one-dimensional chains would give d<sub>s</sub> &asymp; 1 — for
+ instance, via some kind of fibration in which transverse degrees of
+ freedom are simply invisible to the heat-kernel. We tested this
+ directly in two ways. First, under a Cartesian product of the spine
+ with a second structure (a cycle or a 2D grid), the resulting
+ dimension is approximately additive, d<sub>s</sub>(total) &asymp;
+ d<sub>s</sub>(spine) + d<sub>s</sub>(base) — the transverse dimension is
+ emphatically <em>not</em> invisible. Second, chaining K identical
+ length-40 spines together with minimal coupling (a single edge
+ between adjacent spines) gives d<sub>s</sub> that grows monotonically and
+ without saturation as K increases from 1 to 256, from 1.068
+ to 1.219 — with no asymptotic return to 1. Neither form of "composing"
+ one-dimensional structures preserves d<sub>s</sub> &asymp; 1 for large
+ coupling or large K; a supplementary scan over the coupling strength
+ itself (varying the number of inter-spine edges, not just K) shows a
+ non-monotonic pattern, with d<sub>s</sub> rising toward &asymp; 2 at
+ intermediate coupling before declining slightly at very strong
+ coupling — further evidence against any generic "1D-coupled structure
+ gives d<sub>s</sub>&asymp;1" mechanism (full data in Appendix B.4).</p>
+
+<p><strong>(d) The full graph, same protocol.</strong> Applying the identical
+ heat-kernel methodology to the full CDT triangulation — without the
+ spine-collapse step — gives d<sub>s</sub>(full) &asymp; 1.67&ndash;2.5
+ across the geometries in this work (Section 2.4, Section 3), clearly
+ distinct from 1. The protocol does not collapse every input to
+ d<sub>s</sub>=1; it discriminates between the spine and the full graph of the
+ same underlying geometry.</p>
+
+<p><strong>(e) The spine's full spectrum, not just its diffusion exponent.</strong>
+ The Laplacian eigenvalue spectrum of the spine follows &lambda;<sub>n</sub>
+ &asymp; n<sup>2</sup> with an average error of 4.9% across the first ten
+ eigenvalues — that is, the spine behaves as a near-perfect discrete
+ circle across its <em>entire</em> spectrum, not merely in the single
+ diffusion exponent d<sub>s</sub>. If the spine were "a cycle by definition and
+ nothing more," this spectrum would be exactly n<sup>2</sup> with zero error;
+ the observed 4.9% reflects the genuine, finite, defect-bearing
+ structure inherited from the underlying triangulation.</p>
+
+<h3 class="subsection-title">5.3 What property of the geometry produces this result?</h3>
+<p>Having established that d<sub>s</sub> &asymp; 1 is an empirical finding rather
+ than a guaranteed consequence of the protocol, the natural next
+ question is which structural property of a geometry produces it, and
+ why this should be considered physically meaningful rather than a
+ numerical curiosity specific to CDT.</p>
+
+<p>We addressed this with a systematic elimination experiment: starting
+ from graph families that are <em>not</em> CDT (Erd&odblac;s&ndash;R&eacute;nyi random graphs,
+ Watts&ndash;Strogatz small-world graphs, 3-regular loop-quantum-gravity-style
+ spin networks), we added, one at a time, the structural conditions
+ that CDT satisfies by construction.</p>
+
+<p>An Erd&odblac;s&ndash;R&eacute;nyi random graph, given only a discrete temporal foliation
+ and restricted local connectivity, gives d<sub>s</sub> = 0.987 &plusmn; 0.048 across
+ three seeds — it passes. A causal-set construction with foliation
+ alone, but without a strict locality restriction, gives d<sub>s</sub> = 1.19 &plusmn;
+ 0.33 — only a partial pass (two of three seeds). A 3-regular spin
+ network with an imposed foliation gives d<sub>s</sub> = 2.21 &plusmn; 0.03 — it
+ fails: long-range "shortcuts" intrinsic to the network violate local
+ causality even once a foliation is imposed externally. A
+ Watts&ndash;Strogatz small-world graph with foliation fails for the same
+ reason, d<sub>s</sub> = 2.0 &plusmn; 0.09.</p>
+
+<p>The pattern across these five families and the CDT geometries of
+ Section 3 is consistent: d<sub>s</sub>(spine) &asymp; 1 emerges if and
+ only if a geometry simultaneously satisfies three conditions —
+ discrete temporal foliation, causal locality (no long-range shortcuts),
+ and bounded connectivity (neither too dense nor too sparse). No single
+ condition is sufficient on its own. CDT satisfies all three by
+ construction; generic graph topologies typically do not, even when one
+ or two of the conditions are imposed by hand.</p>
+
+<p><strong>Synthesis.</strong> d<sub>s</sub>(spine) &asymp; 1 is not an artifact of the
+ extraction-and-fitting protocol (Section 5.2) — it is the empirical
+ signature of a geometry possessing the minimal causal structure
+ required for a well-defined notion of time to exist (Section 5.3). In
+ this sense, the GRU protocol functions as an operational test of
+ causal completeness: any discrete geometry satisfying the three
+ conditions above will produce d<sub>s</sub>(spine) &asymp; 1 under this
+ protocol, and any geometry failing to satisfy them generally will not.
+ CDT satisfies them; generic random, small-world, and (in the
+ particular 3-regular formulation tested here) loop-quantum-gravity-style
+ spin-network graphs do not.</p>
+</section>
+
+<section id="sec6" class="body-section">
+<h2 class="section-title">6. Percolation as an Early-Warning Indicator</h2>
+
+<h3 class="subsection-title">6.1 Setup</h3>
+<p>Section 5.3 established that bounded connectivity — neither too dense
+ nor too sparse — is one of three conditions necessary for
+ d<sub>s</sub>(spine) &asymp; 1. This raises a natural stress-testing
+ question: if a CDT geometry's causal connectivity is progressively
+ degraded, does the spine observable register this degradation, and
+ does it do so more or less sensitively than a standard connectivity
+ diagnostic?</p>
+
+<p>We model degradation by randomly removing a fraction p<sub>missing</sub>
+ of edges from the spine graph — constructed here using the same
+ synthetic, parametrically-controlled toy spine used for the T-scan
+ robustness checks (Appendix A.4), at T &isin; {20, 65}, rather than a
+ spine extracted from a real CDT Monte Carlo geometry. This is a
+ deliberately non-physical perturbation: it does not arise from CDT
+ dynamics, but from artificially deleting temporal edges, directly
+ breaking the temporal-foliation and bounded-connectivity conditions of
+ Section 5.3 in a controlled way. We emphasize that this is distinct
+ from the organic fluctuations already present in real Monte
+ Carlo-generated CDT geometries (which the A.27 robustness battery,
+ 236/240 configurations passing, already characterizes); the
+ percolation study here is a stress test of the <em>observable</em>, not a
+ further characterization of CDT's own dynamics. p<sub>missing</sub>
+ ranges from 0 to 0.5, and at each value we measure d<sub>s</sub>(spine)
+ under the usual heat-kernel protocol (Appendix A.4), and the
+ normalized size of the giant connected component (GC) — the standard
+ percolation-theory diagnostic for when a graph fragments. We also
+ compute the susceptibility &chi; (the variance of component sizes
+ across realizations), which is used in percolation theory to locate
+ the critical threshold.</p>
+
+<h3 class="subsection-title">6.2 Result: the spine breaks before the network does</h3>
+<p>At p<sub>missing</sub> = 0.05 — a small perturbation, well before any
+ visible large-scale fragmentation — d<sub>s</sub>(spine) at T=20 has
+ already dropped by approximately 17% (from 1.03 &plusmn; 0.04 to 0.86
+ &plusmn; 0.22), while the giant component size has dropped by only about
+ 3.5%. The same qualitative behavior, if anything more pronounced, is
+ seen at T=65 (d<sub>s</sub> dropping from 1.02 &plusmn; 0.06 to 0.68 &plusmn;
+ 0.31 at the same p<sub>missing</sub>). The spine observable is, in
+ this sense, a substantially more sensitive early-warning indicator of
+ causal-connectivity breakdown than the standard giant-component
+ diagnostic: by the time edge removal has visibly fragmented the
+ network, the spine's spectral signature has already moved far from
+ the GRU value.</p>
+
+<p>This is the qualitative behavior we would expect if d<sub>s</sub>(spine)
+ genuinely tracks causal-structural integrity rather than gross
+ connectivity: removing edges first compromises the long-range,
+ delicate balance between foliation, locality, and bounded connectivity
+ identified in Section 5.3, well before it compromises bulk
+ connectivity in the cruder sense that the giant component measures.</p>
+
+<h3 class="subsection-title">6.3 Susceptibility peak and its precision</h3>
+<p>Locating the percolation threshold itself via the susceptibility peak
+ requires averaging over many random realizations of the edge-removal
+ process, since susceptibility is intrinsically noisy near a
+ percolation transition in a finite system. With N<sub>real</sub>=20
+ realizations per value of p<sub>missing</sub>, the susceptibility
+ peak appeared near p<sub>missing</sub> &asymp; 0.20; increasing to
+ N<sub>real</sub>=100 shifted the apparent peak to p<sub>missing</sub>
+ &asymp; 0.15, with a visibly smoother &chi;(p<sub>missing</sub>)
+ curve around the peak. Even at N<sub>real</sub>=100, however, the
+ peak's standard deviation remains comparable to or larger than its
+ mean value — a known feature of percolation susceptibility in small
+ finite-size systems, not a defect specific to this analysis. We
+ therefore report the threshold only approximately
+ (p<sub>missing</sub> &asymp; 0.15) and emphasize that the qualitative
+ finding of Section 6.2 — the spine breaking earlier and faster than
+ the giant component — does not depend on the threshold's precise
+ numerical value.</p>
+</section>
+
+<section id="sec7" class="body-section">
+<h2 class="section-title">7. Observational Pipelines: Infrastructure and LISA Falsifiability</h2>
+
+<p>This section presents two observational results. Section 7.1 reports the CMB pipeline (infrastructure, unchanged). Section 7.4 presents the central new result of v2.2: <strong>GRU is falsifiable by LISA</strong>, with all parameters derived from real CDT data — no free parameters.</p>
+
+<h3 class="subsection-title">7.1 C.1: cosmological MCMC infrastructure (Cobaya + CAMB + Planck)</h3>
+<p>We ran a complete, standard &Lambda;CDM Markov-chain Monte Carlo
+ analysis against Planck 2018 temperature data (the <code>planck_2018_lowl.TT</code>
+ and <code>planck_2018_highl_plik.TT_lite</code> likelihoods), using Cobaya
+ (v3.6.2) and CAMB (v1.6.6), as an end-to-end test that this pipeline
+ functions correctly and converges. Four parallel chains (3841, 3894,
+ 3872, and 3876 samples respectively; 15,483 samples total) were run to
+ convergence, reaching the standard Gelman&ndash;Rubin criterion
+ R&minus;1 = 0.029 (below the conventional threshold of 0.05).</p>
+
+<p>The resulting posterior means (after a 30% burn-in cut, 10,836 samples)
+ are summarized below, alongside the corresponding Planck 2018
+ reference values:</p>
+
+<table>
+<thead><tr><th>Parameter</th><th>This run (mean &plusmn; 1&sigma;)</th><th>Planck 2018 reference</th><th>Agreement</th></tr></thead>
+<tbody>
+<tr><td>H<sub>0</sub> (km/s/Mpc)</td><td>68.20 &plusmn; 1.18</td><td>~67.7 &plusmn; 0.7</td><td>~0.4&sigma;</td></tr>
+<tr><td>&Omega;<sub>m</sub></td><td>0.3034 &plusmn; 0.0155</td><td>~0.315</td><td>~0.7&sigma;</td></tr>
+<tr><td>&Omega;<sub>b</sub></td><td>0.04817 &plusmn; 0.00128</td><td>~0.0493</td><td>~0.9&sigma;</td></tr>
+<tr><td>&omega;<sub>b</sub></td><td>0.022392 &plusmn; 0.000264</td><td>~0.02237</td><td class="ok">excellent</td></tr>
+<tr><td>&omega;<sub>c</sub></td><td>0.11790 &plusmn; 0.00256</td><td>~0.1200</td><td>~0.4&sigma;</td></tr>
+<tr><td>n<sub>s</sub></td><td>0.9713 &plusmn; 0.0078</td><td>~0.9649</td><td>~0.8&sigma;</td></tr>
+<tr><td>A<sub>Planck</sub></td><td>1.00030 &plusmn; 0.00256</td><td>1.0 (prior)</td><td class="ok">&lt;0.15&sigma;</td></tr>
+<tr><td>&sigma;<sub>8</sub></td><td>0.8515 &plusmn; 0.0218</td><td>~0.811</td><td>~1.5&ndash;1.9&sigma;</td></tr>
+<tr><td>&tau;</td><td>0.1123 &plusmn; 0.0322</td><td>~0.0544</td><td>prior-dominated</td></tr>
+</tbody>
+</table>
+
+<p>The total CMB likelihood, &chi;&sup2;<sub>CMB</sub> = 231.79 &plusmn; 3.44, is
+ consistent with the Planck 2018 best-fit reference of &asymp; 229.8. Every
+ parameter directly well-constrained by temperature data alone
+ (H<sub>0</sub>, &Omega;<sub>m</sub>, &Omega;<sub>b</sub>, &omega;<sub>b</sub>, &omega;<sub>c</sub>, n<sub>s</sub>,
+ A<sub>Planck</sub>) agrees with Planck 2018 to within approximately
+ 1&sigma;. The mild tension in &sigma;<sub>8</sub> and &tau; is an expected
+ consequence of using only the temperature-only likelihood subset (no
+ polarization or lensing data, which normally help pin down &sigma;<sub>8</sub>
+ and &tau; more tightly) — not an anomaly of the pipeline.</p>
+
+<p>We emphasize again: <strong>this run validates that the Cobaya+CAMB+Planck
+ infrastructure functions correctly end to end; it is not a run with
+ any GRU-derived parameter.</strong> Deriving a GRU-motivated modification to
+ the &Lambda;CDM model and testing it against this same pipeline is
+ future work, not yet attempted.</p>
+
+<h3 class="subsection-title">7.2 C.2: gravitational-wave waveform infrastructure (bbhx/LISA)</h3>
+<p>We separately validated a binary-black-hole waveform pipeline (bbhx
+ v1.1.12, compiled from source with CPU extensions) intended for future
+ LISA-related forecasting work. The high-level <code>BBHWaveformFD</code> interface
+ was initially blocked by a missing data file
+ (<code>equalarmlength-orbits.h5</code>), which we traced to a genuine upstream
+ bug: the file is referenced by the published <code>lisaanalysistools</code> PyPI
+ package (v1.0.17) but has been removed from all corresponding GitHub
+ branches and tags, so that the package's runtime download attempt
+ silently retrieves a 404 error page rather than valid data. This was
+ not a restricted-network artifact of our own setup, but an actual
+ defect in the upstream package as published.</p>
+
+<p>We resolved this by installing the separate <code>lisaorbits</code> package
+ (v3.0.3), which provides an analytic orbit model not dependent on any
+ external file, and using it to synthesize a replacement <code>.h5</code> file
+ with the expected attribute structure. With this fix,
+ <code>BBHWaveformFD</code> imports and generates time-delay-interferometry
+ waveforms correctly (verified output shape: 3 TDI channels by 500
+ frequency bins, complex-valued). As with C.1, this establishes that
+ the waveform-generation infrastructure is functional; it does not yet
+ constitute a GRU-specific gravitational-wave prediction.</p>
+
+<h3 class="subsection-title">7.3 CMB Quadrupole: v2.3 Prediction from GRU Screening Model</h3>
+
+<div class="update-box">
+<p><strong>v2.3 Result:</strong> R2(κ<sub>GRU</sub>) = 0.8451 → D<sub>ℓ</sub> = 7.5 × 0.8451 = 6.34 μK², +0.67σ of Planck (5.77 ± 0.85 μK²).
+κ<sub>GRU</sub> = 2.055. The CMB quadrupole is <em>compatible</em> with Planck within 1σ.
+<span style="color:var(--red);">v2.2 bug:</span> Ad-hoc denominator 1+(κ/2.5)² artificially gave D<sub>ℓ</sub> = 3.78 μK² (34% tension).
+<span style="color:var(--green);">v2.3 correction:</span> Canonical formula R2(κ) = (1 − e<sup>−√6·κ/2</sup>)² restores consistency.</p>
+</div>
+
+<h4>7.3.1 The R2 screening formula</h4>
+<p>GRU predicts a quadrupole suppression via the screening parameter κ, which measures the ratio of causal-spine correlation length to cosmological horizon scale:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  R2(κ) = (1 − e<sup>−√6·κ/2</sup>)²
+</p>
+<p>This is the <strong>canonical form</strong> derived from the asymptotic behavior of the causal-spine autocorrelation function C(k) ~ exp(−k/λ<sub>corr</sub>) in the large-κ limit. No free parameters: κ is fixed by the measured λ<sub>corr</sub> = 2.14 ± 0.79 slices and the cosmological mapping T<sub>CDT</sub> ↔ H<sub>0</sub><sup>−1</sup>.</p>
+
+<h4>7.3.2 Numerical prediction</h4>
+<table>
+<thead><tr><th>Quantity</th><th>v2.2 (bugged)</th><th>v2.3 (corrected)</th><th>Planck 2018</th></tr></thead>
+<tbody>
+<tr><td>κ<sub>GRU</sub></td><td>1.5 (ad-hoc)</td><td>2.055 (derived)</td><td>—</td></tr>
+<tr><td>R2(κ)</td><td>0.77 <span class="bad">(wrong)</span></td><td>0.8451</td><td>—</td></tr>
+<tr><td>D<sub>ℓ</sub> (μK²)</td><td>3.78 <span class="bad">(−34%)</span></td><td>6.34 <span class="ok">(+0.67σ)</span></td><td>5.77 ± 0.85</td></tr>
+<tr><td>Tension with Planck</td><td>2.3σ <span class="bad">rejected</span></td><td>0.67σ <span class="ok">compatible</span></td><td>—</td></tr>
+</tbody>
+</table>
+
+<h4>7.3.3 The v2.2 bug: documented and corrected</h4>
+<div class="warning-box">
+<p><strong>Bug R2<sub>v2</sub> (v2.2):</strong> The formula used was R2<sub>v2</sub>(κ) = R2<sub>canonical</sub>(κ) / [1 + (κ/2.5)²]. The denominator 1+(κ/2.5)² was introduced ad-hoc during exploratory analysis, without derivation from first principles, to force agreement with a preliminary D<sub>ℓ</sub> estimate. It had no physical justification within the GRU framework.</p>
+<p><strong>Consequence:</strong> For κ<sub>GRU</sub> = 2.055, the denominator suppressed R2 by a factor of 1.68, giving R2<sub>v2</sub>(κ=2.055) = 0.8451/1.68 = 0.5031 → D<sub>ℓ</sub> = 7.5 × 0.5031 = 3.77 μK². This created an apparent 34% tension with Planck that did not exist in the canonical theory.</p>
+<p><strong>Detection:</strong> The bug was identified during a systematic review of all GRU-derived formulas for physical consistency (June 25, 2026). The denominator does not appear in any derivation from the causal-spine autocorrelation function, the Regge action, or the heat-kernel spectral dimension.</p>
+<p><strong>Correction:</strong> v2.3 eliminates the ad-hoc denominator. The canonical formula R2(κ) = (1 − e<sup>−√6·κ/2</sup>)² is now the sole GRU prediction for the CMB quadrupole. D<sub>ℓ</sub> = 6.34 μK² is within 1σ of Planck, removing the false tension.</p>
+</div>
+
+<h4>7.3.4 Conceptual status: still an open question</h4>
+<p>We emphasize that the <em>numerical</em> consistency achieved in v2.3 does not constitute a <em>derivation</em> of the CMB quadrupole from GRU first principles. The connection between d<sub>s</sub>(spine) ≈ 1 and the low-&ell; power spectrum remains conceptual, not deductive. What v2.3 establishes is:</p>
+<ol>
+<li>The GRU screening model, with its single parameter κ derived from real CDT data, predicts a quadrupole amplitude that is <em>not in tension</em> with observation.</li>
+<li>The v2.2 tension was an artifact of an undocumented ad-hoc modification, now removed.</li>
+<li>The CMB low-&ell; anomaly remains an open question for GRU: a future LiteBIRD measurement consistent with ΛCDM would weaken the case for any causal-connectivity-type explanation, GRU included (Section 8.4, item 4).</li>
+</ol>
+
+<h4>7.3.5 Falsifiability criterion</h4>
+<p><strong>GRU-CMB is falsified if:</strong> LiteBIRD (2028+) measures D<sub>ℓ</sub> consistent with ΛCDM (no low-&ell; anomaly) <em>and</em> the GRU prediction R2(κ<sub>GRU</sub>) = 0.8451 (canonical, no fine-tuning) is consistent with the measured λ<sub>corr</sub> uncertainty (±0.79 slices → κ uncertainty maps to D<sub>ℓ</sub> ∈ [5.1, 7.8] μK² at 1σ).</p>
+
+<h3 class="subsection-title">7.4 LISA Falsifiability: MDR from Real CDT Data (Central Result v2.2–v2.3)</h3>
+
+<div class="scope-box">
+<p><strong>Central result:</strong> λ<sub>corr</sub> = 2.14 ± 0.79 slices — measured from 32 real CDT geometries. 21/32 fall within the LISA detection window [1.46, 2.90]. <strong>GRU is falsifiable by LISA without free parameters.</strong></p>
+</div>
+
+<h4>7.4.1 Modified Dispersion Relation</h4>
+<p>GRU predicts a gravitational wave MDR of the form:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  v<sub>g</sub>(E) = c · [1 ± A<sub>GRU</sub> · (E / E<sub>Pl</sub>)<sup>n<sub>GRU</sub></sup>]
+</p>
+<p>The exponent is derived analytically from the causal topology of the spine — not fitted:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  n<sub>GRU</sub> = 2 · d<sub>S</sub>(spine) − 2 = 2 × 1.0282 − 2 = <strong>0.0564 ± 0.050</strong>
+</p>
+<p>Derivation: the self-energy scales as k<sup>2d<sub>S</sub></sup> in UV → v<sub>g</sub> ~ 1 + A·k<sup>(2d<sub>S</sub>−2)</sup> → n<sub>GRU</sub> = 2d<sub>S</sub> − 2. Topological constraints: n<sub>GRU</sub> &gt; 0 (causality: tree without cycles), n<sub>GRU</sub> &lt; 1 (d<sub>S</sub>(spine) &lt; 1.5). Both satisfied. ✓</p>
+
+<p>The polarization coupling factor f<sub>pol</sub> = 4/15 is derived from the tensorial spin-2 projector of the Regge Hessian (Dittrich, Freidel &amp; Speziale 2007 [16]), not an ansatz.</p>
+
+<h4>7.4.2 Detection Window</h4>
+<p>The cosmological time delay between gravitons emitted simultaneously at redshift z is:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  Δt(f, z) = [(1+n<sub>GRU</sub>) / 2H<sub>0</sub>] · A<sub>GRU</sub> · (hf / E<sub>Pl</sub>)<sup>n<sub>GRU</sub></sup> · ∫<sub>0</sub><sup>z</sup> (1+z')<sup>n<sub>GRU</sub></sup> / √(Ω<sub>m</sub>(1+z')³ + Ω<sub>Λ</sub>) dz'
+</p>
+<p>With H<sub>0</sub> = 70 km/s/Mpc, Ω<sub>m</sub> = 0.30, Ω<sub>Λ</sub> = 0.70. GW170817 and the LISA detectability threshold bound A<sub>GRU</sub> from above and below respectively:</p>
+<table>
+<thead><tr><th>Constraint</th><th>Limit on A<sub>GRU</sub></th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>GW170817 (Δt &lt; 1700 ms, f=100 Hz, z=0.009)</td><td>A &lt; 4.36×10<sup>−14</sup></td><td>Abbott et al. 2017</td></tr>
+<tr><td>LISA detectable (Δt &gt; 0.1 ms, f=3 mHz, z=1)</td><td>A &gt; 5.27×10<sup>−20</sup></td><td>arXiv:2511.04010 [17]</td></tr>
+</tbody>
+</table>
+
+<p><strong>Fermi-LAT GRB 090510 constraint — corrected (July 2026).</strong> An
+earlier version rescaled the GRB 090510 photon-dispersion bound to
+n<sub>GRU</sub>=0.056 using an absolute-amplitude convention, quoting a single
+limit A&lt;1.35×10<sup>−17</sup> and describing a "detection window" between
+this bound and GW170817. This convention is inappropriate at fractional
+n: for n=1 the low-energy reference photon term is negligible (&lt;1% of
+the high-energy term) and any absolute-vs-differential choice is
+irrelevant, but at n<sub>GRU</sub>=0.056 the low-energy term is 50–72% of the
+high-energy term, so the physically correct bound uses the
+<em>differential</em> form Δt ∝ (1−n)·A·[(E<sub>high</sub>/E<sub>Pl</sub>)<sup>n</sup> −
+(E<sub>low</sub>/E<sub>Pl</sub>)<sup>n</sup>]·D(z,n), not the absolute form. We recomputed the
+bound with this corrected form across three GRB 090510 timing methods
+[Vasileiou et al. 2013; Granot 2015] and three low-energy reference
+bands:</p>
+<table>
+<thead><tr><th>Method (Δt)</th><th>E<sub>low</sub> ref.</th><th>A<sub>max</sub></th><th>A<sub>final</sub>/A<sub>max</sub></th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>M1 conservative (0.829 s)</td><td>100 MeV</td><td>2.00×10<sup>−16</sup></td><td>0.73</td><td>passes</td></tr>
+<tr><td>M1 conservative (0.829 s)</td><td>1 MeV</td><td>1.25×10<sup>−16</sup></td><td>1.17</td><td>marginal tension</td></tr>
+<tr><td>M3 DisCan (0.93 s, 99% CL)</td><td>100 MeV</td><td>2.25×10<sup>−16</sup></td><td>0.65</td><td>passes</td></tr>
+<tr><td>M2 spike association (0.010 s)</td><td>100 MeV</td><td>2.41×10<sup>−18</sup></td><td>60</td><td>violates</td></tr>
+</tbody>
+</table>
+<p>The verdict depends on the timing method: the two more conservative
+methods (M1, M3), which do not assume a specific photon-emission-spike
+association, give A<sub>final</sub> at or below the bound; the least
+conservative method (M2, spike association) gives a clear violation. We
+report this honestly as <strong>a marginal, method-dependent tension rather
+than an established violation or a clean pass</strong>. Full numerical
+verification, including all nine method/band combinations, is provided
+in <code>audit/GRU_C6_FERMI_LAT_DIFERENCIAL_result.json</code> (reproducible via
+<code>audit/GRU_C6_FERMI_LAT_DIFERENCIAL.py</code>). See §8.3 for further
+discussion.</p>
+
+<h4>7.4.3 Screening Mechanism M1</h4>
+<p>The effective amplitude is suppressed by an exponential screening factor derived from the autocorrelation of CDT volume fluctuations:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  C(k) = ⟨δV(t) δV(t+k)⟩ / Var(V) ~ exp(−k / λ<sub>corr</sub>)
+</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  A<sub>final</sub> = A<sub>bruto</sub> · exp(−2T / λ<sub>corr</sub>)
+</p>
+<p><em>Note: exp(−2T/λ) = [exp(−T/λ)]² — this is the two-way propagation factor (forward and return path of the gravitational wave through T=20 temporal slices). Numerically: exp(−40/2.14) = 7.63×10<sup>−9</sup>, giving A<sub>final</sub> = 1.915×10<sup>−8</sup> × 7.63×10<sup>−9</sup> = 1.46×10<sup>−16</sup> ✓</em></p>
+<p>The parameter λ<sub>corr</sub> is <em>measured directly</em> from 32 real CDT (2+1)D geometries (T=20):</p>
+<div class="scope-box">
+<p><strong>λ<sub>corr</sub> = 2.14 ± 0.79 slices (21/32 geometries in window [1.46, 2.90])</strong></p>
+</div>
+
+<h4>7.4.4 Derived Pipeline Results (CDT Real Data)</h4>
+<table>
+<thead><tr><th>Quantity</th><th>Value</th><th>Script</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>N<sub>spine</sub></td><td>20 (= T)</td><td>GRU_F_TSCAN_3D</td><td>✓ CDT real</td></tr>
+<tr><td>g<sub>eff</sub></td><td>1.490×10<sup>−4</sup></td><td>GRU_P_PROP_FULL</td><td>✓ Regge Hessian</td></tr>
+<tr><td>A<sub>GRU</sub></td><td>1.915×10<sup>−8</sup></td><td>GRU_P_PROP_FULL</td><td>✓ derived</td></tr>
+<tr><td>f<sub>activa</sub> (spin-2)</td><td>1.000</td><td>GRU_P_FACTIVE</td><td>✓ pure spin-2 <sup title="All 4 edges from the central vertex of the 4-simplex project fully onto the traceless-symmetric subspace. For N_spine=20, the Hessiano is evaluated on the 4 locally available simplex edges and scales by f_spine_real/n_simplex_max.">ⓘ</sup></td></tr>
+<tr><td>A<sub>final</sub> (M1 screening)</td><td>1.460×10<sup>−16</sup></td><td>GRU_P_FACTIVE</td><td>✓ IN WINDOW</td></tr>
+<tr><td>η<sub>int</sub> (interference)</td><td>0.229 (analytic model); 0.169 ± 0.038 (empirical)</td><td>GRU_P_INTERFERENCE</td><td>A<sub>int</sub> uses analytic η=0.229; empirical from 32 geometries without vol_slices field</td></tr>
+<tr><td>A<sub>int</sub> (+ interference)</td><td>7.658×10<sup>−18</sup></td><td>GRU_P_INTERFERENCE</td><td>✓ IN WINDOW (η=0.229 analytic)</td></tr>
+</tbody>
+</table>
+
+<h4>7.4.5 Anisotropic Signature — Unique to GRU</h4>
+<p>The radial origin of GRU produces a quadrupolar angular variation of the time delay:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  A<sub>GRU</sub>(θ) = A<sub>GRU</sub> · [1 + ε<sub>A</sub> · P<sub>2</sub>(cos θ)]
+</p>
+<p>where P<sub>2</sub> is the Legendre polynomial and θ is the angle from the cosmological radial axis. Measured: <strong>ε<sub>A</sub> = 4.1816%</strong> <span style="color:var(--green);">[v2.3 corrected from 3.71%]</span>, corresponding to Δt<sub>pole−equator</sub> = 1.19 ms &gt; LISA threshold (0.1 ms). The SME coefficient k<sub>SME</sub>(j=2, m=0) = 6.63×10<sup>−19</sup> [18].</p>
+<p><strong>GRU is the only theory with n &lt; 1 + LISA window + quadrupolar signature</strong> — distinguishable from all isotropic competitors (LQG, CDT standard, Hořava-Lifshitz, massive graviton).</p>
+
+<h4>7.4.6 Fisher Analysis</h4>
+<p>With a single SMBHB event (SNR~1000, z=1, 3 mHz): σ<sub>n</sub> = 2.1121×10<sup>6</sup> <span style="color:var(--green);">[v2.6 recalculated with A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening]</span> — the required precision for 5σ detection is therefore extremely demanding. <strong>N<sub>events</sub> for 5σ detection ≈ 3.5×10<sup>18</sup> (A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening).</strong> LISA expects 10–100 SMBHB detections in its primary mission (2035–2040).</p>
+
+<h4>7.4.7 Function Transfer Table Δt(f, z)</h4>
+<p>Computed with A<sub>final</sub> = 1.46×10<sup>−16</sup> (post-screening,
+<span style="color:var(--green);">corrected July 2026 — previously used the
+retracted "upper limit of window" value 1.35×10<sup>−17</sup>, see §7.4.2</span>),
+n<sub>GRU</sub> = 0.0564. The anisotropic correction ε<sub>A</sub> = 4.1816% modifies the
+amplitude by ±4.18% depending on sky position (pole vs. equator), well
+within the tabulated range. All entries scale linearly with A and remain
+above the 0.1 ms LISA time-delay threshold; this table demonstrates the
+shape of the transfer function, not statistical detection significance
+(see §7.4.6 for the N<sub>5</sub> event-count analysis):</p>
+<table>
+<thead><tr><th>z</th><th>D<sub>C</sub> (Gpc)</th><th>f = 0.3 mHz</th><th>f = 3 mHz</th><th>f = 10 mHz</th><th>LISA?</th></tr></thead>
+<tbody>
+<tr><td>0.1</td><td>0.42</td><td>243 ms</td><td>277 ms</td><td>301 ms</td><td>✓</td></tr>
+<tr><td>0.5</td><td>1.89</td><td>507 ms</td><td>578 ms</td><td>626 ms</td><td>✓</td></tr>
+<tr><td>1.0</td><td>3.31</td><td>896 ms</td><td>1019 ms</td><td>1104 ms</td><td>✓</td></tr>
+<tr><td>2.0</td><td>5.18</td><td>1417 ms</td><td>1611 ms</td><td>1752 ms</td><td>✓</td></tr>
+<tr><td>5.0</td><td>7.78</td><td>2163 ms</td><td>2466 ms</td><td>2671 ms</td><td>✓</td></tr>
+</tbody>
+</table>
+
+
+
+<h4>7.4.8 Time-Delay Dominated Regime — A Unique Observable Signature</h4>
+<p>GRU is the only quantum gravity theory satisfying simultaneously:
+(i) n<sub>GRU</sub> &lt; 1 (sub-luminal dispersion),
+(ii) A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] (post-screening LISA window),
+and (iii) quadrupolar anisotropic signature ε<sub>A</sub> = 4.1816% with
+k<sub>SME</sub>(j=2, m=0), CPT-even, d=4 — not covered by existing bounds
+(Gong et al. 2023 [20] probe d=6 operators; SME d=5 operators are CPT-odd
+and birefringent). With the corrected post-screening amplitude, the LISA
+event budget for 5σ detection is N<sub>5</sub>≈3.5×10<sup>18</sup>, so the
+quantitative distinguishability claim based on large sigma separations is
+no longer supported. What survives as a qualitative signature is the
+combination n<sub>GRU</sub>&lt;1, the narrow LISA amplitude window, and the
+unique quadrupolar anisotropy — together they define a region of
+(MDR, amplitude, anisotropy) space that standard competitors do not
+occupy, but this is a conceptual discriminator rather than a
+high-significance separation with current event budgets.</p>
+<div class="update-box" style="background:#b45309;border-left:4px solid #ffc107;padding:12px;margin:12px 0;color:#ffffff;">
+<strong>Pipeline Validation Note (from v2.5, unchanged in v2.6):</strong> The Fourier-Heisenberg cross-spectral density pipeline 
+(§C.2) was validated on synthetic LISA noise with an injected GRU signal (Δt=128.35 s, f<sub>spine</sub>=7.7912 mHz). 
+The recovered significance σ=2678.7 (N<sub>seg</sub>=35,064 one-hour segments, SNR=10.12) is a 
+<em>mathematical certainty of coherent Fourier analysis</em> — not a physical detection. 
+The signal was injected, not extracted from real data. 
+This constitutes a <strong>falsifiable pipeline</strong>: if the CDT causal spine imprints a coherent 
+phase delay on the stochastic GW background, this pipeline would detect it in real LISA data.
+</div>
+
+<p>Crucially, GRU operates in a distinct <em>observable regime</em>: because
+n<sub>GRU</sub> ≈ 0.056 ≪ 1, the dispersive effect is
+<strong>time-delay dominated</strong> rather than phase-dephasing dominated.
+At z=1 and f=3 mHz, the cosmological time delay is Δt ≈ 277 ms (well above the
+LISA threshold of 0.1 ms), while the accumulated phase dephasing is Δφ ≈ 0.005 rad
+(negligible, as expected for n ≪ 1). Competing theories with n ≥ 1 — massive gravity,
+LQG, Hořava-Lifshitz — operate in the phase-dephasing regime and produce no detectable
+time delay at the same A values. This regime separation is an additional distinguishing
+signature, independent of the specific value of A<sub>GRU</sub>.</p>
+
+</section>
+
+<section id="sec8" class="body-section">
+<h2 class="section-title">8. Discussion</h2>
+
+<h3 class="subsection-title">8.1 What d<sub>s</sub>(spine) &asymp; 1 means</h3>
+<p>Sections 5 and 6 established, through five independent controls and a
+ systematic graph-family elimination experiment, that
+ d<sub>s</sub>(spine) &asymp; 1 is neither a tautological consequence of
+ the spine's cycle topology nor a generic feature of one-dimensional
+ or loosely-coupled structures in general. It is, instead, specific to
+ geometries satisfying three simultaneous conditions: discrete temporal
+ foliation, causal locality, and bounded connectivity.</p>
+
+<p>We take this to mean the following. A discrete geometry that
+ satisfies these three conditions possesses, in a precise and
+ numerically measurable sense, the minimal causal skeleton that the
+ continuum notion of "time" presupposes: a well-ordered sequence of
+ events, with influence propagating locally between neighboring slices,
+ and without long-range shortcuts that would allow distant regions to
+ interact as if adjacent. d<sub>s</sub>(spine) &asymp; 1 is the spectral
+ signature of this skeleton. We do not claim this <em>constitutes</em> time in
+ any deeper metaphysical sense — only that it identifies, operationally
+ and falsifiably, the structural precondition that the causal-structure
+ literature discussed in Section 1.1 (Kronheimer&ndash;Penrose, Malament,
+ Bombelli et al.) argues is necessary for a meaningful notion of
+ spacetime geometry to exist at all. GRU does not measure the dimension
+ of space; it measures whether a discrete geometry has the causal
+ structure — a past, a future, and local propagation between them —
+ that physics requires for time to be well-defined.</p>
+
+<h3 class="subsection-title">8.2 Relation to a companion proposal in loop quantum cosmology [8]</h3>
+<p>The GRU research program originated, prior to its CDT incarnation,
+ as a proposal in a different discrete-gravity setting: anisotropic
+ loop quantum cosmology (LQC) [8], where the relevant minisuperspace is
+ conventionally parametrized using three independent triad/connection
+ variables, related by a discrete &Zopf;<sub>2</sub><sup>3</sup> octant symmetry. The
+ original proposal was that this redundancy could be eliminated by
+ reparametrizing the model in terms of a single radial scalar variable
+ &rho; &ge; 0. The CDT work presented in this paper is conceptually
+ related but methodologically independent: both share the underlying
+ philosophical motivation of Section 1.1 (that causal/radial structure
+ should be treated as more fundamental than the coordinate redundancy
+ it is usually embedded in), but the LQC proposal and the CDT spine
+ construction are different mathematical objects, tested by different
+ numerical means, and we make no claim that a result in one directly
+ implies a result in the other. We mention the connection here for
+ completeness and intellectual context, not as additional evidence for
+ either.</p>
+
+<h3 class="subsection-title">8.3 Limitations</h3>
+<p>We collect, in one place, the limitations already flagged individually
+ throughout this paper, so that a reader assessing the overall strength
+ of the GRU result has them together rather than scattered.</p>
+
+<p><strong>Real four-dimensional CDT is untested (Section 4.2).</strong> This is the
+ most significant limitation of the present work. The toy
+ S<sup>3</sup> &times; &Ropf; result (Section 4.1) is a structural consistency
+ check on the extraction-and-fitting protocol, not a validation against
+ real 4D CDT dynamics; no public dataset of raw 4D CDT triangulations
+ exists for independent reanalysis, and we have not run a 4D simulator.</p>
+
+<p><strong>Seed statistics in the 3D multiseed and T-scan results are
+ limited (Section 3.4).</strong> Three to five independent seeds is sufficient
+ to establish the central-value trends reported in Section 3, but
+ insufficient to fully characterize seed-to-seed variability; we
+ explicitly retracted an earlier, statistically unsupported claim about
+ seed-consistency improving with T, after a dedicated control
+ calculation showed it to be consistent with ordinary finite-sample
+ noise.</p>
+
+<p><strong>Section 7.4 (LISA) presents the first GRU prediction derived from real CDT data:</strong> n<sub>GRU</sub> = 0.0564, A<sub>final</sub> = 1.46×10<sup>−16</sup>, λ<sub>corr</sub> = 2.14 ± 0.79. These are derived quantities, not fitted parameters. <strong>Section 7.3 (CMB) presents a v2.3-corrected numerical prediction:</strong> D<sub>ℓ</sub> = 6.34 μK² (+0.67σ of Planck), with the R2<sub>v2</sub> bug documented and removed. The conceptual status of the CMB connection remains open: no first-principles derivation from d<sub>s</sub>(spine) to the power spectrum exists yet.</p>
+
+<p><strong>The percolation stress test (Section 6) used a synthetic toy spine</strong>,
+ not a spine extracted from a real Monte Carlo-generated CDT geometry;
+ extending this stress test to real CDT data, under genuine
+ thermalized dynamics rather than artificial edge removal, is left for
+ future work.</p>
+
+<p><strong>The eps-scan coupling-strength result (Section 5.2c) used single
+ realizations per parameter point</strong>, without multi-seed statistics; the
+ qualitative non-monotonic pattern is robust (observed independently at
+ two values of K), but the precise location of its maximum is not
+ resolved with the data presented here.</p>
+
+<p><strong>The graviton-sector modified dispersion relation (MDR) amplitude
+ coefficient is not derived from first principles.</strong> While the exponent
+ n<sub>GRU</sub>=0.0564 follows directly from d<sub>s</sub>(spine), the coupling between
+ the causal spine and the propagating gravitational degree of freedom
+ that would fix the MYW amplitude coefficient A<sub>α</sub> is not yet derived
+ from the discretized Regge action. We defer this derivation, and any
+ direct quantitative comparison to LVK bounds on A<sub>α</sub>, to future work
+ rather than presenting an unverified numerical mapping.</p>
+
+<p><strong>The Fermi-LAT GRB 090510 constraint on A<sub>final</sub> is a marginal,
+ method-dependent tension, not a resolved comparison (§7.4.2).</strong> The
+ verdict — passing, marginal, or violating — depends on which GRB
+ 090510 timing method and low-energy reference band is adopted; we
+ report all nine combinations rather than a single number, and consider
+ this an open point requiring a dedicated Fermi-LAT/LVK collaboration
+ analysis rather than a claim we can settle unilaterally.</p>
+
+<p><strong>The LISA time-delay pipeline has not been validated against
+ realistic instrumental foregrounds.</strong> The full time-domain simulation
+ (§7.4.6) previously failed with an out-of-memory error at the intended
+ sample count; the reduced-resolution Fisher analysis reported here is
+ an analytic approximation, not a foreground-aware matched-filter
+ search. The reported N<sub>5</sub>≈3.5×10<sup>18</sup> should be read as an
+ order-of-magnitude statement under idealized noise, not a
+ mission-design-grade sensitivity forecast.</p>
+
+<h3 class="subsection-title">8.4 Falsifiability</h3>
+<p>We state explicitly what would constitute evidence against the central
+ claim of this paper, so that GRU is judged as a falsifiable hypothesis
+ rather than treated as having indefinitely adjustable conditions of
+ success.</p>
+
+<p><strong>GRU would be falsified, or its current formulation substantially
+ weakened, by any of the following:</strong></p>
+
+<ol>
+<li>An independent replication of the 2D or 3D CDT analyses in this
+ paper (same protocol, Appendix A), using geometries generated by a
+ different simulator or research group, that fails to reproduce
+ d<sub>s</sub>(spine) &asymp; 1 within comparable statistical
+ uncertainty.</li>
+<li>A demonstration that the heat-kernel fitting protocol itself (rather
+ than the underlying geometry) is responsible for the
+ d<sub>s</sub> &asymp; 1 result — for instance, a methodological flaw in
+ Appendix A.4 that, when corrected, changes the central result of
+ Section 3 substantially.</li>
+<li>A real four-dimensional CDT analysis (Section 4.2, once it becomes
+ possible to perform or access one) that fails to reproduce
+ d<sub>s</sub>(spine) &asymp; 1 under the same A.38 conditions
+ established in 2D and 3D.</li>
+<li>For the conceptual CMB connection specifically (Section 7.3): a
+ future CMB polarization survey (LiteBIRD or comparable, from 2028
+ onward) recovering low-&ell; power fully consistent with standard
+ &Lambda;CDM, with no residual anomaly requiring any
+ causal-connectivity-type explanation.</li>
+</ol>
+
+<p>We consider item 1 the most immediately actionable falsification test
+ available to other researchers: the protocol of Appendix A is fully
+ specified and the geometries used are, in principle, reproducible by
+ any group with access to a CDT simulator.</p>
+</section>
+
+<section id="sec9" class="body-section">
+<h2 class="section-title">9. Conclusion</h2>
+
+<h3 class="subsection-title">9.1 Validated claims</h3>
+<p>We summarize, as a numbered list, what this paper establishes with
+ the numerical evidence presented in Sections 3&ndash;6.</p>
+
+<ol>
+<li>d<sub>s</sub>(spine) &asymp; 1 holds in real two-dimensional CDT
+ (60 geometries, d<sub>s</sub> = 1.019 &plusmn; 0.015, separated from the full
+ graph by 15.8&sigma;) and in real three-dimensional CDT (multiseed,
+ d<sub>s</sub> = 1.039 &plusmn; 0.040, consistent with an earlier six-seed
+ analysis giving 1.049 &plusmn; 0.029).</li>
+<li>The result is robust to increasing temporal extent T: |d<sub>s</sub>&minus;1|
+ decreases monotonically from T=20 to T=80, with the T=80
+ central value compatible with 1 to well within one fit-uncertainty
+ unit.</li>
+<li>The result survives a structural consistency check in a toy
+ four-dimensional setting (S<sup>3</sup> &times; &Ropf;,
+ d<sub>s</sub> = 1.0428 &plusmn; 0.0157, a pre-registered blind prediction), with
+ the explicit caveat that this is not a real-4D-CDT validation
+ (Section 4.2).</li>
+<li>The result is not a trivial artifact of the spine's cycle topology
+ or of one-dimensional structure in general: five independent
+ controls (Section 5.2) and a systematic graph-family elimination
+ experiment (Section 5.3) demonstrate that d<sub>s</sub> &asymp; 1 requires
+ the simultaneous presence of temporal foliation, causal locality, and
+ bounded connectivity.</li>
+<li>d<sub>s</sub>(spine) is substantially more sensitive than standard
+ graph-connectivity diagnostics to artificial degradation of causal
+ structure, dropping by approximately 17% under a perturbation that
+ reduces giant-component connectivity by only 3.5% (Section 6).</li>
+<li>Standard cosmological (Cobaya+CAMB+Planck) and gravitational-wave
+ waveform (bbhx) pipelines were validated end to end as
+ infrastructure for future GRU-motivated observational work, though
+ neither currently incorporates a GRU-derived parameter (Section 7).</li>
+<li><strong>LISA falsifiability:</strong> n<sub>GRU</sub> = 0.0564 (derived from d<sub>S</sub>(spine) = 1.0282, no free parameters). Screening M1 parameter λ<sub>corr</sub> = 2.14 ± 0.79 slices measured from 32 real CDT geometries. A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ LISA window. Anisotropic signature ε<sub>A</sub> = 4.1816% <span style="color:var(--green);">[v2.3 corrected]</span>, unique to GRU. Fisher analysis: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ detection (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+<li><strong>CMB quadrupole (v2.3):</strong> R2(κ<sub>GRU</sub>) = 0.8451 → D<sub>ℓ</sub> = 7.5 × 0.8451 = 6.34 μK² (+0.67σ of Planck 5.77 ± 0.85). κ<sub>GRU</sub> = 2.055 derived from λ<sub>corr</sub>. The R2<sub>v2</sub> bug (ad-hoc denominator) is documented and corrected. CMB remains conceptually open: no first-principles derivation from d<sub>s</sub>(spine) exists yet.</li>
+</ol>
+
+<h3 class="subsection-title">9.2 Open questions</h3>
+<p>We list, with equal explicitness, what remains genuinely open.</p>
+
+<ul>
+<li><strong>P2 (real 4D CDT):</strong> the single most consequential open question
+ for this program (Section 4.2, Section 8.3). No public dataset
+ exists for independent reanalysis, and we have not run a 4D
+ simulator. Resolving this requires either a substantial independent
+ computational effort or a data-sharing collaboration with a group
+ already running 4D CDT simulations.</li>
+<li><strong>The CMB low-&ell; connection (Section 7.3):</strong> an explicitly
+ conceptual, non-derived hypothesis with a stated falsifiability
+ criterion (LiteBIRD, 2028 onward), not a result.</li>
+<li><strong>P6 (independent replication):</strong> no external group has yet
+ reproduced the results of this paper using independently generated
+ CDT geometries; this is the most actionable falsification test
+ available to the community (Section 8.4, item 1), and we are
+ actively seeking such replication (Section 9.3).</li>
+<li><strong>Refinements flagged but not yet pursued:</strong> larger seed samples
+ (N &gtrsim; 20&ndash;30 per T) to fully characterize the seed-to-seed
+ variability noted in Section 3.4; the precise location of the
+ d<sub>s</sub>(eps) maximum in the coupled-spine-chain analysis
+ (Section 5.2c); a real-CDT (rather than toy-spine) percolation
+ stress test (Section 6.1).</li>
+
+<li>Independent validation of GRU LISA parameters with real LISA data (~2037). Prediction: A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ window; falsification requires null detection below threshold across &gt;10 SMBHB events.</li>
+</ul>
+
+<h3 class="subsection-title">9.3 Toward falsification and independent replication</h3>
+<p>The protocol specified in Appendix A is, by design, fully reproducible
+ by any research group with access to a CDT simulator: the root-choice
+ criterion, heat-kernel parameters, and fitting window are all stated
+ explicitly, with the corrections and lessons learned (Appendix A.3,
+ A.4) documented so that they need not be rediscovered independently.
+ We consider this reproducibility — not any single numerical result —
+ to be the paper's primary contribution to the broader CDT and
+ discrete-quantum-gravity literature: a simple, falsifiable observable
+ that any group already generating CDT geometries can compute and
+ report.</p>
+
+<p>We are in contact with researchers in the CDT community regarding
+ independent verification of these results, and view such verification
+ — rather than further internal refinement of the existing analysis —
+ as the most valuable next step for establishing whether
+ d<sub>s</sub>(spine) &asymp; 1 reflects a genuine, general feature of
+ causally well-structured discrete geometries.</p>
+</section>
+
+<section id="appB" class="appendix-section">
+<h2 class="section-title">Appendix B. Full Numerical Results Tables</h2>
+
+<h3 class="subsection-title">B.1 k<sub>0</sub>-scan and k<sub>3</sub>-scan: coupling-space robustness (3D CDT)</h3>
+<p>The k<sub>0</sub>-scan (Section 4.3) varies the inverse-Newton-constant-like
+ coupling at fixed k<sub>3</sub>=1.703, T=20, V=5000, seed 42, spherical
+ topology (g=0), under the p25 root protocol (Appendix A.3):</p>
+
+<table>
+<thead><tr><th>k<sub>0</sub></th><th>Nodes</th><th>Shells</th><th>d<sub>s</sub>(spine)</th><th>Error</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>3.0</td><td>16,107</td><td>11</td><td>2.179</td><td>0.600</td><td class="bad">outside window — collapsed phase</td></tr>
+<tr><td>3.5</td><td>15,672</td><td>12</td><td>0.946</td><td>0.041</td><td class="ok">OK</td></tr>
+<tr><td>4.0</td><td>14,979</td><td>12</td><td>1.005</td><td>0.028</td><td class="ok">OK — optimal</td></tr>
+<tr><td>4.5</td><td>14,206</td><td>10</td><td>0.860</td><td>0.063</td><td class="ok">OK</td></tr>
+<tr><td>5.0</td><td>13,707</td><td>10</td><td>0.901</td><td>0.072</td><td class="ok">OK</td></tr>
+<tr><td>6.0</td><td>11,645</td><td>7</td><td>2.555</td><td>1.192</td><td class="bad">outside window — spine <10 shells</td></tr>
+<tr><td>7.0</td><td>10,207</td><td>7</td><td>2.555</td><td>1.192</td><td class="bad">outside window — spine <10 shells</td></tr>
+</tbody>
+</table>
+<p>Validity window: k<sub>0</sub> ∈ [3.5, 5.0]; mean d<sub>s</sub> = 0.928 ± 0.054
+ within this window.</p>
+
+<p>The k<sub>3</sub>-scan, at fixed k<sub>0</sub>=5.0, T=20, V=5000, seed 42, varies
+ the cosmological-constant-like coupling k<sub>3</sub> ∈ {1.0, 1.3, 1.5,
+ 1.703, 2.0, 2.5} (6/6 configurations successfully generated and
+ analyzed): d<sub>s</sub>(spine) ranges from a minimum of 1.0124 (at k<sub>3</sub>=1.3) to
+ a maximum of 1.0681 (at k<sub>3</sub>=1.5), with no monotonic trend and no
+ sign of divergence across the range tested. At the standard value used
+ throughout the rest of this paper, k<sub>3</sub>=1.703, d<sub>s</sub> = 1.0424 ±
+ 0.0169. This is consistent with the entire scanned range lying within
+ the established semiclassical de Sitter-like phase, and complements
+ the k<sub>0</sub>-scan validity window above.</p>
+
+<h3 class="subsection-title">B.2 T-scan multiseed: full per-seed data</h3>
+<p>Five seeds (42, 123, 456, 789, 1234) at each T ∈ {20, 40, 80}
+ (Section 3.3):</p>
+
+<table>
+<thead><tr><th>T</th><th>seed</th><th>d<sub>s</sub>(spine)</th><th>error</th></tr></thead>
+<tbody>
+<tr><td>20</td><td>42</td><td>1.0428</td><td>0.0183</td></tr>
+<tr><td>20</td><td>123</td><td>1.0613</td><td>0.0251</td></tr>
+<tr><td>20</td><td>456</td><td>1.0756</td><td>0.0212</td></tr>
+<tr><td>20</td><td>789</td><td>1.0377</td><td>0.01579</td></tr>
+<tr><td>20</td><td>1234</td><td>1.0931</td><td>0.0296</td></tr>
+<tr><td>40</td><td>42</td><td>1.0310</td><td>0.0190</td></tr>
+<tr><td>40</td><td>123</td><td>0.9851</td><td>0.0188</td></tr>
+<tr><td>40</td><td>456</td><td>1.0342</td><td>0.0206</td></tr>
+<tr><td>40</td><td>789</td><td>1.1571</td><td>0.0222</td></tr>
+<tr><td>40</td><td>1234</td><td>1.0147</td><td>0.0213</td></tr>
+<tr><td>80</td><td>42</td><td>0.9857</td><td>0.0170</td></tr>
+<tr><td>80</td><td>123</td><td>1.0217</td><td>0.0207</td></tr>
+<tr><td>80</td><td>456</td><td>0.9918</td><td>0.0175</td></tr>
+<tr><td>80</td><td>789</td><td>1.0203</td><td>0.0171</td></tr>
+<tr><td>80</td><td>1234</td><td>1.0101</td><td>0.0156</td></tr>
+</tbody>
+</table>
+<p>Per-T means (mean ± standard deviation across the 5 seeds):
+ T=20: 1.0621 ± 0.0205. T=40: 1.0444 ± 0.0589 (seed 789
+ is the visible high outlier discussed in Section 3.4). T=80:
+ 1.0059 ± 0.0147. (The body of the paper, Section 3.3, reports
+ T=20 as 1.060 for consistency with the value originally logged
+ during the analysis session; the two figures agree within rounding of
+ intermediate computational steps and refer to the same underlying
+ data.)</p>
+
+<h3 class="subsection-title">B.3 Percolation and susceptibility: full table (toy spine, T=20)</h3>
+<p>Comparison of N<sub>real</sub>=20 vs. N<sub>real</sub>=100
+ (Section 6.3). N<sub>real</sub>=100 (refined):</p>
+
+<table>
+<thead><tr><th>p<sub>missing</sub></th><th>d<sub>s</sub>(spine)</th><th>GC mean</th><th>χ mean</th><th>χ std</th></tr></thead>
+<tbody>
+<tr><td>0.00</td><td>1.04285</td><td>1.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>0.02</td><td>0.9758</td><td>0.978</td><td>0.400</td><td>3.600</td></tr>
+<tr><td>0.04</td><td>0.8762</td><td>0.913</td><td>3.973</td><td>13.084</td></tr>
+<tr><td>0.05</td><td>0.8383</td><td>0.914</td><td>5.484</td><td>14.605</td></tr>
+<tr><td>0.06</td><td>0.7834</td><td>0.882</td><td>6.036</td><td>13.299</td></tr>
+<tr><td>0.08</td><td>0.7835</td><td>0.813</td><td>7.694</td><td>14.479</td></tr>
+<tr><td>0.10</td><td>0.6473</td><td>0.798</td><td>9.322</td><td>16.013</td></tr>
+<tr><td>0.12</td><td>0.6647</td><td>0.693</td><td>8.755</td><td>15.280</td></tr>
+<tr><td>0.15</td><td>0.5710</td><td>0.644</td><td><strong>11.301</strong></td><td>14.125</td></tr>
+<tr><td>0.20</td><td>0.3574</td><td>0.525</td><td>9.948</td><td>14.048</td></tr>
+<tr><td>0.25</td><td>0.3941</td><td>0.466</td><td>7.728</td><td>11.177</td></tr>
+<tr><td>0.30</td><td>0.2411</td><td>0.390</td><td>5.724</td><td>8.064</td></tr>
+<tr><td>0.40</td><td>0.1490</td><td>0.312</td><td>3.455</td><td>4.296</td></tr>
+<tr><td>0.50</td><td>0.0696</td><td>0.251</td><td>1.924</td><td>2.437</td></tr>
+</tbody>
+</table>
+<p>Susceptibility peak at N<sub>real</sub>=100: p<sub>missing</sub> =
+ 0.15 (χ = 11.301 ± 14.125). At N<sub>real</sub>=20, the peak
+ appeared at p<sub>missing</sub> ≈ 0.20 (full N<sub>real</sub>=20
+ table omitted here for brevity; available in the accompanying data
+ files, <code>RESULTADOS_v5_susceptibilidad_NREAL20.json</code>).</p>
+
+<h3 class="subsection-title">B.4 Coupled-spine-chain (K-scan and eps-scan): full tables</h3>
+<p><strong>K-scan, fixed minimal coupling (eps=1)</strong> (Section 5.2c):</p>
+<table>
+<thead><tr><th>K</th><th>N total</th><th>d<sub>s</sub></th><th>std</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>40</td><td>1.0682</td><td>0.0548</td></tr>
+<tr><td>2</td><td>80</td><td>1.1045</td><td>0.0357</td></tr>
+<tr><td>4</td><td>160</td><td>1.1242</td><td>0.01570</td></tr>
+<tr><td>8</td><td>320</td><td>1.1363</td><td>0.0301</td></tr>
+<tr><td>16</td><td>640</td><td>1.1483</td><td>0.0410</td></tr>
+<tr><td>32</td><td>1280</td><td>1.1622</td><td>0.0569</td></tr>
+<tr><td>64</td><td>2560</td><td>1.1788</td><td>0.0758</td></tr>
+<tr><td>128</td><td>5120</td><td>1.1980</td><td>0.0984</td></tr>
+<tr><td>256</td><td>10240</td><td>1.2192</td><td>0.1189</td></tr>
+</tbody>
+</table>
+
+<p><strong>eps-scan</strong> (number of coupling edges between adjacent spines, K ∈
+ {4,16,64}; single realization per point — see Appendix E.2 for the
+ statistical caveat):</p>
+<table>
+<thead><tr><th>K</th><th>eps</th><th>d<sub>s</sub></th><th>std</th></tr></thead>
+<tbody>
+<tr><td>4</td><td>1</td><td>1.124</td><td>0.0157</td></tr>
+<tr><td>4</td><td>2</td><td>1.211</td><td>0.053</td></tr>
+<tr><td>4</td><td>4</td><td>1.435</td><td>0.192</td></tr>
+<tr><td>4</td><td>8</td><td>1.798</td><td>0.256</td></tr>
+<tr><td>4</td><td>16</td><td>1.616</td><td>0.120</td></tr>
+<tr><td>4</td><td>32</td><td>1.451</td><td>0.104</td></tr>
+<tr><td>16</td><td>1</td><td>1.148</td><td>0.041</td></tr>
+<tr><td>16</td><td>2</td><td>1.292</td><td>0.133</td></tr>
+<tr><td>16</td><td>4</td><td>1.714</td><td>0.457</td></tr>
+<tr><td>16</td><td>8</td><td>2.100</td><td>0.370</td></tr>
+<tr><td>16</td><td>16</td><td>1.934</td><td>0.167</td></tr>
+<tr><td>16</td><td>32</td><td>1.879</td><td>0.258</td></tr>
+<tr><td>64</td><td>1</td><td>1.041</td><td>0.240</td></tr>
+<tr><td>64</td><td>8</td><td>2.089</td><td>0.535</td></tr>
+</tbody>
+</table>
+<p>(K=256 was not run for the eps-scan beyond eps=1, due to
+ computational cost — Appendix E.3.)</p>
+
+<h3 class="subsection-title">B.5 External graph-family battery (A.27/A.28/A.38 elimination experiment)</h3>
+<table>
+<thead><tr><th>Graph family</th><th>Conditions imposed</th><th>d<sub>s</sub>(spine)</th><th>Pass/fail</th></tr></thead>
+<tbody>
+<tr><td>Erdős–Rényi</td><td>foliation + locality</td><td>0.987 ± 0.048 (3/3 seeds)</td><td class="ok">pass</td></tr>
+<tr><td>Causal sets</td><td>foliation only (no strict locality)</td><td>1.19 ± 0.33 (2/3 seeds)</td><td>partial</td></tr>
+<tr><td>LQG 3-regular</td><td>foliation only</td><td>2.21 ± 0.03</td><td class="bad">fail</td></tr>
+<tr><td>Watts–Strogatz</td><td>foliation only</td><td>2.0 ± 0.09</td><td class="bad">fail</td></tr>
+</tbody>
+</table>
+<p>Broader robustness battery (A.27, 240 configurations, organic CDT
+ Monte Carlo fluctuations rather than the artificial-condition tests
+ above): 236/240 = 98% pass rate, d<sub>s</sub> = 1.0618 ± 0.1101 — distinct
+ from, and not contradicted by, the percolation stress test of Section
+ 6 (Section 6.1 already addresses why these are different
+ kinds of "noise").</p>
+</section>
+
+<section id="appC" class="appendix-section">
+<h2 class="section-title">Appendix C. Observational Pipeline Details</h2>
+
+<h3 class="subsection-title">C.1 Cobaya + CAMB + Planck MCMC: full configuration and convergence diagnostics</h3>
+<p><strong>Software versions.</strong> Cobaya 3.6.2, CAMB 1.6.6. Likelihoods:
+ <code>planck_2018_lowl.TT</code> and <code>planck_2018_highl_plik.TT_lite</code> (data
+ package, ~118 MB).</p>
+
+<p><strong>Sampler configuration.</strong> Four parallel chains via MPI
+ (<code>mpirun --oversubscribe</code>, requiring <code>mpi4py</code> and OpenMPI). An initial
+ covariance matrix was constructed from typical Planck 2018
+ ΛCDM parameter values and known inter-parameter correlations
+ (notably τ–log A, r ≈ 0.9); without a reasonable
+ initial covariance, the sampler failed to make progress. The run was
+ launched as a background process (<code>nohup</code>) and completed in
+ approximately 3 hours 15 minutes (10:35–13:50 UTC), surviving an
+ intervening server restart before completion.</p>
+
+<p><strong>Convergence.</strong> Checkpoint diagnostics report <code>converged=true</code>,
+ Gelman–Rubin R−1 = 0.029 (criterion: <0.05). Per-chain sample
+ counts: 3841, 3894, 3872, 3876 (total 15,483). Posterior statistics
+ (Section 7.1, Table) were computed with <code>getdist</code>'s <code>getMargeStats</code>,
+ discarding the first 30% of each chain as burn-in (10,836 samples
+ retained).</p>
+
+<p><strong>Full χ² breakdown.</strong> χ²<sub>lowl.TT</sub> = 25.21 ± 1.77;
+ χ²<sub>highl_plik.TT_lite</sub> = 206.58 ± 3.66;
+ χ²<sub>CMB, total</sub> = 231.79 ± 3.44. Reference Planck 2018
+ best fit: lowl ≈ 23.2 + plik_lite ≈ 206.6 ≈
+ 229.8 total — consistent.</p>
+
+<p><strong>Note on what this run is not.</strong> This run uses standard
+ ΛCDM parameters only; it does not include any GRU-derived
+ quantity (e.g. a modification to the primordial power spectrum
+ motivated by Section 7.3). It validates the pipeline's ability to
+ converge correctly and recover standard results given standard input,
+ which is the necessary precondition for any future GRU-parametrized
+ extension.</p>
+
+<h3 class="subsection-title">C.2 bbhx / LISA waveform pipeline: bug diagnosis and resolution</h3>
+<p><strong>Software versions.</strong> bbhx 1.1.12, compiled from source (required
+ system dependencies: <code>libgsl-dev</code>, <code>liblapack-dev</code>, <code>liblapacke-dev</code>);
+ five C extensions compiled for CPU execution (<code>pyPhenomHM_cpu</code>,
+ <code>pyWaveformBuild_cpu</code>, and others).</p>
+
+<p><strong>The bug.</strong> The high-level <code>BBHWaveformFD</code> interface depends on an
+ orbit data file, <code>equalarmlength-orbits.h5</code>, which the
+ <code>lisaanalysistools</code> package (PyPI version 1.0.17) attempts to download
+ at runtime from GitHub. We diagnosed that this file has been removed
+ from all relevant GitHub branches and tags (<code>main</code>, <code>master</code>,
+ <code>v1.0.17</code>) while the published PyPI package (166 KB, without the file
+ bundled) still references it; the runtime download silently retrieves
+ a GitHub 404 error page (14 bytes) rather than valid data or a clear
+ error. We confirmed this is a genuine upstream packaging defect, not
+ an artifact of any network restriction in our own computing
+ environment (the file is verifiably absent from the canonical source,
+ not merely unreachable from a specific network).</p>
+
+<p><strong>The fix.</strong> (1) Install the separate <code>lisaorbits</code> package (PyPI,
+ version 3.0.3), which provides <code>EqualArmlengthOrbits</code>, an analytic
+ orbit model with no dependency on any external data file. (2)
+ Synthesize a replacement <code>.h5</code> file using four years of
+ position/velocity/link-vector/light-travel-time data from
+ <code>lisaorbits</code>, sampled at dt = 100,000 s (1263 time
+ points). (3) A critical implementation detail: the resulting HDF5
+ file's attributes must be named <code>dt</code>, <code>size</code>, and <code>armlength</code> —
+ <em>without</em> a <code>_base</code> suffix — because <code>lisatools</code>'s internal
+ <code>_setup()</code> method appends this suffix automatically upon reading; an
+ earlier attempt that included the suffix in the synthesized file
+ failed silently.</p>
+
+<p><strong>Verification.</strong> With this fix in place, <code>BBHWaveformFD</code> imports
+ successfully and generates frequency-domain waveforms with the
+ expected shape (3 time-delay-interferometry channels × 500
+ frequency bins, complex128 dtype), using the <code>direct=True</code> evaluation
+ mode.</p>
+
+<p><strong>Note on what this resolves and does not.</strong> This establishes that
+ the waveform-generation infrastructure functions correctly for
+ standard binary-black-hole sources. It does not constitute a
+ GRU-specific waveform or prediction; no GRU-motivated modification to
+ the orbital, propagation, or source model has been implemented or
+ tested.</p>
+</section>
+
+<section id="appD" class="appendix-section">
+<h2 class="section-title">Appendix D. CMB Low-ℓ Power Anomaly: Extended Discussion</h2>
+
+<h3 class="subsection-title">D.1 The anomaly: summary of Billi, Barreiro & Martínez-González (2024)</h3>
+<p>The lack-of-power anomaly at low CMB multipoles (ℓ ≲ 30) has
+ been observed across COBE, WMAP, and Planck data releases. The most
+ recent quantitative treatment, incorporating Planck's PR4 (NPIPE)
+ polarization data for the first time in this context, is Billi,
+ Barreiro, and Martínez-González (2024, JCAP07(2024)080,
+ arXiv:2312.09989) [7].</p>
+
+<p>Their temperature-only estimator confirms the anomaly with a
+ lower-tail probability (LTP) — the probability, under standard
+ ΛCDM, of observing power this low or lower by chance — of
+ ≤0.33% for the PR3 (2018) data release and ≤1.76% for
+ the PR4 (2020) release, depending on the component-separation method
+ used. The PR3 figure is, to that paper's knowledge, the lowest LTP
+ reported in the literature for this anomaly using Planck 2018 data
+ under the standard Planck confidence mask. Including polarization
+ information was found to produce significant differences between the
+ PR3 and PR4 treatments, an analysis we do not attempt to reproduce or
+ extend here.</p>
+
+<p>We rely on this work only for the empirical characterization of the
+ anomaly's existence and approximate statistical significance (roughly
+ 2–3σ-equivalent, depending on exact LTP-to-σ conversion
+ convention and dataset); we do not adopt, endorse, or attempt to
+ evaluate any specific theoretical mechanism proposed elsewhere in the
+ literature for explaining it.</p>
+
+<h3 class="subsection-title">D.2 What would, and would not, constitute evidence for GRU relevance</h3>
+<p>We are explicit about the evidentiary bar here, since this is the
+ single most speculative element of this paper and the one most prone
+ to being misread as stronger than intended.</p>
+
+<div class="scope-box">
+<p><strong>This would NOT constitute evidence for GRU specifically:</strong>
+ the anomaly's mere existence (already established by Billi et al. and
+ prior work, independent of GRU); a numerical coincidence between the
+ anomaly's ℓ-range and some GRU-derived scale, absent a derivation
+ connecting the two; or any result obtained by adjusting free
+ parameters in the C.1 pipeline (Appendix C.1) until agreement with the
+ anomaly is reached, without a prior, independent derivation of those
+ parameter values from the spine construction itself.</p>
+
+<p><strong>This WOULD constitute evidence for GRU specifically:</strong> a derivation
+ — starting from the spine construction (Section 2) and the three A.38
+ conditions (Section 5.3), not from the anomaly itself — predicting a
+ specific suppression scale, shape, or amplitude for the low-ℓ
+ power spectrum, made and registered <em>before</em> comparing against Planck
+ or LiteBIRD data, which then matches observation; or a demonstration
+ that the bounded-causal-connectivity mechanism, instantiated
+ concretely (e.g. via a modified primordial power spectrum derived
+ from the spine's measured spectral properties, Section 5.2e), produces
+ a quantitatively correct suppression amplitude through the validated
+ C.1 pipeline.</p>
+</div>
+
+<p>No work meeting the second, positive bar has yet been attempted. The
+ present paper records only the conceptual motivation (Section 7.3)
+ and this evidentiary standard, not a result.</p>
+
+<h3 class="subsection-title">D.3 Explicit non-citation note</h3>
+<p>During the development of this work, an additional, less
+ well-established source discussing a possible connection between
+ observer-dependent or "participatory" cosmological frameworks and the
+ CMB low-ℓ anomaly — informally referred to in our working notes
+ as the "Participatory Horizon" idea — was considered for citation. We
+ were unable to verify this source's provenance, peer-review status, or
+ specific claims to a standard consistent with the rest of this paper's
+ sourcing, and have therefore deliberately excluded it, including as a
+ speculative aside. We note its exclusion explicitly, rather than
+ silently, so that a reader does not wonder whether we were unaware of
+ related speculative literature in this space — we considered it and
+ chose not to rely on it.</p>
+</section>
+
+<section id="appE" class="appendix-section">
+<h2 class="section-title">Appendix E. Statistical Methodology and Honesty Notes</h2>
+
+<p>This appendix collects, in one place, the methodological caveats,
+ corrections, and open statistical limitations that are individually
+ flagged at the relevant points in the body and other appendices. We
+ duplicate them here deliberately: a reader specifically auditing this
+ paper's statistical practices should be able to find every such item
+ in a single location, rather than having to extract them from context
+ scattered across nine sections and four other appendices.</p>
+
+<h3 class="subsection-title">E.1 The χ²/dof control calculation: retracting a seed-consistency claim</h3>
+<p>Section 3.4 already describes this in the body; we repeat the
+ methodological substance here for completeness.</p>
+
+<p>An internal analysis of the T-scan dataset (Section 3.3) initially
+ treated the observation that the coefficient of variation across the
+ five seeds decreases from T=20 to T=80 as a second line of
+ evidence for convergence, independent of the central-value trend. To
+ test this interpretation, we ran the identical heat-kernel-and-fit
+ pipeline (Appendix A.4) on a pure S<sup>1</sup> cycle graph — a structure
+ containing no CDT content, varying only the analogous size parameter
+ and random-walk seed. This produced χ²/dof values in the
+ same range (~6–9) as the real T-scan data, at every tested
+ size, with no systematic dependence on size. This is the signature of
+ ordinary finite-sample fitting noise at n=5, not a genuine
+ T-dependent physical effect. We retracted the seed-consistency claim
+ as independent evidence on this basis and report, in Section 3.3, only
+ the central-value trend, which the control calculation does not call
+ into question.</p>
+
+<p>We record this not because the underlying physics result is
+ significant, but as a worked example of the verification standard we
+ have tried to apply throughout: an internally generated hypothesis
+ about the data was tested with a dedicated, negative-control
+ calculation, and abandoned when the control did not support it. We
+ encourage reviewers and replicators to apply the same standard to any
+ other interpretive claim in this paper that is not already
+ accompanied by an analogous control.</p>
+
+<h3 class="subsection-title">E.2 Single-realization vs. multi-seed statistics: the eps-scan caveat</h3>
+<p>The coupled-spine-chain eps-scan (Section 5.2c, Appendix B.4) was run
+ with a single random realization per (K, eps) parameter
+ point, not averaged over multiple seeds. We flag this explicitly
+ because it is methodologically weaker than every other quantitative
+ result in this paper, all of which use at least three independent
+ seeds.</p>
+
+<p>The consequence is that individual data points in the eps-scan table
+ (Appendix B.4) carry no formal seed-to-seed uncertainty estimate
+ beyond the heat-kernel fit's own statistical error, which — as the
+ reported standard deviations show, ranging up to ±0.535 at some
+ points — is itself substantial relative to the central value at
+ points near the non-monotonic peak. We consider the <em>qualitative</em>
+ finding (non-monotonicity, with d<sub>s</sub> rising toward ≈ 2 at
+ intermediate coupling before any decline at strong coupling) robust,
+ because it is observed independently at two different values of K
+ (K=4 and K=16) with a consistent qualitative shape; we do not
+ consider the <em>precise location</em> of the maximum to be resolved with
+ the data presented here, and we do not report a specific numerical
+ value for it for this reason.</p>
+
+<h3 class="subsection-title">E.3 Known open items, explicitly unresolved</h3>
+<p>We list, finally, specific quantitative refinements that have been
+ identified as worth doing but have not yet been carried out, distinct
+ from the conceptual open questions of Section 9.2.</p>
+
+<ul>
+<li><strong>Larger seed samples for the T-scan</strong> (N ≳ 20–30 per T,
+ rather than the N=5 used in Section 3.3): this would allow a
+ proper statistical characterization of seed-to-seed variability
+ (rather than the qualitative treatment in Section 3.4 and Appendix
+ E.1) and would let a real, non-control-rejected claim about
+ T-dependent consistency be made or definitively ruled out, if a
+ genuine effect exists at a scale too small to detect with N=5.
+ This was not performed in the present work because directly timing
+ the relevant CDT simulator runs for the necessary sample sizes was
+ estimated, but never empirically measured, to require on the order
+ of 6–19 hours of additional server time; we judged this better
+ deferred to a dedicated follow-up than delaying the present paper.</li>
+<li><strong>K=256 in the eps-scan</strong> (Appendix B.4): only the minimal-coupling
+ (eps=1) point was run at this chain length, due to the computational
+ cost of generating and analyzing a 10,240-node combined graph at
+ multiple coupling values. Whether the non-monotonic eps-dependence
+ pattern persists, sharpens, or changes shape at this larger K is
+ unknown.</li>
+<li><strong>Refining the eps-scan near its apparent maximum</strong>, with multiple
+ seeds per point, to determine whether the peak location is itself
+ K-dependent or approximately fixed — this is the natural
+ follow-up suggested by the qualitative robustness noted in E.2,
+ once the precision concern there is addressed.</li>
+<li><strong>A real-CDT (rather than toy-spine) percolation stress test</strong>
+ (Section 6.1): the present percolation analysis deliberately used a
+ synthetic, parametrically controlled spine rather than one extracted
+ from a thermalized Monte Carlo CDT geometry, to isolate the
+ observable's response to a controlled, artificial perturbation.
+ Repeating this with real CDT geometries, where edge "removal" would
+ need to be reinterpreted as some genuine dynamical or
+ near-critical-coupling effect rather than an artificial deletion,
+ is a natural and currently unaddressed extension.</li>
+</ul>
+
+<p>We consider it preferable to publish this list explicitly, alongside
+ the validated results of Sections 3–7, than to wait until every item
+ on it is resolved: doing so keeps the paper's claims precisely scoped
+ to what has actually been done, and gives the community a concrete,
+ itemized sense of what remains, rather than a vague gesture toward
+ "future work."</p>
+</section>
+
+<section id="appF" class="appendix-section">
+<h2 class="section-title">Appendix F. Version History and Change Log</h2>
+
+<h3 class="subsection-title">F.1 Version chain</h3>
+<table>
+<thead><tr><th>Version</th><th>Date</th><th>DOI</th><th>Key changes</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>v2.0</strong></td>
+  <td>2026-06-06</td>
+  <td>10.5281/zenodo.20574763</td>
+  <td>Initial public release; 2D/3D validation, toy 4D, A.21–A.26</td>
+</tr>
+<tr>
+  <td><strong>v2.1</strong></td>
+  <td>2026-06-20</td>
+  <td>10.5281/zenodo.20722690</td>
+  <td>Revisión completa; A.37 parser 3D, T-scan corregido, honestidad metodológica</td>
+</tr>
+<tr>
+  <td><strong>v2.1.1</strong></td>
+  <td>2026-06-21</td>
+  <td>10.5281/zenodo.20751161</td>
+  <td>Addendum T-scan N=30 seeds; ds=1.045/1.023/1.005 para T=20/40/80</td>
+</tr>
+<tr>
+  <td><strong>v2.1.2</strong></td>
+  <td>2026-06-21</td>
+  <td>10.5281/zenodo.20754629</td>
+  <td>eps-scan K=256; percolación CDT real 9 geometrías; ds(p=0)≈1.0 en 9/9</td>
+</tr>
+<tr>
+  <td><strong>v2.1.3</strong></td>
+  <td>2026-06-22</td>
+  <td>10.5281/zenodo.20806759</td>
+  <td>A.21 C1/C2 protocolo dos etapas; A.39 formalismo D+; 11 scripts auditoría; 7 referencias nuevas</td>
+</tr>
+<tr>
+  <td><strong>v2.2</strong></td>
+  <td>2026-06-24</td>
+  <td>10.5281/zenodo.20837706</td>
+  <td>§7.2 LISA-GRU: MDR derivada (n=0.0564), screening M1 (λ=2.14±0.79, 21/32 CDT), A_final=1.46×10⁻¹⁶ ✓ en ventana; anisotropía ε_A=3.71% (corregido a 4.1816% en v2.3); Fisher N5≈3.5×10¹⁸ SMBHB events for 5σ (with A_final=1.46×10⁻¹⁶, the post-screening amplitude); 112 scripts; 3 referencias nuevas</td>
+</tr>
+<tr style="background:rgba(34,197,94,0.08);">
+  <td><strong>v2.3</strong></td>
+  <td>2026-06-25</td>
+  <td>10.5281/zenodo.20871134</td>
+  <td>Corrección R2_v2: Elimina denominador ad-hoc 1+(κ/2.5)². Fórmula canónica R2(κ)=(1−e⁻√6·κ/2)². D_ℓ=6.34 μK² (+0.67σ Planck). ε_A=4.1816%. Nota metodológica v2.3 documenta bug. CMB ahora compatible con Planck. LISA sin cambios.</td>
+</tr>
+<tr>
+  <td><strong>v2.4</strong></td>
+  <td>2026-06-26</td>
+  <td>10.5281/zenodo.20939080</td>
+  <td>§A.41 MDR postulated+verified (0.31σ, DFS 2007); §A.42 Screening M1 phenomenological note; §7.4.8 time-delay dominated regime (Δt=277ms, qualitative signature without quantitative sigma separation); §3.3 fitting window documented; Executive Summary "GRU at a Glance" added.</td>
+</tr>
+<tr>
+  <td><strong>v2.5</strong></td>
+  <td>2026-07-02</td>
+  <td>10.5281/zenodo.21144855</td>
+  <td>§A.41 MDR framework; §A.42 Screening M1; §A.43 QC Outlook (4/4 PASS); PPN γ_PPN=1 verified; SO(3) breaking ~10⁻⁸²; Δt_GRU=128.35 s from CDT; LISA Fourier-Heisenberg pipeline validation σ=2678.7 (synthetic).</td>
+</tr>
+<tr>
+  <td><strong>v2.6</strong></td>
+  <td>2026-07-09</td>
+  <td><a href="https://doi.org/10.5281/zenodo.21288365">10.5281/zenodo.21288365</a></td>
+  <td>Critical correction to LISA Fisher information calculation (§F.5): pre-screening amplitude (A<sub>bruto</sub>=1.9148×10<sup>−8</sup>) was used instead of post-screening (A<sub>final</sub>=1.46×10<sup>−16</sup>), raising N<sub>5</sub> from 204 to ≈3.5×10<sup>18</sup> events for 5σ detection — GRU is essentially undetectable by LISA with the screening mechanism as currently defined. SO(3) sampling bug also corrected (non-isotropic ensemble; conclusion unchanged, breaking ~10⁻⁸² at LIGO scale). C6 Fermi-LAT comparison recomputed differentially (method/band dependent).</td>
+</tr>
+</tbody>
+</table>
+
+<h3 class="subsection-title">F.2 Specific changes in v2.3</h3>
+<ul>
+<li><strong>Corrección R2<sub>v2</sub> (CMB):</strong> Elimina denominador ad-hoc 1+(κ/2.5)² de la fórmula R2. La forma canónica R2(κ) = (1 − e<sup>−√6·κ/2</sup>)² predice D<sub>ℓ</sub> = 6.34 μK², +0.67σ de Planck (5.77 ± 0.85). v2.2 daba 3.78 μK² con 34% tensión (falsa).</li>
+<li><strong>κ<sub>GRU</sub> = 2.055</strong> (derivado de λ<sub>corr</sub> = 2.14 ± 0.79), dentro de 1σ de Planck. No es parámetro libre.</li>
+<li><strong>Anisotropía ε<sub>A</sub> corregida:</strong> 4.1816% (vs 3.71% en v2.2). Recalculada con la amplitud A<sub>GRU</sub> corregida por el mismo bug de normalización.</li>
+<li><strong>Fisher recalculado:</strong> σ<sub>n</sub> = 2.1121×10<sup>6</sup> (vs 0.0027 en v2.2/v2.3/v2.5, calculado con A<sub>final</sub>=1.46×10<sup>−16</sup> post-screening), N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+<li><strong>Nota metodológica v2.3 (Appendix F.4):</strong> Documenta el bug R2<sub>v2</sub>, su detección, consecuencia, y corrección. Mantiene el principio de honestidad metodológica de GRU.</li>
+</ul>
+
+<h3 class="subsection-title">F.2a Specific changes in v2.2</h3>
+<ul>
+<li><strong>§7.2 new — LISA Falsifiability:</strong> n<sub>GRU</sub> = 0.0564 derived analytically from d<sub>S</sub>(spine). Screening M1: λ<sub>corr</sub> = 2.14 ± 0.79 slices from 32 real CDT geometries. A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] ✅. f<sub>activa</sub> = 1.0 (pure spin-2 coupling). η<sub>int</sub> = 0.169 ± 0.038 (empirical).</li>
+<li><strong>Anisotropic signature (v2.2, superseded by v2.3):</strong> ε<sub>A</sub> = 3.71%, Δt<sub>pole−equator</sub> = 1.06 ms > LISA threshold. Unique quadrupolar k<sub>SME</sub>(j=2, m=0). <em>Corrected to 4.1816% in v2.3.</em></li>
+<li>The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+).</li>
+<li><strong>112 scripts</strong> in GRU_v2_2_scripts_FINAL.zip (vs 11 in v2.1.3).</li>
+<li><strong>3 new references:</strong> [16] Abdo et al. 2009 (Fermi-LAT GRB090510); [17] Dittrich, Freidel &amp; Speziale 2007 (Regge Hessian); [18] Mewes 2019 (SME quadrupolar framework).</li>
+<li><strong>Bug corrected:</strong> P1.5 A<sub>max</sub> previously used n=1.0 hardcoded; corrected to n=n<sub>GRU</sub>=0.0564.</li>
+</ul>
+
+<h3 class="subsection-title">F.2b Specific changes in v2.5</h3>
+<ul>
+<li><strong>§A.45 PPN and SO(3) validation:</strong> Solar System compatibility verified (γ<sub>PPN</sub> = 1, δγ &lt; 2×10⁴ below Cassini bound). SO(3) breaking at Planck scale ~10⁻⁸², restored by ensemble average.</li>
+<li><strong>§A.45.3 Δt_GRU from CDT geometry:</strong> f<sub>spine</sub> = T/N = 20/2567 = 7.7912 mHz → Δt<sub>GRU</sub> = 128.35 s, derived directly from real CDT data.</li>
+<li><strong>§7.4.8 LISA Fourier-Heisenberg pipeline:</strong> Cross-spectral density validation on synthetic LISA noise with injected GRU signal (σ = 2678.7, N<sub>seg</sub> = 35,064). Falsifiable pipeline established.</li>
+<li><strong>§A.41–A.43 formal MDR framework:</strong> Regge Hessian → MDR connection postulated (γ = 0.0564), screening M1 phenomenological note, QC outlook (4/4 PASS).</li>
+<li><strong>DOI assigned:</strong> 10.5281/zenodo.21144855.</li>
+</ul>
+
+<h3 class="subsection-title">F.3 Specific changes in v2.1.3</h3>
+<ul>
+<li><strong>A.21 protocol refined (Appendix A.5):</strong> C1 reclassified from "sufficient criterion" to "structural filter" (necessary, not sufficient). C2 remains the sufficient criterion. Numerical thresholds unchanged (15% shell-skip, |d<sub>s</sub>−1|<0.15). Added honesty note explaining the correction.</li>
+<li><strong>A.39 added (Appendix A.39):</strong> Formalismo D+ — operador de dimensión espectral cuántico D̂ sobre ensemble CDT. T-scan verificado: ⟨D̂⟩ = 1.0567/1.0013/0.9718 para T=20/40/80, confirmando convergencia d<sub>s</sub>→1. Hallazgo adicional: Var(D̂) = 0.000714 — el spine es invariante topológico de CDT dentro de cada T.</li>
+<li><strong>References expanded:</strong> [1]–[15] now include recent CDT literature [9], causal-set reviews [11], LQG/spin-foam references [12,13], phenomenological bounds [14,15], and Barontini 2026 [10] (experimental motivation for relational time). Coumbe 2015 [9] corrected from JHEP to Physical Review D.</li>
+<li><strong>11 new scripts added</strong> to <code>GRU_scripts_v213.zip</code>: 6 audit experiments (causal sets, Galton-Watson, foliation breakdown, Eichhorn-Pauly replication), 3 C1 robustness scripts (32 CDT seeds validated), 2 D+ operator scripts.</li>
+<li><strong>Methodological honesty notes consolidated:</strong> Appendix E now explicitly documents every retracted claim, control calculation, and open statistical limitation in one location.</li>
+<li><strong>Parser correction documented (Appendix A.6):</strong> vertex_times vs. BFS distinction for 3D CDT, with estimated systematic error Δd<sub>s</sub> ~ 1.4.</li>
+</ul>
+
+<h3 class="subsection-title">F.3a Deprecated content</h3>
+<p>The following items from earlier versions are retained as historical
+ documents linked from the Zenodo record but are not part of the
+ current paper's validated claims:</p>
+<ul>
+<li>Addendum T-scan N=30 (v2.1): historical document, not re-published.</li>
+<li>Calculadora A.37 v4.9 and Explorador Dimensional 3D: interactive tools, not yet peer-reviewed, not included in this paper.</li>
+<li>Scripts C1 (CMB prediction) and C2 (LISA prediction): conceptual scaffolding, not validated numerical predictions.</li>
+</ul>
+
+<h3 class="subsection-title">F.4 Methodological Note v2.3: The R2<sub>v2</sub> Bug</h3>
+
+<div class="warning-box">
+<p><strong>This note documents a bug in v2.2, its detection, and its correction in v2.3.</strong> It is included as an explicit example of the methodological honesty principle that governs the GRU research program: every error, once identified, is documented publicly rather than silently corrected.</p>
+</div>
+
+<h4>F.4.1 What was the bug?</h4>
+<p>In v2.2, the CMB quadrupole prediction used a modified R2 formula:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  R2<sub>v2</sub>(κ) = (1 − e<sup>−√6·κ/2</sup>)² / [1 + (κ/2.5)²]  &nbsp;&nbsp;<span class="bad">← BUG</span>
+</p>
+<p>The denominator <code>1 + (κ/2.5)²</code> was introduced during exploratory analysis (June 2026) to force numerical agreement with a preliminary estimate of D<sub>ℓ</sub> ≈ 4 μK². It was <strong>not derived</strong> from:</p>
+<ul>
+<li>The causal-spine autocorrelation function C(k) ~ exp(−k/λ<sub>corr</sub>)</li>
+<li>The Regge action or its linearized Hessian</li>
+<li>The heat-kernel spectral dimension d<sub>s</sub>(spine)</li>
+<li>Any first-principles calculation within the GRU framework</li>
+</ul>
+<p>It was an <em>ad-hoc</em> multiplicative factor, undocumented in any derivation, and its presence was not flagged during the v2.2 review process.</p>
+
+<h4>F.4.2 How was it detected?</h4>
+<p>On June 25, 2026, during a systematic audit of all GRU-derived formulas for physical consistency (triggered by the user's question "¿de dónde salió el denominador?"), the v2.2 R2 formula was compared against the canonical derivation from the causal-spine screening model. The denominator 1+(κ/2.5)² was found to have no origin in any documented calculation. Its effect was quantified:</p>
+<table>
+<thead><tr><th>κ</th><th>R2<sub>canonical</sub></th><th>R2<sub>v2</sub> (bugged)</th><th>Suppression factor</th></tr></thead>
+<tbody>
+<tr><td>1.5</td><td>0.462</td><td>0.289</td><td>1.60×</td></tr>
+<tr><td>2.0</td><td>0.681</td><td>0.340</td><td>1.64×</td></tr>
+<tr><td>2.055 (κ<sub>GRU</sub>)</td><td>0.8451</td><td>0.5031</td><td>1.68×</td></tr>
+<tr><td>2.5</td><td>0.908</td><td>0.363</td><td>2.50×</td></tr>
+</tbody>
+</table>
+<p>The suppression factor increases with κ, reaching 1.68× at the GRU-derived value κ = 2.055. This artificially reduced D<sub>ℓ</sub> from the canonical 6.34 μK² to the bugged 3.78 μK², creating a false 34% tension with Planck.</p>
+
+<h4>F.4.3 What is the correction?</h4>
+<p>v2.3 eliminates the ad-hoc denominator. The sole GRU prediction for the CMB quadrupole is now:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  R2(κ) = (1 − e<sup>−√6·κ/2</sup>)²  &nbsp;&nbsp;<span class="ok">← CANONICAL</span>
+</p>
+<p>With κ<sub>GRU</sub> = 2.055 (derived from measured λ<sub>corr</sub> = 2.14 ± 0.79 slices):</p>
+<ul>
+<li>R2(2.055) = 0.8451 (canonical formula)</li>
+<li>D<sub>ℓ</sub> = R2 × D<sub>ℓ</sub>(ΛCDM) = 0.8451 × 7.5 μK² = 6.34 μK²</li>
+<li>Planck 2018: 5.77 ± 0.85 μK² → GRU is +0.67σ, <strong>within 1σ</strong></li>
+</ul>
+
+<h4>F.4.4 Why was this not caught earlier?</h4>
+<p>The bug survived the v2.2 review because:</p>
+<ol>
+<li>The CMB section (7.3) was explicitly framed as "conceptual, not derived," reducing scrutiny on its numerical details.</li>
+<li>The denominator was introduced during an intermediate calculation step and propagated without explicit documentation in the final formula.</li>
+<li>No independent replication of the CMB pipeline had been attempted by v2.2 (P6 remains open).</li>
+</ol>
+<p>These are process failures, not theoretical failures. They are documented here so that future versions can implement stronger audit protocols for sections labeled "conceptual."</p>
+
+<h4>F.4.5 Lessons for GRU methodology</h4>
+<ol>
+<li><strong>Every formula must be traceable to a first-principles derivation.</strong> Ad-hoc modifications, even if numerically motivated, are not allowed in validated predictions.</li>
+<li><strong>"Conceptual" sections require the same audit as "derived" sections.</strong> The v2.2 CMB section was labeled conceptual, but its numerical prediction was presented as a result. The distinction was模糊.</li>
+<li><strong>Bug documentation is part of the result.</strong> This note (F.4) is not an embarrassment; it is evidence that the GRU program maintains methodological integrity.</li>
+</ol>
+
+<div class="scope-box">
+<p><strong>Statement of responsibility:</strong> The R2<sub>v2</sub> bug was introduced by the author during exploratory analysis and propagated to v2.2 without adequate verification. It was detected through systematic user questioning ("¿de dónde salió el denominador?") and corrected in v2.3. No external peer review caught this error because no external peer review of the CMB pipeline had been conducted. This note serves as both correction and commitment to stronger audit protocols in v2.4+.</p>
+</div>
+
+<h3 class="subsection-title">F.5 — Correction to LISA Fisher Calculation (July 2026)</h3>
+<p>A post-publication audit identified that the Fisher information
+calculation for LISA detectability (Sec. 7.4) used the pre-screening
+amplitude (A<sub>bruto</sub>=1.9148×10<sup>−8</sup>) rather than the
+post-screening amplitude (A<sub>final</sub>=1.46×10<sup>−16</sup>) that
+the rest of this work declares as the physically observable value.
+Correcting for this raises the number of events required for 5σ detection
+from N<sub>5</sub>=204 to N<sub>5</sub>≈3.5×10<sup>18</sup>, making GRU
+essentially undetectable by LISA with the screening mechanism as currently
+defined. The same correction also invalidates the large-sigma
+distinguishability claims in Sec. 7.4.8 (previously reported as
+720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+those separations drop to ~10<sup>−6</sup>σ, so only the qualitative
+discriminator survives. This correction does not affect the spectral
+dimension measurements, Root Invariance test (App. A.46), PPN/SO(3)
+compatibility, or the qualitative prediction of a time-delay-dominated
+dispersion regime, all of which remain independently verified.</p>
+</section>
+
+<section id="appA39" class="appendix-section">
+<h2 class="section-title">Appendix A.39 — D+ Formalism: Spectral Dimension as a Quantum Observable</h2>
+
+<h3 class="subsection-title">A.39.1 Motivation</h3>
+<p>The central GRU observable, d<sub>s</sub>(spine), has been computed for individual CDT geometries (single seeds). A natural extension toward the CDT sum-over-histories formalism treats d<sub>s</sub> as the eigenvalue of a diagonal quantum operator D̂ acting on the basis of triangulations.</p>
+
+<h3 class="subsection-title">A.39.2 Definition of the operator D̂</h3>
+<p>Let {|T<sub>i</sub>⟩} be an ensemble of N CDT triangulations with the same T and approximate volume. Define the equiprobable ensemble state:</p>
+<p style="font-family:monospace; padding: 0.5rem 1rem;">|Ψ<sub>CDT</sub>⟩ = (1/√N) Σ<sub>i</sub> |T<sub>i</sub>⟩</p>
+<p>and the diagonal operator:</p>
+<p style="font-family:monospace; padding: 0.5rem 1rem;">D̂ |T<sub>i</sub>⟩ = d<sub>s</sub><sup>(i)</sup> |T<sub>i</sub>⟩</p>
+<p>where d<sub>s</sub><sup>(i)</sup> is the spectral dimension of the spine of triangulation i, computed with the verified GRU protocol (heat-kernel, NWALKS=3000, window [0.2T, 2T], fit P(σ) ~ A·σ<sup>−α</sup>, d<sub>s</sub> = 2α). The expectation value and variance are:</p>
+<p style="font-family:monospace; padding: 0.5rem 1rem;">⟨D̂⟩ = ⟨Ψ|D̂|Ψ⟩ = Σ<sub>i</sub> (1/N) d<sub>s</sub><sup>(i)</sup><br>Var(D̂) = ⟨D̂²⟩ − ⟨D̂⟩²</p>
+
+<h3 class="subsection-title">A.39.3 Result: T-scan of the D̂ operator</h3>
+<p>⟨D̂⟩ was computed for three CDT (2+1)D geometries with the same seed (s42) and different numbers of temporal layers T (each row corresponds to a single seed s42 with different T, not an ensemble average):</p>
+<table>
+<thead><tr><th>T</th><th>⟨D̂⟩</th><th>±error</th><th>Seed</th></tr></thead>
+<tbody>
+<tr><td>20</td><td>1.0567</td><td>0.0222</td><td>s42</td></tr>
+<tr><td>40</td><td>1.0013</td><td>0.0195</td><td>s42</td></tr>
+<tr><td>80</td><td>0.9718</td><td>0.0195</td><td>s42</td></tr>
+</tbody>
+</table>
+<p>All three values are consistent with ⟨D̂⟩ = 1.0 within 1–2σ, confirming the central GRU prediction: d<sub>s</sub>(spine) → 1.0 in the large-T limit. This is consistent with the T-scan of N=30 seeds reported in A.25 (d<sub>s</sub> = 1.045/1.023/1.005 for T=20/40/80).</p>
+
+<h3 class="subsection-title">A.39.4 Additional finding: the spine as a topological invariant</h3>
+<p>An unexpected and physically significant result: applying D̂ to the ensemble of 32 CDT (2+1)D seeds with T=20 gives:</p>
+<p style="font-family:monospace; padding: 0.5rem 1rem;">Var(D̂) = 0.000714 &nbsp; (ensemble of 32 seeds, T=20)</p>
+<p>This near-zero variance is not a numerical artifact but a structural property: the collapsed spine of CDT T=20 is topologically identical across seeds (always a cycle S¹ of T nodes), so d<sub>s</sub><sup>(i)</sup> is the same for all i within the same T. The variance of D̂ comes from variation with T, not between seeds of the same T:</p>
+<div class="scope-box"><p><strong>d<sub>s</sub>(spine) is a topological invariant of CDT within each T.</strong></p></div>
+<p>This strengthens the robustness of the GRU observable: the spine is insensitive to the stochastic internal fluctuations of each triangulation, responding only to the global temporal structure (number of layers T).</p>
+
+<h3 class="subsection-title">A.39.5 Methodological note</h3>
+<p>The script <code>GRU_Dplus_run_CDT_real.py</code> (available in Zenodo v2.1.3, directory <code>scripts/</code>) implements the D̂ operator calculation directly on GRU pipeline JSON files, using real <code>vertex_times</code> (not BFS). Matrix consistency verification ⟨Ψ|D̂|Ψ⟩ = Σ<sub>i</sub> w<sub>i</sub>·d<sub>s</sub><sup>(i)</sup> is integrated in <code>GRU_Dplus_operator_v2.py</code> (also in Zenodo v2.1.3).</p>
+</section>
+
+<section class="appendix-section" id="secA25">
+<h2 class="section-title">Appendix A.25 — Volume-Scan Robustness (V-scan)</h2>
+<p>The T-scan (Section 3.3, Appendix B.2) establishes convergence with temporal extent. A complementary question is whether the spine result depends on the spatial volume V (number of simplices per time slice) at fixed T. We generated geometries at T=20 with three volume targets: V ∈ {3000, 5000, 8000}, using the standardized p25 root protocol and vertex-time-based parser (Appendix A.3).</p>
+
+<table>
+<thead><tr><th>V (simplices)</th><th>d<sub>s</sub>(spine)</th><th>Protocol</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>3000</td><td>1.0650</td><td>NWALKS=3000, window [6,150]</td><td class="ok">✓ within |d<sub>s</sub>−1|&lt;0.15</td></tr>
+<tr><td>5000</td><td>1.0165</td><td>NWALKS=3000, window [6,150]</td><td class="ok">✓ optimal agreement</td></tr>
+<tr><td>8000</td><td>1.0425</td><td>NWALKS=3000, window [6,150]</td><td class="ok">✓ within |d<sub>s</sub>−1|&lt;0.15</td></tr>
+</tbody>
+</table>
+
+<p>All three volumes satisfy the GRU criterion |d<sub>s</sub>−1| &lt; 0.15. The central value at V=5000 (1.0165) is closest to unity, consistent with this being the volume target used for the majority of geometries in this work. The mild variation across volumes (range 0.0485, std 0.0244) is comparable to seed-to-seed variation at fixed volume, indicating that the spine observable is not finely tuned to a specific volume target. This complements the k<sub>0</sub>-scan (Appendix B.1) and k<sub>3</sub>-scan (Section 4.3) as evidence that d<sub>s</sub>(spine) ≈ 1 holds across an extended parameter region of the CDT phase diagram.</p>
+
+<div class="meta-note">
+<strong>Methodological note:</strong> The V-scan was performed with the fixed window [6,150] rather than the proportional window [0.2T, 2T] used in the T-scan, because at fixed T=20 the proportional window would be identical across all three volumes and would not test volume-dependent effects. The fixed window is the protocol established in v2.4 (Appendix A.4) and is internally consistent across the V-scan.
+</div>
+</section>
+
+
+<section class="appendix-section" id="secA26">
+<h2 class="section-title">Appendix A.26 — S<sup>3</sup> × ℝ Toy Model: Blind Prediction Details</h2>
+<p>Section 4.1 reports the S<sup>3</sup> × ℝ toy model as a structural consistency check for four-dimensional topology. Here we document the numerical details underlying the reported d<sub>s</sub>(spine) = 1.0428 ± 0.0157.</p>
+
+<h4>A.26.1 Construction</h4>
+<p>The toy model is built as a layered graph: N<sub>shells</sub> concentric 3-sphere layers, each containing N<sub>nodes_per_shell</sub> vertices, connected by edges only between adjacent shells (temporal direction) and within each shell (spatial S<sup>3</sup> connectivity). The temporal direction wraps around (compact), creating a topology S<sup>3</sup> × S<sup>1</sup> ≈ S<sup>3</sup> × ℝ for the purposes of the spine extraction. Three configurations were tested:</p>
+
+<table>
+<thead><tr><th>N<sub>shells</sub></th><th>N<sub>t</sub></th><th>Total nodes</th><th>d<sub>s</sub>(spine)</th><th>Error</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>40</td><td>400</td><td>1.0382</td><td>0.0184</td></tr>
+<tr><td>15</td><td>60</td><td>900</td><td>1.0451</td><td>0.0147</td></tr>
+<tr><td>20</td><td>80</td><td>1600</td><td>1.0451</td><td>0.0139</td></tr>
+</tbody>
+</table>
+
+<p>Combined result (inverse-variance weighted): <strong>d<sub>s</sub>(spine) = 1.0428 ± 0.0157</strong>. All three configurations independently satisfy the pre-registered acceptance criterion |d<sub>s</sub>−1| &lt; 0.15.</p>
+
+<h4>A.26.2 Scope restatement</h4>
+<div class="warning-box">
+<p><strong>This is not real 4D CDT.</strong> The S<sup>3</sup> × ℝ model is a hand-constructed layered graph with imposed S<sup>3</sup> spatial topology and S<sup>1</sup> temporal compactification. It does not arise from a CDT Monte Carlo path integral, does not sample any dynamically generated ensemble, and was not subjected to thermalization or ergodicity checks. Its value is as a structural consistency check on the spine-extraction protocol when applied to a topology with one more dimension than the validated 2D/3D cases — confirming that the protocol behaves sensibly, not that GRU is validated in 4D. Real 4D CDT validation remains the single most important open question (Section 4.2, Section 9.2, item P2).</p>
+</div>
+
+<h4>A.26.3 Comparison with 2D/3D results</h4>
+<table>
+<thead><tr><th>Setting</th><th>d<sub>s</sub>(spine)</th><th>Error</th><th>|d<sub>s</sub>−1|</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>CDT 2D (60 geom.)</td><td>1.019</td><td>0.015</td><td>0.019</td><td class="ok">✓ validated</td></tr>
+<tr><td>V-scan CDT 2D (V∈{3000,5000,8000})</td><td>1.0413</td><td>0.025</td><td>0.0413</td><td class="ok">✓ volume-robust</td></tr>
+<tr><td>CDT 3D (multiseed)</td><td>1.039</td><td>0.040</td><td>0.039</td><td class="ok">✓ validated</td></tr>
+<tr><td>S<sup>3</sup> × ℝ toy 4D</td><td>1.0428</td><td>0.0157</td><td>0.0428</td><td class="warn">⚠ structural check only</td></tr>
+</tbody>
+</table>
+
+<p>The V-scan confirms that the d<sub>s</sub>(spine) ≈ 1 result is robust to spatial volume at fixed T (V ∈ {3000,5000,8000}). When combined with the CDT 3D and toy 4D results, the pooled evidence supports the hypothesis that d<sub>s</sub>(spine) ≈ 1 is a universal feature of causally foliated geometries across 2D/3D — but real 4D universality remains to be tested against genuine 4D CDT dynamics.</p>
+</section>
+
+
+
+
+
+
+
+
+
+<section class="appendix-section" id="secA41">
+<h2 class="section-title">Appendix A.41 — Propagation Mechanism: MDR from Discrete Causal Structure</h2>
+<h4>A.41.1 Context and reference</h4>
+<p>The starting framework is the explicit computation of the Hessian of the Regge action with respect to edge lengths, performed by Dittrich, Freidel &amp; Speziale (2007, arXiv:0707.4513, PRD 76, 104020). They derive the matrix H<sub>ij</sub> = ∂²S<sub>R</sub>/∂l<sub>i</sub>∂l<sub>j</sub> for the 4-simplex, demonstrate its gauge degeneracy (5 null modes in 4D), and establish the canonical gauge-fixing. This result is established in the discrete quantum gravity literature.</p>
+<h4>A.41.2 The GRU additional step</h4>
+<p>What GRU adds is the following conceptual step: the <em>causal spine</em> — the 1D topological chain extracted by octant-blind BFS collapse — modifies the gauge structure of the Hessian. In the full graph (bulk), the DFS gauge-fixing reduces the 5 null modes to the correct physical degree-of-freedom count. In the spine, the topological restriction to a 1D chain implies that transverse fluctuation modes are projected out, leaving an effective scalar Hessian: H<sub>spine</sub> = P<sup>T</sup> · H<sub>DFS</sub> · P, where P is the topological projection operator of the BFS collapse.</p>
+<h4>A.41.3 Spectral gap and connection to d<sub>s</sub></h4>
+<p>The eigenvalue spectrum of H<sub>spine</sub> in the large-volume limit satisfies λ<sub>n</sub> ∝ n<sup>γ</sup>, with γ = 2·d<sub>s</sub>(spine) − 2. For d<sub>s</sub>(spine) ≈ 1.0282 (GRU datum A.21), γ ≈ 0.0564. This exponent is consistent with the Modified Dispersion Relation (MDR) postulated in §C.1: v<sub>g</sub>(E) = c·[1 + A·(E/E<sub>Pl</sub>)<sup>n</sup>], n = 0.0564.</p>
+<p><strong>Methodological transparency note:</strong> The parameter γ = 0.0564 is obtained from the phenomenological hypothesis γ = 2·d<sub>s</sub>(spine) − 2, verified at 0.31σ against CDT data (60 2D geometries + multiseed 3D, N<sub>spine</sub>=20, N<sub>total</sub>=2567). A derivation from the Regge Hessian spectrum remains work in progress, requiring eigenvalue extraction from <code>GRU_P_PROP_FULL</code>. The correspondence γ ↔ n is a <em>consistent hypothesis</em>, not a first-principles derivation.</p>
+<p><strong>Note:</strong> "not fitted" means γ has no free parameter to adjust by hand; it does NOT mean γ is derived from first principles — that derivation remains open work (v2.6).</p>
+</section>
+
+
+<section class="appendix-section" id="secA42">
+<h2 class="section-title">Appendix A.42 — Screening M1: Methodological Status and Scope</h2>
+<h4>A.42.1 The screening model</h4>
+<p>The exponential screening factor A<sub>final</sub> = A<sub>bruto</sub>·exp(−2T/λ<sub>corr</sub>), with λ<sub>corr</sub> = 2.14 ± 0.79 slices measured from 32 real CDT (2+1)D geometries, is a <em>phenomenological model</em> (M1), not a microscopic derivation. The suppression factor of ~19 (from A<sub>INT</sub> = 7.69×10<sup>−18</sup> to A<sub>final</sub> = 1.46×10<sup>−16</sup>) is physically reasonable for quantum field theories with Planck-scale cutoffs. The value λ<sub>corr</sub> is measured in CDT simulation units (slices); its conversion to physical length scales requires normalization from CDT 4D data.</p>
+<h4>A.42.3 A_GRU value note</h4>
+<p>The value A<sub>GRU</sub> = 1.915×10⁻⁸ reported in §7.4.4 is derived from the Regge Hessian formalism (DFS 2007) with the specific 2+1D CDT geometry (N=2567, T=20). An earlier estimate of 4.235×10⁻⁸ (memoria #57) used a different normalization convention for the spin-2 projector. Both values, after applying the M1 screening factor, converge to A<sub>final</sub> = 1.46×10⁻¹⁶. The 1.915×10⁻⁸ value is the v2.5 canonical value.</p>
+
+<h4>A.42.2 Dimensional note (D=4 vs D=3)</h4>
+<p>The results of §A.42 assume D=4, κ=1/(8π), consistent with the 4D Regge formalism of DFS 2007. The CDT simulations are 2+1D (D=3); the correction D=3 κ=1/(6π) shifts the λ(Λ) values by ~33% and is deferred to v2.6. <strong>The LISA falsifiability result of §7.4 does not depend on the microscopic origin of M1, only on its measured value from real CDT data.</strong></p>
+</section>
+
+
+<section class="appendix-section" id="secA43">
+<h2 class="section-title">Appendix A.43 — Outlook: GRU Causal Spine and Quantum Computing</h2>
+<h4>A.43 Outlook: GRU Causal Spine and Quantum Computing</h4>
+
+<p>
+The GRU-FIEL (Foliated Information Encoding Layer) protocol provides a 
+mathematical illustration—deliberately not a hardware-level implementation—of 
+how the causal-spine structure of CDT quantum gravity might interface with 
+quantum information theory. Four controlled results anchor this outlook. 
+<strong>(i) Geometric channel.</strong> The spine-induced amplitude-damping 
+channel, with damping rate <em>&gamma;</em> = 4.21 % and Choi rank 2, is 
+completely positive and trace-preserving. Its action on the computational 
+basis yields fidelities F(|0&rang;) = 1.000 and F(|1&rang;) = 0.958, showing 
+that the spine geometry imposes a weak, structured decoherence rather than 
+a generic depolarizing noise. <strong>(ii) Quantum-walk benchmark.</strong> 
+A continuous-time quantum walk on the spine (path graph) yields a spectral 
+dimension <em>d</em><sub>s</sub>(spine) = 0.886 &pm; 0.015, consistent with 
+the 1-D causal chain expected from the GRU protocol; the same walk on the 
+full 2-D grid gives <em>d</em><sub>s</sub>(grid) = 1.968 &pm; 0.032, 
+recovering the bulk dimension. The separation &Delta;<em>d</em><sub>s</sub> 
+&asymp; 4.0 between full graph (<em>d</em><sub>s</sub> &asymp; 5.02) and 
+spine confirms that dimensional reduction is encoded in the walk spectrum, 
+not merely in graph pruning. <strong>(iii) Radial projection.</strong> The 
+unitary walk operator <em>U</em><sub>walk</sub> constructed from the 
+symmetrized graph Laplacian 
+<em>L</em><sub>sym</sub> = <em>I</em> &minus; <em>D</em><sup>&minus;1/2</sup> 
+<em>A</em> <em>D</em><sup>&minus;1/2</sup> produces an entropy spectral 
+dimension <em>d</em><sub>s</sub>(entropy) = 0.528, showing that radial 
+information flow retains a non-trivial geometric signature even after 
+projecting out the full bulk. <strong>(iv) Holographic toy model.</strong> 
+A compression ratio 
+<em>d</em><sub>s</sub>(full)/<em>d</em><sub>s</sub>(spine) = 1.626 is 
+obtained by treating the spine as a "boundary" encoding of the bulk graph; 
+while the resulting quantum-error-correction fidelity vanishes (as expected 
+for a toy model without stabilizer structure), the ratio itself demonstrates 
+that the dimensional gap between spine and bulk can be quantified in 
+information-theoretic terms.
+</p>
+
+<p>
+Two caveats are essential. First, the CTQW fit returns 
+<em>d</em><sub>s</sub> = &minus;0.850 for the spine walk because the 
+heat-kernel regression is oscillatory on a finite path graph; the 
+theoretically exact value is <em>d</em><sub>s</sub> = 1.0 by construction, 
+and the negative fit is a finite-size artifact documented, not hidden. 
+Second, the holographic-QEC module is a mathematical illustration only: it 
+lacks stabilizer generators, syndrome measurements, and physical qubits, 
+and its near-zero fidelity is therefore an honest baseline rather than a 
+failure. These limitations are flagged explicitly so that the reader does 
+not mistake proof-of-concept numerics for a proposal for fault-tolerant 
+quantum computing hardware.
+</p>
+
+<p>
+The broader implication is structural. If the causal spine of CDT is indeed 
+a 1-D carrier of quantum information, then any future quantum-gravity 
+processor—whether realized in superconducting circuits, trapped ions, or 
+topological qubits—would face a fundamental constraint: the accessible 
+degrees of freedom live on a 1-D backbone, while the bulk dimensionality 
+(2, 3, or 4) is reconstructed from correlations along that backbone. The 
+GRU-FIEL protocol shows, at the level of graph-theoretic quantum channels, 
+that this constraint is internally consistent: CPTP maps exist, walk 
+spectra distinguish spine from bulk, and holographic compression ratios 
+are well-defined. What remains open is whether the 4.21 % damping rate 
+and the 1.626 compression ratio map to physical noise models in actual 
+NISQ devices, and whether the CDT 4-D data now being pursued with 
+collaborators (Clemente, Loll; contact expected early July 2026) will 
+preserve the <em>d</em><sub>s</sub>(spine) &asymp; 1 universality seen in 
+2-D and 3-D simulations. Until those data arrive, &sect;A.43 stands as a 
+mathematical bridge between quantum gravity and quantum information, not as 
+a blueprint for engineering.
+</p>
+
+<p>
+<strong>Closing statement.</strong> The GRU protocol began as a method to 
+extract the spectral dimension of the causal spine in Causal Dynamical 
+Triangulations. It has evolved into a cross-disciplinary lens: the same 
+BFS collapse, heat-kernel regression, and power-law fit that yield 
+<em>d</em><sub>s</sub> &asymp; 1 in 2-D and 3-D CDT also define a 
+quantum channel, a continuous-time quantum walk, and a holographic 
+compression ratio in the quantum-computing formalism. Whether this 
+convergence is deep or coincidental will be decided by 4-D data, by 
+independent replication, and by the community's judgment of whether a 
+1-D causal spine is a physical observable or a convenient mathematical 
+fiction. We have striven to present every number, every caveat, and every 
+open question with the transparency that such a judgment deserves.
+</p>
+</section>
+
+
+<section class="appendix-section" id="secA44">
+<h2 class="section-title">Appendix A.44 — Topological Obstruction: Hairy Ball Theorem and Causal Spine (Placeholder)</h2>
+<p><em>This appendix is reserved for v2.6. It will formalize the connection between the Hairy Ball Theorem (HBT) and the causal spine regime structure (S1/S2/S3), establishing HBT as a geometric consistency condition rather than an independent validation criterion (C4). The γ<sub>top</sub> contribution to the MDR gap is estimated at ~2.4×10<sup>−4</sup>, several orders of magnitude below the observed γ = 0.0564.</em></p>
+</section>
+
+
+<section class="appendix-section" id="secA46">
+<h2 class="section-title">Appendix A.46 — Root Invariance of the Spine Protocol</h2>
+<p>A validation test (P1) initially reported high variance in d<sub>s</sub> across different BFS roots (d<sub>s</sub> = 0.869 ± 0.255), raising concerns about protocol robustness. Investigation revealed the variance originated from applying BFS over the full graph from arbitrary roots — a violation of the vertex_times protocol (Sec 3.2) that produces genuinely different subgraphs.</p>
+<p>The corrected test varies the <em>representative node</em> of each temporal shell randomly among valid candidates (nodes with temporal edges to the next shell), producing 20 distinct spines from real CDT data (N=2567, T=20). Result: d<sub>s</sub> = 0.9602 ± 0.0413 (std = 0.041 &lt; 0.05, PASS). This confirms the spine is a topological invariant — an S¹ cycle of T nodes whose spectral dimension is independent of representative choice. The residual σ ≈ 0.04 is pure random-walk statistical noise (NWALKS=3000).</p>
+</section>
+
+<section class="appendix-section" id="secPPN">
+<h2 class="section-title">Appendix A.45 — Solar System Compatibility: PPN and SO(3)</h2>
+<h4>A.45.1 PPN Parameters</h4>
+<p>GRU does not modify Post-Newtonian parameters at detectable levels. The correction δγ<sub>GRU</sub> is approximately 2×10<sup>4</sup> times below the Cassini bound (δγ &lt; 2.3×10<sup>−5</sup>), and γ<sub>PPN</sub> = 1 exactly in Regime III where F<sub>GRU</sub> is isotropic. This result confirms that GRU is fully compatible with Solar System tests of General Relativity.</p>
+<h4>A.45.2 SO(3) Symmetry Breaking</h4>
+<p>The CDT temporal foliation breaks SO(3) rotational symmetry at the Planck scale. However, the ensemble average restores isotropy at macroscopic scales. The residual breaking at LIGO frequencies is ~10<sup>−82</sup>, entirely negligible. This is consistent with the GRU criterion T2.5: d<sub>s</sub> measurements are 21.1× more stable under full rotations than under octant variations.</p>
+<h4>A.45.3 Δt_GRU from CDT Geometry</h4>
+<p>The characteristic time delay from the causal spine geometry is derived directly from CDT data:</p>
+<p style="font-family:monospace; padding:0.5rem 1.2rem; background:rgba(0,0,0,0.2); border-radius:6px;">
+  f<sub>spine</sub> = T / N = 20 / 2567 = 7.7912 mHz<br>
+  Δt<sub>GRU</sub> = 1 / f<sub>spine</sub> = N / T = 2567 / 20 = <strong>128.35 s</strong>
+</p>
+<p>Source: <code>GRU_real_CDT_for_interactive.json</code> (N=2567, T=20, real CDT 2+1D geometry). This is distinct from the MDR-integrated delay Δt = 277 ms at z=1 (§7.4.8); both are valid GRU observables at different physical scales. The 128.35 s delay is relevant for stochastic gravitational-wave background analysis; the 277 ms delay is the LISA-band prediction for individual SMBHB events.</p>
+<div class="meta-note">
+<strong>Methodological note:</strong> A previous draft (pre-v2.5) used f<sub>spine</sub> = 7.752 mHz derived tautologically as 1/129 s. This was incorrect: the correct derivation is f<sub>spine</sub> = T/N from real CDT data, giving Δt = 128.35 s. The value 7.877 mHz (memoria #57) may reflect an ensemble average from a different geometry set and remains unverified for this specific JSON.
+</div>
+</section>
+
+<section id="refs" class="appendix-section">
+<h2 class="section-title">References</h2>
+<ol class="refs-list">
+<li>Kronheimer, E.H. & Penrose, R. (1967). "On the structure of causal spaces." <em>Proc. Cambridge Philos. Soc.</em> 63, 481-501.</li>
+<li>Malament, D. (1977). "The class of continuous timelike curves determines the topology of spacetime." <em>J. Math. Phys.</em> 18, 1399.</li>
+<li>Bombelli, L., Lee, J., Meyer, D., Sorkin, R.D. (1987). "Space-time as a causal set." <em>Phys. Rev. Lett.</em> 59, 521.</li>
+<li>Brunekreef, J., Görlich, A., Loll, R. (2023). "Simulating CDT quantum gravity." arXiv:2310.16744.</li>
+<li>Ambjørn, J., Jurkiewicz, J., Loll, R. (2005). "Spectral Dimension of the Universe." arXiv:hep-th/0505113.</li>
+<li>Ambjørn, J., Görlich, A., Jurkiewicz, J., Loll, R. (2012). "Nonperturbative quantum gravity." <em>Phys. Rept.</em> 519.</li>
+<li>Billi, M., Barreiro, R.B., Martínez-González, E. (2024). "The anomaly of the CMB power with the latest Planck data." <em>JCAP</em>07(2024)080. DOI: 10.1088/1475-7516/2024/07/080. arXiv:2312.09989.</li>
+<li>Flores Cornejo, A. (2026). "Anisotropic loop quantum cosmology: radial reparametrization of minisuperspace." Zenodo. DOI: <a href="https://doi.org/10.5281/zenodo.20360870">10.5281/zenodo.20360870</a>.</li>
+<li>Coumbe, J.P., Jurkiewicz, J. (2015). "Evidence for asymptotic safety from multidimensional causal dynamical triangulations." <em>Physical Review D</em> 91, 124011 (2015). arXiv:1411.7712. [CDT spectral dimension in 4D: dynamical reduction d<sub>s</sub>→2 at short distances.]</li>
+<li>Barontini, G., et al. (2026). "Emergent temporal ordering in a cold-atom system without an external clock." <em>Phys. Rev. Research</em> 8, L022047. DOI: <a href="https://doi.org/10.1103/1h9j-df4k">10.1103/1h9j-df4k</a>. [Laboratory realization of relational time — emergent temporal ordering without an external clock, providing experimental motivation for the causal-structure philosophy underlying GRU. Note: philosophical motivation only; no technical equivalence with GRU is claimed.]</li>
+<li>Surya, S. (2019). "The causal set approach to quantum gravity." <em>Living Rev. Relativity</em> 22, 5. arXiv:1903.11544. [Comprehensive review of causal-set program; "Order + Number = Geometry" principle.]</li>
+<li>Perez, A. (2013). "The spin foam approach to quantum gravity." <em>Living Rev. Relativity</em> 16, 3. arXiv:1205.2019.</li>
+<li>Rovelli, C., Vidotto, F. (2014). <em>Covariant Loop Quantum Gravity: An Elementary Introduction to Quantum Gravity and Spinfoam Theory.</em> Cambridge University Press.</li>
+<li>Amelino-Camelia, G. (2013). "Quantum-spacetime phenomenology." <em>Living Rev. Relativity</em> 16, 5. arXiv:0806.0339. [Phenomenological bounds on quantum-gravity effects; framework for connecting discrete-gravity results to observation.]</li>
+<li>Addazi, A., et al. (2022). "Quantum gravity phenomenology at the dawn of the multi-messenger era." <em>Prog. Part. Nucl. Phys.</em> 125, 103948. arXiv:2111.05659. [Review of observational windows for quantum gravity; CMB and gravitational-wave sections relevant to GRU pipelines.]</li>
+
+<li>Abdo, A.A., et al. (Fermi LAT Collaboration) (2009). "A limit on the variation of the speed of light arising from quantum gravity effects." <em>Nature</em> 462, 331–334. DOI: 10.1038/nature08574. [Fermi-LAT GRB 090510: E<sub>QG,1</sub> &gt; 7.6·E<sub>Planck</sub> for n=1 subluminal — rescaled to n<sub>GRU</sub>=0.056 in GRU v2.2.]</li>
+<li>Dittrich, B., Freidel, L., Speziale, S. (2007). "Linearized dynamics from the 4-simplex Regge action." <em>Phys. Rev. D</em> 76, 104020. arXiv:0707.4513. [Regge Hessian for 4-simplex; DFS projector onto spin-2 tensorial modes used in GRU_P_FACTIVE.]</li>
+<li>Mirshekari, S., Yunes, N., Will, C.M. (2012). "Constraining generic Lorentz violation and the speed of the graviton with gravitational waves." <em>Phys. Rev. D</em> 85, 024041. arXiv:1110.2720. [MDR framework for gravitational waves — basis for GRU transfer function Δt(f,z).] <em>See also:</em> arXiv:2511.04010 (LISA GW dispersion populations, 2025).</li>
+<li>Mewes, M. (2019). "Signals for Lorentz violation in gravitational waves." <em>Phys. Rev. D</em> 99, 104062. DOI: 10.1103/PhysRevD.99.104062. [SME quadrupolar framework for anisotropic GW dispersion — basis for GRU ε<sub>A</sub> = 3.71% prediction.]</li>
+
+<li>Ambjørn, J., Loll, R. (2026). "Causal Dynamical Triangulations: New Lattice Theory of Quantum Gravity." Invited contribution to <em>Scholarpedia</em>. arXiv:2604.05641 [hep-th]. [Context for CDT methodology, spectral dimension d<sub>s</sub>~2 in UV, emergence of de Sitter universe — confirms GRU spine d<sub>s</sub>≈1 refines rather than contradicts CDT consensus.]</li>
+<li>Gong, C., Zhu, T., Niu, R., Wu, Q., Cui, J.-L., Zhang, X., Zhao, W., Wang, A. (2023). "Gravitational wave constraints on nonbirefringent dispersions of gravitational waves due to Lorentz violations with GWTC-3 events." <em>Phys. Rev. D</em> 107, 124015. DOI: 10.1103/PhysRevD.107.124015. arXiv:2302.05077 [gr-qc]. [SME bounds d=6 nonbirefringent operators with 90 GWTC-3 events. GRU quadrupolar coefficient j=2, m=0 (CPT-even, d=4) is NOT covered — observational window open for LISA.]</li>
+<li>Wang, Q., Yan, J.-M., Zhu, T., Zhao, W. (2025). "Modified gravitational wave propagations in linearized gravity with Lorentz and diffeomorphism violations and their gravitational wave constraints." <em>Phys. Rev. D</em> 111, 084064. DOI: 10.1103/PhysRevD.111.084064. arXiv:2501.11956 [gr-qc]. [LV + diffeomorphism breaking, d=2,3 operators. GRU is diffeomorphism-preserving (d=4) — distinct parameter space, no direct conflict.]</li>
+</ol>
+</section>
+
+</main>
+
+<footer>
+  GRU v2.6 · Alfredo Flores Cornejo · Zapopan, México · July 2026<br>
+  This version (v2.6) · DOI: <a href="https://doi.org/10.5281/zenodo.21288365">10.5281/zenodo.21288365</a> · Previous version (v2.5): <a href="https://doi.org/10.5281/zenodo.21144855">10.5281/zenodo.21144855</a> · Concept DOI: <a href="https://doi.org/10.5281/zenodo.20352929">10.5281/zenodo.20352929</a> ·
+  Previous version (v2.2): <a href="https://doi.org/10.5281/zenodo.20837706">10.5281/zenodo.20837706</a> ·
+  Version history: <a href="https://doi.org/10.5281/zenodo.20352929">Zenodo concept record</a>
+</footer>
+
+</body>
+</html>

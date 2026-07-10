@@ -1,0 +1,13 @@
+{
+  "script": "GRU_P_FISHER_v3_OFICIAL_A_FINAL.py",
+  "fecha": "2026-07-05",
+  "A_final_usado": 1.46e-16,
+  "n_GRU": 0.0564,
+  "I_total": 2.2415913869424207e-13,
+  "sigma_n_1evento": 2112135.4966261415,
+  "sigma_n_safe": 21121354.966261417,
+  "N5_eventos_5sigma": 3.5061084987772237e+18,
+  "separacion_sigma_vs_n2_masiva_LQG": 9.202061151401722e-07,
+  "separacion_sigma_vs_n1_SME_d5": 4.467516414109212e-07,
+  "nota": "Sustituye sigma_n=0.0027 (con A pre-screening, INCORRECTO) usado en lineas 242, 1140, 1894 y en Sec. 7.4.8 del HTML v2.6."
+}

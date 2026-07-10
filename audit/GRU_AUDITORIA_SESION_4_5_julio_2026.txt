@@ -1,0 +1,147 @@
+================================================================================
+  SESIÓN: Auditoría GRU — desde corrección GitHub hasta cierre 5 jul 2026
+  Excluye medicsafc.
+================================================================================
+
+1) CORRECCIÓN Y LIMPIEZA DE GITHUB
+---------------------------------------
+- Repo único confirmado: dralfredofc-rgb/GRU (rama main, tag v2.5).
+- Commit de limpieza: c4aa7da. Verificado local y por API recursiva: NO
+  existen carpetas app/ ni app_backup_* en origin/main.
+- Auditoría de cuenta GitHub: solo 1 repo público (GRU).
+- Metadatos actualizados: homepage = https://zenodo.org/records/21144855,
+  topics = quantum-gravity, causal-dynamical-triangulations,
+  gravitational-waves, theoretical-physics, spectral-dimension.
+
+2) AUDITORÍA DE SCRIPTS Y VALORES DE A_GRU/A_FINAL
+---------------------------------------
+- Se catalogaron ~25 scripts en /root según uso de A_GRU/A_final.
+- Valores encontrados: 1.0e-17, 1.35e-17, 1.9148e-08, 4.235e-08,
+  1.46e-16.
+- Archivo central: /root/P_PROP_FULL_result.json contiene
+  A_GRU = 1.9147864316914836e-08. GRU_P_FISHER_v2_FIXED.py lo lee
+  correctamente cuando existe; default hardcodeado 1.0e-17 solo rige
+  si falta el JSON.
+- Hallazgo estructural: no hay un único pipeline automático que ejecute
+  A_GRU (1.9148e-08) -> screening exp(-2T/lambda_corr) -> A_final
+  (1.46e-16) en un solo script. Los pasos están repartidos.
+
+3) CLASIFICACIÓN DE SCRIPTS (productores vs consumidores)
+---------------------------------------
+- Productores/fuente legítima (calculan A desde física/geometría):
+  GRU_P_PROP_FULL_v2_5_fix.py, GRU_P_PROP_FULL_v2_5.py,
+  GRU_P_PROP_FULL_v2_5_old.py, GRU_P_PROP_FULL_v2_FIXED.py,
+  GRU_P_PROP_FULL_v2_FIXED-1.py, GRU_P_PROP_FULL_v2_FIXED-2.py,
+  GRU_P1_1_g_spine_Regge.py, GRU_P1_2_heat_kernel_Green.py,
+  GRU_P1_3_nGRU_topologia.py, GRU_P1_5_fermi_lat_nGRU.py,
+  GRU_P2_operador_R.py, GRU_F_SPINE_post.py, GRU_TABLE_LISA.py,
+  GRU_WAVE_INJECTOR_FIXED.py, GRU_WAVE_INJECTOR_v2.3_FINAL.py.
+- Consumidores (deberían alinearse a A_final=1.46e-16 o fuente central):
+  GRU_P_FISHER_v2_FIXED.py, GRU_P_ANISOTROPY__2__FIXED.py,
+  GRU_P_ANISOTROPY_v2_5.py, GRU_P_ANISOTROPY2FIXED.py (no existe),
+  GRU_P_DISTINGUISHABILITY_FIXED.py,
+  GRU_P_DISTINGUISHABILITY_v2_1_CORREGIDO.py, GRU_P_FACTIVE_FIXED.py,
+  GRU_P2_SCREENING_VALIDATION.py, GRU_P1_MDR_CONSISTENCY.py,
+  GRU_QUANTUM_FILTER.py.
+- Auditoría standalone: GRU_FISHER_VERIFICACION_INDEPENDIENTE.py.
+
+4) ANÁLISIS DE VALORES "HUÉRFANOS"
+---------------------------------------
+- epsilon_A = 4.1816% (paper/Zenodo): ningún .py en /root lo deriva.
+  GRU_P_ANISOTROPY_v2_5.py usa 0.0412 (4.12%) y
+  GRU_QISKIT_RUN_ALL_v2.5_GRU_FIEL.py usa 4.305%.
+- A_GRU = 4.235e-08 en GRU_QUANTUM_FILTER.py: solo se declara, no se
+  usa en fórmulas del script. El quantum channel realmente depende de
+  A_FINAL = 1.46e-16.
+- A_INT = 7.691e-18 en GRU_P2_SCREENING_VALIDATION.py: valor huérfano,
+  noreference documentada, sin relación con la cadena oficial.
+  Documentado en /root/GRU_NOTAS_A_INT_HUERFANO.md.
+
+5) PIPELINE OFICIAL CREADO (sin tocar scripts existentes)
+---------------------------------------
+- Archivo: /root/GRU_A_GRU_PIPELINE_OFICIAL.py
+- Cadena: A_GRU (lee P_PROP_FULL_result.json) ->
+         screening = exp(-2*T/lambda_corr), T=20, lambda_corr=2.14 ->
+         A_final = A_GRU * screening
+- Ejecución: A_GRU = 1.914786e-08, screening = 7.626866e-09,
+  A_final = 1.460382e-16, error vs 1.46e-16 = 0.0262%.
+- Resultado: PASS, reproduce exactamente el número oficial del paper.
+
+6) RESOLUCIÓN DE DISCREPANCIA N5: 9.9e14 vs 3.5e18
+---------------------------------------
+- Perplexity reportó N5=9.9e14 usando fórmula simplificada
+  (5*sigma_n/N_GRU)^2, omitiendo el safety factor=10 documentado en
+  GRU_P_FISHER_v2_FIXED.py.
+- Fórmula exacta del script real:
+    sn_1_safe = sn_1 * SAFETY_FACTOR (10.0)
+    N5 = max(1, (5*sn_1_safe/N_GRU)^2)
+- Con A=1.46e-16 y parámetros del JSON de verificación:
+    I_total = 2.2415913869424207e-13
+    sigma_n = 2112135.5
+    sigma_n_safe = 21121354.97
+    N5 = 3.506e18
+- Conclusión: 3.5e18 es matemáticamente correcto para A_final=1.46e-16.
+  9.9e14 es incorrecto para esta implementación.
+- Ejecución confirmatoria:
+    /root/GRU_VERIFICACION_UBUNTU_v2_CORREGIDO.py
+  Resultados: f_spine=7.7912 mHz, Delta_t=128.35 s, A_final=1.460392e-16,
+  N5=3.506e18, spine protocolo vertex_times PASS.
+
+7) CORRECCIÓN GRU_v2_6_DRAFT.html (archivo adjunto a esta sesión)
+---------------------------------------
+- Base: /root/.hermes/cache/documents/doc_147904b65f1b_GRU_v2_6_DRAFT.html
+  ( ya venia con nota reforzada de A.41 de sesión Claude previa )
+- Se corrigieron 6 menciones incorrectas de N=1:
+  * Línea 209: "N = 1 SMBHB event at 5σ" -> redacción honesta A_bruto,
+    screening, N5≈3.5×10^18, pregunta abierta v2.6+.
+  * Línea 242: tablaresumen -> N5≈3.5×10^18 SMBHB events for 5σ
+    with A_final=1.46e-16.
+  * Línea 287: changelog v2.2 -> Fisher N5≈3.5×10^18.
+  * Línea 1140: sección 7.4.6 Fisher Analysis -> N_events≈3.5×10^18
+    (A_final=1.46e-16 post-screening).
+  * Línea 1345: bullet LISA falsifiability -> N5≈3.5×10^18.
+  * Línea 1894: changelog v2.3 -> N5≈3.5×10^18.
+  * Línea 1866: tabla changelog v2.2 -> N5≈3.5×10^18.
+- Se añadió sección F.4 — Correction to LISA Fisher Calculation (July
+  2026) después de F.2b, documentando el bug, el cambio numérico
+  (204 -> 3.5e18) y lo que NO afecta.
+- Se añadió también item equivalente en changelog v2.2 (línea 1902).
+- Verificación final: no quedan menciones de N=1/N_events=1 en contexto
+  LISA/Fisher/falsifiability en el HTML.
+
+8) LECTURA DE BORRADORES SECUNDARIOS (sin corrección todavía)
+---------------------------------------
+- GRU_PRDCQG_Seccion1_Introduction_DRAFT.txt:
+  línea 68-69: "A_final = 1.46e-16, detectable at 5σ with a single
+  well-localized SMBHB event at z~1" -> inconsistente con N5=3.5e18.
+- GRU_CoverLetter_CQG_DRAFT.txt:
+  línea 37: "gravitational wave dispersion detectable by LISA (with a
+  specific predicted amplitude...)" -> ambiguo, no corrige ni afirma
+  cifra concreta, pero promete detectabilidad.
+- GRU_Discusion_Limitaciones_CONSOLIDADA.txt:
+  no menciona "N=1" ni "1 evento" en contexto LISA. Hace referencia a
+  GWTC/GRU=no sensible, y declara ventana natural LISA+CMB. No incluye
+  el hallazgo LISA de hoy como limitación explícita.
+
+9) PENDIENTES CONFIRMADOS PARA PRÓXIMA SESIÓN
+---------------------------------------
+- Corregir GRU_PRDCQG_Seccion1_Introduction_DRAFT.txt (línea 68-69).
+- Corregir GRU_CoverLetter_CQG_DRAFT.txt (línea 37).
+- Añadir en GRU_Discusion_Limitaciones_CONSOLIDADA.txt la limitación
+  LISA/N5≈3.5e18.
+- Generar PDF desde HTML v2.6 corregido.
+- Actualizar ZIP maestro con HTML/PDF, GRU_A_GRU_PIPELINE_OFICIAL.py,
+  GRU_NOTAS_A_INT_HUERFANO.md, y opcionalmente
+  GRU_FISHER_VERIFICACION_INDEPENDIENTE.py.
+- Publicar v2.6 en Zenodo como NUEVA VERSIÓN (no editar v2.5).
+  v2.5 permanece con DOI 10.5281/zenodo.21144855 sin cambios.
+- Actualizar README GitHub, descripción Zenodo, ORCID.
+- Normalización de scripts consumidores (no iniciada).
+- Reconstruir pipeline reproducible para epsilon_A=4.1816%.
+
+================================================================================
+FIN DEL RESUMEN
+================================================================================
+Generado para descarga por Telegram.
+No incluye contenido de medicsafc por solicitud del usuario.
+================================================================================

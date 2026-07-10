@@ -1,0 +1,45 @@
+====================================================================
+VERIFICACION DE CIERRE: GRU_v2_6.html
+====================================================================
+
+--- 1) Menciones residuales de 'N=1' o 'N = 1' en contexto LISA ---
+1956:N=1 
+
+--- 2) Todas las apariciones de sigma_n / N5 (revisar consistencia) ---
+209: open question connecting this work to an existing CMB anomaly. Real four-dimensional CDT validation remains an open question. <strong>In v2.6, the LISA falsifiability question is answered:</strong> n<sub>GRU</sub> = 0.0564 (phenomenological hypothesis, see §A.41), λ<sub>corr</sub> = 2.14 ± 0.79 slices (32 real CDT geometries), A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] ✓. The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+). The anisotropic quadrupolar signature ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%) is unique to GRU.</p>
+242:    <td>σ<sub>n</sub>=2.1121×10<sup>6</sup>, N<sub>5</sub>≈3.5×10<sup>18</sup> SMBHB events for 5σ with A<sub>final</sub>=1.46×10<sup>−16</sup></td>
+287:Anisotropy ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%). Fisher: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude). 112 scripts. 3 new references.</p>
+1172:<p>With a single SMBHB event (SNR~1000, z=1, 3 mHz): σ<sub>n</sub> = 2.1121×10<sup>6</sup> <span style="color:var(--green);">[v2.6 recalculated with A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening]</span> — the required precision for 5σ detection is therefore extremely demanding. <strong>N<sub>events</sub> for 5σ detection ≈ 3.5×10<sup>18</sup> (A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening).</strong> LISA expects 10–100 SMBHB detections in its primary mission (2035–2040).</p>
+1183:(see §7.4.6 for the N<sub>5</sub> event-count analysis):</p>
+1205:event budget for 5σ detection is N<sub>5</sub>≈3.5×10<sup>18</sup>, so the
+1340: search. The reported N<sub>5</sub>≈3.5×10<sup>18</sup> should be read as an
+1417:<li><strong>LISA falsifiability:</strong> n<sub>GRU</sub> = 0.0564 (derived from d<sub>S</sub>(spine) = 1.0282, no free parameters). Screening M1 parameter λ<sub>corr</sub> = 2.14 ± 0.79 slices measured from 32 real CDT geometries. A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ LISA window. Anisotropic signature ε<sub>A</sub> = 4.1816% <span style="color:var(--green);">[v2.3 corrected]</span>, unique to GRU. Fisher analysis: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ detection (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+1938:  <td>§7.2 LISA-GRU: MDR derivada (n=0.0564), screening M1 (λ=2.14±0.79, 21/32 CDT), A_final=1.46×10⁻¹⁶ ✓ en ventana; anisotropía ε_A=3.71% (corregido a 4.1816% en v2.3); Fisher N5≈3.5×10¹⁸ SMBHB events for 5σ (with A_final=1.46×10⁻¹⁶, the post-screening amplitude); 112 scripts; 3 referencias nuevas</td>
+1962:  <td>Critical correction to LISA Fisher information calculation (§F.5): pre-screening amplitude (A<sub>bruto</sub>=1.9148×10<sup>−8</sup>) was used instead of post-screening (A<sub>final</sub>=1.46×10<sup>−16</sup>), raising N<sub>5</sub> from 204 to ≈3.5×10<sup>18</sup> events for 5σ detection — GRU is essentially undetectable by LISA with the screening mechanism as currently defined. SO(3) sampling bug also corrected (non-isotropic ensemble; conclusion unchanged, breaking ~10⁻⁸² at LIGO scale). C6 Fermi-LAT comparison recomputed differentially (method/band dependent).</td>
+1972:<li><strong>Fisher recalculado:</strong> σ<sub>n</sub> = 2.1121×10<sup>6</sup> (vs 0.0027 en v2.2/v2.3/v2.5, calculado con A<sub>final</sub>=1.46×10<sup>−16</sup> post-screening), N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+1980:<li>The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+).</li>
+2087:from N<sub>5</sub>=204 to N<sub>5</sub>≈3.5×10<sup>18</sup>, making GRU
+
+--- 3) Verificar que NO quede sigma_n=0.0027 sin actualizar ---
+1972:<li><strong>Fisher recalculado:</strong> σ<sub>n</sub> = 2.1121×10<sup>6</sup> (vs 0.0027 en v2.2/v2.3/v2.5, calculado con A<sub>final</sub>=1.46×10<sup>−16</sup> post-screening), N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+
+--- 4) Verificar presencia y contenido de la seccion de correccion LISA ---
+1962:  <td>Critical correction to LISA Fisher information calculation (§F.5): pre-screening amplitude (A<sub>bruto</sub>=1.9148×10<sup>−8</sup>) was used instead of post-screening (A<sub>final</sub>=1.46×10<sup>−16</sup>), raising N<sub>5</sub> from 204 to ≈3.5×10<sup>18</sup> events for 5σ detection — GRU is essentially undetectable by LISA with the screening mechanism as currently defined. SO(3) sampling bug also corrected (non-isotropic ensemble; conclusion unchanged, breaking ~10⁻⁸² at LIGO scale). C6 Fermi-LAT comparison recomputed differentially (method/band dependent).</td>
+1973:<li><strong>Nota metodológica v2.3 (Appendix F.4):</strong> Documenta el bug R2<sub>v2</sub>, su detección, consecuencia, y corrección. Mantiene el principio de honestidad metodológica de GRU.</li>
+2015:<h3 class="subsection-title">F.4 Methodological Note v2.3: The R2<sub>v2</sub> Bug</h3>
+2021:<h4>F.4.1 What was the bug?</h4>
+2035:<h4>F.4.2 How was it detected?</h4>
+2048:<h4>F.4.3 What is the correction?</h4>
+2060:<h4>F.4.4 Why was this not caught earlier?</h4>
+2069:<h4>F.4.5 Lessons for GRU methodology</h4>
+2073:<li><strong>Bug documentation is part of the result.</strong> This note (F.4) is not an embarrassment; it is evidence that the GRU program maintains methodological integrity.</li>
+2080:<h3 class="subsection-title">F.5 — Correction to LISA Fisher Calculation (July 2026)</h3>
+
+--- 5) Verificar separaciones de discriminabilidad (720/349 sigma viejos) ---
+2091:720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+2368:<li>Mirshekari, S., Yunes, N., Will, C.M. (2012). "Constraining generic Lorentz violation and the speed of the graviton with gravitational waves." <em>Phys. Rev. D</em> 85, 024041. arXiv:1110.2720. [MDR framework for gravitational waves — basis for GRU transfer function Δt(f,z).] <em>See also:</em> arXiv:2511.04010 (LISA GW dispersion populations, 2025).</li>
+2091:720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+
+====================================================================
+FIN DE VERIFICACION. Pegar este output completo en el reporte.
+====================================================================

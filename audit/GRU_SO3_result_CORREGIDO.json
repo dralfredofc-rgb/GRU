@@ -1,0 +1,39 @@
+{
+  "test": "SO(3) Symmetry (muestreo corregido)",
+  "status": "PASS",
+  "scales": {
+    "LIGO_wavelength": {
+      "L": 1000000.0,
+      "breaking": 2.6114559999999995e-82
+    },
+    "Solar_system": {
+      "L": 150000000000.0,
+      "breaking": 1.1606471111111112e-92
+    },
+    "Atomic": {
+      "L": 1e-10,
+      "breaking": 2.611456e-50
+    },
+    "Nuclear": {
+      "L": 1e-15,
+      "breaking": 2.611456e-40
+    },
+    "EW_scale": {
+      "L": 1e-18,
+      "breaking": 2.6114559999999993e-34
+    },
+    "Planck_scale": {
+      "L": 1.616e-35,
+      "breaking": 1.0
+    }
+  },
+  "bug_previo": "so3_symmetry_GRU_CORREGIDO.py usaba theta~Uniform(0,pi); corregido a cos(theta)~Uniform(-1,1) para muestreo isotropico real.",
+  "ensemble": {
+    "N_samples": 10000,
+    "T_xx": 0.004886965431136333,
+    "T_yy": -0.002581341471436234,
+    "T_zz": -0.002305623959700042,
+    "T_xy": -0.002510861382924632,
+    "SO3_emergent": true
+  }
+}

@@ -1,0 +1,284 @@
+================================================================================
+GRU v2.6 — REPORTE DE AUDITORIA Y CIERRE
+Generado: 2026-07-05 (fecha de la sesion de auditoria original)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. RESULTADO FISHER v3 (A_final = 1.46e-16)
+--------------------------------------------------------------------------------
+{
+  "script": "GRU_P_FISHER_v3_OFICIAL_A_FINAL.py",
+  "fecha": "2026-07-05",
+  "A_final_usado": 1.46e-16,
+  "n_GRU": 0.0564,
+  "I_total": 2.2415913869424207e-13,
+  "sigma_n_1evento": 2112135.4966261415,
+  "sigma_n_safe": 21121354.966261417,
+  "N5_eventos_5sigma": 3.5061084987772237e+18,
+  "separacion_sigma_vs_n2_masiva_LQG": 9.202061151401722e-07,
+  "separacion_sigma_vs_n1_SME_d5": 4.467516414109212e-07,
+  "nota": "Sustituye sigma_n=0.0027 (con A pre-screening, INCORRECTO) usado en lineas 242, 1140, 1894 y en Sec. 7.4.8 del HTML v2.6."
+}
+--------------------------------------------------------------------------------
+2. RESULTADO SO(3) CORREGIDO (muestreo isotrópico)
+--------------------------------------------------------------------------------
+
+{
+  "test": "SO(3) Symmetry (muestreo corregido)",
+  "status": "PASS",
+  "scales": {
+    "LIGO_wavelength": {
+      "L": 1000000.0,
+      "breaking": 2.6114559999999995e-82
+    },
+    "Solar_system": {
+      "L": 150000000000.0,
+      "breaking": 1.1606471111111112e-92
+    },
+    "Atomic": {
+      "L": 1e-10,
+      "breaking": 2.611456e-50
+    },
+    "Nuclear": {
+      "L": 1e-15,
+      "breaking": 2.611456e-40
+    },
+    "EW_scale": {
+      "L": 1e-18,
+      "breaking": 2.6114559999999993e-34
+    },
+    "Planck_scale": {
+      "L": 1.616e-35,
+      "breaking": 1.0
+    }
+  },
+  "bug_previo": "so3_symmetry_GRU_CORREGIDO.py usaba theta~Uniform(0,pi); corregido a cos(theta)~Uniform(-1,1) para muestreo isotropico real.",
+  "ensemble": {
+    "N_samples": 10000,
+    "T_xx": 0.004886965431136333,
+    "T_yy": -0.002581341471436234,
+    "T_zz": -0.002305623959700042,
+    "T_xy": -0.002510861382924632,
+    "SO3_emergent": true
+  }
+}
+--------------------------------------------------------------------------------
+3. AUDITORIA DE AMPLITUDES EN SCRIPTS CONSUMIDORES
+--------------------------------------------------------------------------------
+
+{
+  "GRU_P123_ORCHESTRATOR.py": [
+    {
+      "variable": "A_final",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P1_MDR_CONSISTENCY.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P2_SCREENING_VALIDATION.py": [
+    {
+      "variable": "A_INT",
+      "valor": "7.691e-18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P3_DISTINGUISHABILITY_EXTENDED.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_ANISOTROPY__2__FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.0e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_GRU",
+      "valor": "1e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_P_ANISOTROPY_v2_5.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "4.235e-8",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    }
+  ],
+  "GRU_P_DISTINGUISHABILITY_v2_1_CORREGIDO.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_INT",
+      "valor": "7.691e-18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_FISHER_v2_FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.0e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_P_FISHER_v3_OFICIAL_A_FINAL.py": [
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_GRU",
+      "valor": "1.9148e-08",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_WAVEFORM_FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.35e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_QC_MDR_DEPHASING.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_QUANTUM_FILTER.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "4.235e-8",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_VERIFICACION_UBUNTU_v2_CORREGIDO.py": [
+    {
+      "variable": "A_bruto",
+      "valor": "1.9148e-8",
+      "clasificacion": "PRE-SCREENING (posible bug)"
+    },
+    {
+      "variable": "A_bruto",
+      "valor": "204",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "3.506e18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ]
+}
+--------------------------------------------------------------------------------
+4. Grep de cierre en HTML v2.6
+--------------------------------------------------------------------------------
+
+====================================================================
+VERIFICACION DE CIERRE: /root/GRU_v2_6_DRAFT.html
+====================================================================
+
+--- 1) Menciones residuales de 'N=1' o 'N = 1' en contexto LISA ---
+1890:N=1 
+
+--- 2) Todas las apariciones de sigma_n / N5 (revisar consistencia) ---
+209: open question connecting this work to an existing CMB anomaly. Real four-dimensional CDT validation remains an open question. <strong>In v2.5, the LISA falsifiability question is answered:</strong> n<sub>GRU</sub> = 0.0564 (phenomenological hypothesis, see §A.41), λ<sub>corr</sub> = 2.14 ± 0.79 slices (32 real CDT geometries), A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ [5.27×10<sup>−20</sup>, 4.36×10<sup>−14</sup>] ✓. The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+). The anisotropic quadrupolar signature ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%) is unique to GRU.</p>
+242:    <td>σ<sub>n</sub>=2.1121×10<sup>6</sup>, N<sub>5</sub>≈3.5×10<sup>18</sup> SMBHB events for 5σ with A<sub>final</sub>=1.46×10<sup>−16</sup></td>
+287:Anisotropy ε<sub>A</sub> = 4.1816% (v2.3 corrected from 3.71%). Fisher: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude). 112 scripts. 3 new references.</p>
+1140:<p>With a single SMBHB event (SNR~1000, z=1, 3 mHz): σ<sub>n</sub> = 2.1121×10<sup>6</sup> <span style="color:var(--green);">[v2.6 recalculated with A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening]</span> — the required precision for 5σ detection is therefore extremely demanding. <strong>N<sub>events</sub> for 5σ detection ≈ 3.5×10<sup>18</sup> (A<sub>final</sub>=1.46×10<sup>−16</sup>, post-screening).</strong> LISA expects 10–100 SMBHB detections in its primary mission (2035–2040).</p>
+1165:event budget for 5σ detection is N<sub>5</sub>≈3.5×10<sup>18</sup>, so the
+1351:<li><strong>LISA falsifiability:</strong> n<sub>GRU</sub> = 0.0564 (derived from d<sub>S</sub>(spine) = 1.0282, no free parameters). Screening M1 parameter λ<sub>corr</sub> = 2.14 ± 0.79 slices measured from 32 real CDT geometries. A<sub>final</sub> = 1.46×10<sup>−16</sup> ∈ LISA window. Anisotropic signature ε<sub>A</sub> = 4.1816% <span style="color:var(--green);">[v2.3 corrected]</span>, unique to GRU. Fisher analysis: N5≈3.5×10<sup>18</sup> SMBHB events for 5σ detection (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+1872:  <td>§7.2 LISA-GRU: MDR derivada (n=0.0564), screening M1 (λ=2.14±0.79, 21/32 CDT), A_final=1.46×10⁻¹⁶ ✓ en ventana; anisotropía ε_A=3.71% (corregido a 4.1816% en v2.3); Fisher N5≈3.5×10¹⁸ SMBHB events for 5σ (with A_final=1.46×10⁻¹⁶, the post-screening amplitude); 112 scripts; 3 referencias nuevas</td>
+1900:<li><strong>Fisher recalculado:</strong> σ<sub>n</sub> = 2.1121×10<sup>6</sup> (vs 0.0027 en v2.2/v2.3/v2.5, calculado con A<sub>final</sub>=1.46×10<sup>−16</sup> post-screening), N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+1908:<li>The amplitude A<sub>bruto</sub>=1.9148×10<sup>−8</sup> corresponds to the pre-screening value. The M1 screening mechanism, calibrated to explain the CMB quadrupole suppression, reduces the effective amplitude to A<sub>final</sub>=1.46×10<sup>−16</sup>. Applying this screening universally — the conservative position given the current state of the framework — detection by LISA would require N<sub>5</sub>≈3.5×10<sup>18</sup> events, making the signal essentially undetectable in the primary mission (LISA expects ~30 SMBHB events over its lifetime). Whether the screening mechanism could be frequency-dependent (potentially allowing a larger effective amplitude specifically in the LISA band) remains an open question requiring explicit derivation from GRU's causal structure — this has not been established in the current framework (v2.6+).</li>
+2016:from N<sub>5</sub>=204 to N<sub>5</sub>≈3.5×10<sup>18</sup>, making GRU
+
+--- 3) Verificar que NO quede sigma_n=0.0027 sin actualizar ---
+1900:<li><strong>Fisher recalculado:</strong> σ<sub>n</sub> = 2.1121×10<sup>6</sup> (vs 0.0027 en v2.2/v2.3/v2.5, calculado con A<sub>final</sub>=1.46×10<sup>−16</sup> post-screening), N5≈3.5×10<sup>18</sup> SMBHB events for 5σ (with A<sub>final</sub>=1.46×10<sup>−16</sup>, the post-screening amplitude).</li>
+
+--- 4) Verificar presencia y contenido de la seccion de correccion LISA ---
+1901:<li><strong>Nota metodológica v2.3 (Appendix F.4):</strong> Documenta el bug R2<sub>v2</sub>, su detección, consecuencia, y corrección. Mantiene el principio de honestidad metodológica de GRU.</li>
+1943:<h3 class="subsection-title">F.4 Methodological Note v2.3: The R2<sub>v2</sub> Bug</h3>
+1949:<h4>F.4.1 What was the bug?</h4>
+1963:<h4>F.4.2 How was it detected?</h4>
+1976:<h4>F.4.3 What is the correction?</h4>
+1988:<h4>F.4.4 Why was this not caught earlier?</h4>
+1997:<h4>F.4.5 Lessons for GRU methodology</h4>
+2001:<li><strong>Bug documentation is part of the result.</strong> This note (F.4) is not an embarrassment; it is evidence that the GRU program maintains methodological integrity.</li>
+2009:<h3 class="subsection-title">F.5 — Correction to LISA Fisher Calculation (July 2026)</h3>
+
+--- 5) Verificar separaciones de discriminabilidad (720/349 sigma viejos) ---
+2020:720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+2299:<li>Mirshekari, S., Yunes, N., Will, C.M. (2012). "Constraining generic Lorentz violation and the speed of the graviton with gravitational waves." <em>Phys. Rev. D</em> 85, 024041. arXiv:1110.2720. [MDR framework for gravitational waves — basis for GRU transfer function Δt(f,z).] <em>See also:</em> arXiv:2511.04010 (LISA GW dispersion populations, 2025).</li>
+2020:720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+
+====================================================================
+FIN DE VERIFICACION. Pegar este output completo en el reporte.
+====================================================================
+
+--------------------------------------------------------------------------------
+5. VERIFICACION MANUAL — Valores criticos en HTML
+--------------------------------------------------------------------------------
+
+1890:  <td>§A.41 MDR framework; §A.42 Screening M1; §A.43 QC Outlook (4/4 PASS); PPN γ_PPN=1 verified; SO(3) breaking ~10⁻⁸²; Δt_GRU=128.35 s from CDT; LISA Fourier-Heisenberg pipeline validation σ=2678.7 (synthetic).</td>
+2020:720σ/349σ separations): with A<sub>final</sub>=1.46×10<sup>−16</sup>,
+2299:<li>Mirshekari, S., Yunes, N., Will, C.M. (2012). "Constraining generic Lorentz violation and the speed of the graviton with gravitational waves." <em>Phys. Rev. D</em> 85, 024041. arXiv:1110.2720. [MDR framework for gravitational waves — basis for GRU transfer function Δt(f,z).] <em>See also:</em> arXiv:2511.04010 (LISA GW dispersion populations, 2025).</li>
+
+--------------------------------------------------------------------------------
+FIN DEL REPORTE
+--------------------------------------------------------------------------------
+

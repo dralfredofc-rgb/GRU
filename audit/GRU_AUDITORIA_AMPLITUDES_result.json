@@ -1,0 +1,158 @@
+{
+  "GRU_P123_ORCHESTRATOR.py": [
+    {
+      "variable": "A_final",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P1_MDR_CONSISTENCY.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P2_SCREENING_VALIDATION.py": [
+    {
+      "variable": "A_INT",
+      "valor": "7.691e-18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P3_DISTINGUISHABILITY_EXTENDED.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_ANISOTROPY__2__FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.0e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_GRU",
+      "valor": "1e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_P_ANISOTROPY_v2_5.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "4.235e-8",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    }
+  ],
+  "GRU_P_DISTINGUISHABILITY_v2_1_CORREGIDO.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_INT",
+      "valor": "7.691e-18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_FISHER_v2_FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.0e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_P_FISHER_v3_OFICIAL_A_FINAL.py": [
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    },
+    {
+      "variable": "A_GRU",
+      "valor": "1.9148e-08",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_P_WAVEFORM_FIXED.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "1.35e-17",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    }
+  ],
+  "GRU_QC_MDR_DEPHASING.py": [
+    {
+      "variable": "A_FINAL",
+      "valor": "1.460e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_QUANTUM_FILTER.py": [
+    {
+      "variable": "A_GRU",
+      "valor": "4.235e-8",
+      "clasificacion": "PRE-SCREENING (posible bug si se usa para Fisher/deteccion)"
+    },
+    {
+      "variable": "A_FINAL",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ],
+  "GRU_VERIFICACION_UBUNTU_v2_CORREGIDO.py": [
+    {
+      "variable": "A_bruto",
+      "valor": "1.9148e-8",
+      "clasificacion": "PRE-SCREENING (posible bug)"
+    },
+    {
+      "variable": "A_bruto",
+      "valor": "204",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "3.506e18",
+      "clasificacion": "VALOR NO RECONOCIDO -- revisar manualmente"
+    },
+    {
+      "variable": "A_final",
+      "valor": "1.46e-16",
+      "clasificacion": "POST-SCREENING (correcto)"
+    }
+  ]
+}
